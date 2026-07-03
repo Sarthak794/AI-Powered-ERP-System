@@ -1,0 +1,229 @@
+<div class="container-fluid">
+
+    <div class="row mb-4">
+        <div class="col">
+            <h3>Placement Drive Management</h3>
+        </div>
+    </div>
+
+    <!-- Add Placement Drive -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+            <h5>Create Placement Drive</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/admin/placement-drives/save}"
+                  method="post"
+                  th:object="${drive}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Company</label>
+
+					<select name="companyId"
+						 class="form-select"
+						required>		
+
+                            <option value="">
+                                Select Company
+                            </option>
+
+                            <option th:each="company : ${companies}"
+                                    th:value="${company.id}"
+                                    th:text="${company.companyName}">
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Drive Title</label>
+
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{driveTitle}"
+                               required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Drive Date</label>
+
+                        <input type="date"
+                               class="form-control"
+                               th:field="*{driveDate}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Venue</label>
+
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{venue}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Package Offered (LPA)</label>
+
+                        <input type="number"
+                               step="0.01"
+                               class="form-control"
+                               th:field="*{packageOffered}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Registration Deadline</label>
+
+                        <input type="date"
+                               class="form-control"
+                               th:field="*{registrationDeadline}">
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label>Eligibility Criteria</label>
+
+                        <textarea class="form-control"
+                                  rows="3"
+                                  th:field="*{eligibilityCriteria}">
+                        </textarea>
+                    </div>
+					
+					<div class="col-md-4 mb-3">
+
+					    <label>Qualification</label>
+
+					    <select name="qualification.id"
+					            class="form-select">
+
+					        <option value="">
+					            Select Qualification
+					        </option>
+
+					        <option th:each="q : ${qualifications}"
+					                th:value="${q.id}"
+					                th:text="${q.name}">
+					        </option>
+
+					    </select>
+
+					</div>
+					
+					<div class="col-md-4 mb-3">
+
+					    <label>Specialization</label>
+
+					    <select name="specialization.id"
+					            class="form-select">
+
+					        <option value="">
+					            Select Specialization
+					        </option>
+
+					        <option th:each="s : ${specializations}"
+					                th:value="${s.id}"
+					                th:text="${s.name}">
+					        </option>
+
+					    </select>
+
+					</div>
+					
+					<div class="col-md-4 mb-3">
+
+					    <label>Minimum Attendance (%)</label>
+
+					    <input type="number"
+					           step="0.01"
+					           class="form-control"
+					           th:field="*{minimumAttendance}">
+
+					</div>
+					
+					
+
+                </div>
+
+                <button class="btn btn-success"
+                        type="submit">
+                    Create Drive
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Placement Drive List -->
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+            <h5>Placement Drives</h5>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Package</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="d : ${drives}">
+
+                    <td th:text="${d.id}"></td>
+
+                    <td th:text="${d.company.companyName}"></td>
+
+                    <td th:text="${d.driveTitle}"></td>
+
+                    <td th:text="${d.driveDate}"></td>
+
+                    <td th:text="${d.venue}"></td>
+
+                    <td th:text="${d.packageOffered}"></td>
+
+                    <td th:text="${d.registrationDeadline}"></td>
+
+                    <td>
+
+                        <form th:action="@{/admin/placement-drives/delete/{id}(id=${d.id})}"
+                              method="post">
+
+                            <button class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

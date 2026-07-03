@@ -1,0 +1,352 @@
+<div class="container-fluid">
+
+    <!-- ==========================================
+            ASSIGNMENT BANNER
+    ========================================== -->
+    <div class="assignment-banner mb-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-2">Assignment Center</h2>
+                <p class="mb-0 opacity-75">
+                    View, download and submit your assignments.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+            ASSIGNMENT KPI
+    ========================================== -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+            <div class="erp-stat">
+                <div class="erp-stat-icon bg-soft-primary">
+                    <i class="bi bi-journal-text"></i>
+                </div>
+                <h3 class="mt-3 fw-bold"
+                    th:text="${assignedAssignments}">
+                </h3>
+                <small class="text-muted">Assigned</small>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="erp-stat">
+                <div class="erp-stat-icon bg-soft-success">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <h3 class="mt-3 fw-bold"
+                    th:text="${submittedAssignments}">
+                </h3>
+                <small class="text-muted">Submitted</small>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="erp-stat">
+                <div class="erp-stat-icon bg-soft-danger">
+                    <i class="bi bi-clock-fill"></i>
+                </div>
+                <h3 class="mt-3 fw-bold"
+                    th:text="${pendingAssignments}">
+                </h3>
+                <small class="text-muted">Pending</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+            ASSIGNMENT PROGRESS
+    ========================================== -->
+    <div class="card erp-card mb-4">
+
+        <div class="erp-card-header">
+            <div class="erp-section">
+                <div>
+                    <h4>
+                        <i class="bi bi-graph-up-arrow text-success me-2"></i>
+                        Assignment Progress
+                    </h4>
+                    <small>Track your completion rate</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="erp-card-body">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Completion Progress</span>
+
+                        <strong>
+                            <span th:text="${submittedAssignments}"></span> /
+                            <span th:text="${assignedAssignments}"></span>
+                        </strong>
+
+                    </div>
+
+                    <div class="progress progress-lg">
+
+                        <div class="progress-bar bg-success"
+                             th:style="'width:' +
+                             (${assignedAssignments} > 0
+                             ? (${submittedAssignments} * 100 / ${assignedAssignments})
+                             : 0)
+                             + '%'">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <h1 class="fw-bold text-success">
+                        <span th:text="${assignedAssignments > 0 ?
+                        (submittedAssignments * 100 / assignedAssignments) : 0}">
+                        </span>%
+                    </h1>
+
+                    <small class="text-muted">
+                        Completed
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+            ASSIGNMENT TABLE
+    ========================================== -->
+    <div class="card erp-card mb-4">
+
+        <div class="erp-card-header">
+            <h4>
+                <i class="bi bi-list-task me-2"></i>
+                Assignment List
+            </h4>
+        </div>
+
+        <div class="card-body table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                <tr>
+                    <th>Assignment</th>
+                    <th>Due Date</th>
+                    <th>Download</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:if="${#lists.isEmpty(assignments)}">
+
+                    <td colspan="5" class="text-center py-5">
+
+                        <i class="bi bi-journal-x display-4 text-muted"></i>
+
+                        <h5 class="mt-3">
+                            No Assignments Available
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            New assignments will appear here.
+                        </p>
+
+                    </td>
+
+                </tr>
+
+                <tr th:each="a : ${assignments}">
+
+                    <td>
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="assignment-icon">
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                            </div>
+
+                            <div>
+
+                                <h6 class="fw-bold mb-1"
+                                    th:text="${a.title}">
+                                </h6>
+
+                                <small class="text-muted">
+                                    Assignment
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        <span class="due-badge">
+
+                            <i class="bi bi-calendar-event me-1"></i>
+
+                            <span th:text="${a.dueDate}"></span>
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a th:if="${a.filePath != null}"
+                           th:href="${a.filePath}"
+                           target="_blank"
+                           class="btn btn-outline-success btn-sm rounded-pill">
+
+                            <i class="bi bi-download me-1"></i>
+
+                            Download
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <span class="status-pill pending-pill">
+                            Pending
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a th:href="@{/student/assignments/{id}/submit(id=${a.id})}"
+                           class="btn btn-primary btn-sm rounded-pill">
+
+                            <i class="bi bi-upload me-1"></i>
+
+                            Submit
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+            ASSIGNMENT GRID
+    ========================================== -->
+    <div class="row g-4">
+
+        <div th:if="${#lists.isEmpty(assignments)}"
+             class="col-12">
+
+            <div class="card erp-card text-center p-5">
+
+                <i class="bi bi-journal-x display-3 text-muted"></i>
+
+                <h4 class="mt-3">
+                    No Assignments Available
+                </h4>
+
+                <p class="text-muted mb-0">
+                    New assignments will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-6"
+             th:each="a : ${assignments}">
+
+            <div class="card assignment-card h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                        <div class="assignment-icon">
+                            <i class="bi bi-file-earmark-text-fill"></i>
+                        </div>
+
+                        <span class="status-pill pending-pill">
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <h5 class="fw-bold mb-3"
+                        th:text="${a.title}">
+                    </h5>
+
+                    <div class="assignment-meta mb-3">
+
+                        <div>
+
+                            <i class="bi bi-calendar-event me-2"></i>
+
+                            Due :
+
+                            <span th:text="${a.dueDate}"></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-grid gap-2">
+
+                        <a th:if="${a.filePath != null}"
+                           th:href="${a.filePath}"
+                           target="_blank"
+                           class="btn btn-outline-success">
+
+                            <i class="bi bi-download me-2"></i>
+
+                            Download PDF
+
+                        </a>
+
+                        <a th:href="@{/student/assignments/{id}/submit(id=${a.id})}"
+                           class="btn btn-primary">
+
+                            <i class="bi bi-upload me-2"></i>
+
+                            Submit Assignment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

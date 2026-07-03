@@ -1,0 +1,181 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="erp-header mb-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+            <div>
+                <h2 class="fw-bold mb-1">Assignments</h2>
+                <p class="text-muted mb-0">
+                    Manage assignments, submissions and reviews
+                </p>
+            </div>
+
+            <a th:href="@{/trainer/assignments/create}"
+               class="btn btn-primary saas-btn">
+
+                + Create Assignment
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= TABLE PANEL ================= -->
+    <div class="erp-panel">
+
+        <div class="erp-panel-header">
+            <h5 class="fw-bold mb-0">
+                Assignment List
+            </h5>
+        </div>
+
+        <div class="erp-panel-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table saas-table align-middle mb-0">
+
+                    <thead>
+
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Batch</th>
+                        <th>Due Date</th>
+                        <th>Created</th>
+                        <th class="text-center">Submissions</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="a : ${assignments}">
+
+                        <!-- TITLE -->
+                        <td>
+                            <div class="fw-semibold"
+                                 th:text="${a.title}">
+                                Assignment Title
+                            </div>
+                        </td>
+
+                        <!-- BATCH -->
+                        <td th:text="${a.batch.name}"></td>
+
+                        <!-- DUE DATE -->
+                        <td>
+                            <span class="text-danger fw-semibold"
+                                  th:text="${a.dueDate}">
+                            </span>
+                        </td>
+
+                        <!-- CREATED -->
+                        <td class="text-muted"
+                            th:text="${a.createdDate}">
+                        </td>
+
+                        <!-- SUBMISSIONS KPI -->
+                        <td class="text-center">
+
+                            <span class="submission-pill"
+                                  th:text="${a.submissionCount}">
+                                0
+                            </span>
+
+                        </td>
+
+                        <!-- ACTIONS -->
+                        <td>
+
+                            <div class="action-group">
+
+                                <!-- PDF -->
+                                <a th:if="${a.filePath != null}"
+                                   th:href="${a.filePath}"
+                                   target="_blank"
+                                   class="action-btn green">
+
+                                    📄 PDF
+
+                                </a>
+
+                                <!-- EDIT -->
+                                <a th:href="@{/trainer/assignments/{id}/edit(id=${a.id})}"
+                                   class="action-btn orange">
+
+                                    ✏ Edit
+
+                                </a>
+
+                                <!-- SUBMISSIONS -->
+                                <a th:href="@{/trainer/assignments/{id}/submissions(id=${a.id})}"
+                                   class="action-btn blue">
+
+                                    📥 Submissions
+
+                                </a>
+
+                                <!-- DELETE -->
+                                <form th:action="@{/trainer/assignments/{id}/delete(id=${a.id})}"
+                                      method="post"
+                                      class="d-inline">
+
+                                    <button type="submit"
+                                            class="action-btn red"
+                                            onclick="return confirm('Delete this assignment?')">
+
+                                        🗑 Delete
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <!-- EMPTY STATE -->
+                    <tr th:if="${#lists.isEmpty(assignments)}">
+
+                        <td colspan="6" class="text-center py-5">
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-journal-x display-5 text-muted mb-3"></i>
+
+                                <h5>No Assignments Yet</h5>
+
+                                <p class="text-muted mb-3">
+                                    Create your first assignment to start tracking submissions
+                                </p>
+
+                                <a th:href="@{/trainer/assignments/create}"
+                                   class="btn btn-primary saas-btn">
+
+                                    + Create Assignment
+
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

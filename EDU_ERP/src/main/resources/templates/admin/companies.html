@@ -1,0 +1,143 @@
+<div class="company-page container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header">
+        <h3>Company Management</h3>
+        <p>Manage placement companies & job opportunities</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="ui-card form-card">
+
+        <form th:action="@{/admin/companies/save}"
+              method="post"
+              th:object="${company}">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" class="form-control"
+                           th:field="*{companyName}"
+                           placeholder="e.g. Google" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Company Type</label>
+                    <input type="text" class="form-control"
+                           th:field="*{companyType}"
+                           placeholder="IT / Product / Service">
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" class="form-control"
+                           th:field="*{location}"
+                           placeholder="City / Country">
+                </div>
+
+                <div class="form-group">
+                    <label>Package (LPA)</label>
+                    <input type="number" step="0.01"
+                           class="form-control"
+                           th:field="*{packageOffered}"
+                           placeholder="e.g. 12.5">
+                </div>
+
+                <div class="form-group full">
+                    <label>Eligibility Criteria</label>
+                    <textarea class="form-control"
+                              rows="2"
+                              th:field="*{eligibilityCriteria}"
+                              placeholder="CGPA, Skills, etc"></textarea>
+                </div>
+
+                <div class="form-group full">
+                    <label>Description</label>
+                    <textarea class="form-control"
+                              rows="3"
+                              th:field="*{description}"
+                              placeholder="Job description / details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date"
+                           class="form-control"
+                           th:field="*{registrationDeadline}">
+                </div>
+
+                <div class="form-group action">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn-primary-action">
+                        Save Company
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="ui-card table-card">
+
+        <div class="table-header">
+            <h5>Companies</h5>
+            <span>Total: <b th:text="${#lists.size(companies)}"></b></span>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="modern-table">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Package</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="c : ${companies}">
+
+                    <td th:text="${c.id}"></td>
+                    <td class="bold" th:text="${c.companyName}"></td>
+                    <td th:text="${c.companyType}"></td>
+                    <td th:text="${c.location}"></td>
+                    <td>
+                        <span class="badge">
+                            ₹ <span th:text="${c.packageOffered}"></span> LPA
+                        </span>
+                    </td>
+                    <td th:text="${c.registrationDeadline}"></td>
+
+                    <td>
+                        <form th:action="@{/admin/companies/delete/{id}(id=${c.id})}"
+                              method="post"
+                              class="d-inline">
+
+                            <button class="btn-danger-action"
+                                    onclick="return confirm('Delete this company?')">
+                                Delete
+                            </button>
+
+                        </form>
+                    </td>
+
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

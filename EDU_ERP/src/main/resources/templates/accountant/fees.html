@@ -1,0 +1,68 @@
+<div class="container-fluid">
+
+    <h3 class="fw-bold mb-4">Student Fees</h3>
+
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>Student</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Pending</th>
+                    <th>Collect</th>
+					<th>Receipt</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="f : ${fees}">
+                    <td th:text="${f.student.fullName}"></td>
+                    <td>₹ <span th:text="${f.totalAmount}"></span></td>
+                    <td class="text-success">
+                        ₹ <span th:text="${f.paidAmount}"></span>
+                    </td>
+                    <td class="text-danger">
+                        ₹ <span th:text="${f.pendingAmount}"></span>
+                    </td>
+                    <td>
+                        <form th:action="@{/accountant/fees/collect}" method="post"
+                              class="d-flex gap-2">
+                            <input type="hidden" name="studentId"
+                                   th:value="${f.student.id}">
+                            <input type="number" name="amount"
+                                   class="form-control form-control-sm"
+                                   placeholder="Amount" required>
+                            <button class="btn btn-sm btn-success">
+                                Collect
+                            </button>
+                        </form>
+                    </td>
+					<td>
+					    <a th:href="@{/accountant/payments/{id}/receipt(id=${f.student.id})}"
+					       class="btn btn-sm btn-outline-primary">
+					        PDF
+					    </a>
+					</td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(fees)}">
+                    <td colspan="5"
+                        class="text-center text-muted py-4">
+                        No fee records found
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

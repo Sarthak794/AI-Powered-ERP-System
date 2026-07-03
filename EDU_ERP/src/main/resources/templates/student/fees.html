@@ -1,0 +1,127 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    💳 Fee Payments
+                </h2>
+
+                <p class="text-muted mb-0">
+                    View your complete payment history and download receipts.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= PAYMENT TABLE ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0">
+
+        <div class="card-body p-0">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Amount</th>
+
+                    <th>Payment Mode</th>
+
+                    <th class="text-center">
+                        Receipt
+                    </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="p : ${payments}">
+
+                    <td>
+
+                        <span class="fw-semibold"
+                              th:text="${#temporals.format(p.paymentDate,'dd MMM yyyy')}">
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success fs-6">
+
+                            ₹ <span th:text="${p.amount}"></span>
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-primary"
+                              th:text="${p.paymentMode}">
+                        </span>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <a th:href="@{/student/fees/receipt/{id}(id=${p.id})}"
+                           class="btn btn-outline-danger btn-sm">
+
+                            <i class="bi bi-file-earmark-pdf-fill me-2"></i>
+
+                            Download
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(payments)}">
+
+                    <td colspan="4"
+                        class="text-center py-5">
+
+                        <i class="bi bi-receipt fs-1 text-muted"></i>
+
+                        <h5 class="mt-3">
+
+                            No Payment Records
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            Your payment history will appear here after your first payment.
+
+                        </p>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

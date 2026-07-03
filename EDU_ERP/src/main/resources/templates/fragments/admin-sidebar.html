@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="body" class="admin-sidebar">
+
+    <!-- ================= LOGO ================= -->
+
+    <div class="sidebar-brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-mortarboard-fill"></i>
+        </div>
+
+        <div>
+            <h5>EDU ERP</h5>
+            <small>Admin Panel</small>
+        </div>
+
+    </div>
+
+    <!-- ================= MENU ================= -->
+
+    <ul class="nav flex-column sidebar-menu">
+
+        <li class="sidebar-title">MAIN</li>
+
+        <li>
+            <a th:href="@{/admin/dashboard}"
+               class="sidebar-link"
+               th:classappend="${activePage=='dashboard'} ? ' active'">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/users}"
+               class="sidebar-link"
+               th:classappend="${activePage=='users'} ? ' active'">
+
+                <i class="bi bi-people-fill"></i>
+                <span>Users</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/students}"
+               class="sidebar-link"
+               th:classappend="${activePage=='students'} ? ' active'">
+
+                <i class="bi bi-person-vcard-fill"></i>
+                <span>Students</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/trainers}"
+               class="sidebar-link"
+               th:classappend="${activePage=='trainers'} ? ' active'">
+
+                <i class="bi bi-person-workspace"></i>
+                <span>Trainers</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/batches}"
+               class="sidebar-link"
+               th:classappend="${activePage=='batches'} ? ' active'">
+
+                <i class="bi bi-collection-fill"></i>
+                <span>Batches</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/attendance}"
+               class="sidebar-link"
+               th:classappend="${activePage=='attendance'} ? ' active'">
+
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Attendance</span>
+
+            </a>
+        </li>
+
+        <li class="sidebar-title mt-4">EXAMS</li>
+
+        <li>
+            <a th:href="@{/admin/exam-analytics}"
+               class="sidebar-link"
+               th:classappend="${activePage=='exam-analytics'} ? ' active'">
+
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Exam Analytics</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/centers}"
+               class="sidebar-link"
+               th:classappend="${activePage=='centers'} ? ' active'">
+
+                <i class="bi bi-building"></i>
+                <span>Centers</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/qualifications}"
+               class="sidebar-link"
+               th:classappend="${activePage=='qualifications'} ? ' active'">
+
+                <i class="bi bi-award-fill"></i>
+                <span>Qualifications</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/specializations}"
+               class="sidebar-link"
+               th:classappend="${activePage=='specializations'} ? ' active'">
+
+                <i class="bi bi-diagram-3-fill"></i>
+                <span>Specializations</span>
+
+            </a>
+        </li>
+
+        <li class="sidebar-title mt-4">FINANCE</li>
+
+        <li>
+            <a th:href="@{/admin/fees}"
+               class="sidebar-link"
+               th:classappend="${activePage=='fees'} ? ' active'">
+
+                <i class="bi bi-cash-stack"></i>
+                <span>Fees</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/trainer-salary}"
+               class="sidebar-link"
+               th:classappend="${activePage=='trainer-salary'} ? ' active'">
+
+                <i class="bi bi-wallet2"></i>
+                <span>Trainer Salary</span>
+
+            </a>
+        </li>
+
+        <li class="sidebar-title mt-4">PLACEMENTS</li>
+
+        <li>
+            <a th:href="@{/admin/companies}"
+               class="sidebar-link"
+               th:classappend="${activePage=='companies'} ? ' active'">
+
+                <i class="bi bi-buildings-fill"></i>
+                <span>Companies</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/placement-drives}"
+               class="sidebar-link"
+               th:classappend="${activePage=='placement-drives'} ? ' active'">
+
+                <i class="bi bi-briefcase-fill"></i>
+                <span>Placement Drives</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/applications}"
+               class="sidebar-link"
+               th:classappend="${activePage=='applications'} ? ' active'">
+
+                <i class="bi bi-file-earmark-text-fill"></i>
+                <span>Applications</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/admin/placement-dashboard}"
+               class="sidebar-link"
+               th:classappend="${activePage=='placement-dashboard'} ? ' active'">
+
+                <i class="bi bi-graph-up-arrow"></i>
+                <span>Placement Analytics</span>
+
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+</body>
+</html>

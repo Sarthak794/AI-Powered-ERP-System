@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:replace="~{fragments/header :: body}"></div>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/sidebar :: body}"></div>
+
+    <div class="p-4 w-100">
+
+        <h3 class="mb-4">Edit Attendance</h3>
+
+        <!-- FILTER -->
+        <form method="post" class="row g-3 mb-4">
+
+            <div class="col-md-4">
+                <label class="form-label">Batch</label>
+                <select name="batchId" class="form-select" required>
+                    <option value="">Select Batch</option>
+                    <option th:each="b : ${batches}"
+                            th:value="${b.id}"
+                            th:text="${b.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Date</label>
+                <input type="date" name="date"
+                       class="form-control" required>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100">
+                    Load
+                </button>
+            </div>
+        </form>
+
+        <!-- TABLE -->
+        <form th:action="@{/admin/attendance/edit/save}"
+              method="post"
+              th:if="${records != null}">
+
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Student</th>
+                        <th>Present</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="a : ${records}">
+                        <td th:text="${a.student.user.fullName}"></td>
+
+                        <td class="text-center">
+                            <input type="hidden"
+                                   name="attendanceIds"
+                                   th:value="${a.id}">
+
+                            <input type="checkbox"
+                                   name="presentIds"
+                                   th:value="${a.id}"
+                                   th:checked="${a.present}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn btn-success">
+                Save Corrections
+            </button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

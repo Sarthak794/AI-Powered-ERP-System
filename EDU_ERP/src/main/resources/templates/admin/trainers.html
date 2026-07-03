@@ -1,0 +1,132 @@
+<div class="trainer-page container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header mb-4">
+        <h2 class="fw-bold">Trainer Management</h2>
+        <p class="text-muted">Add, manage and monitor all trainers</p>
+    </div>
+
+    <!-- ALERTS -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- ADD TRAINER CARD -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+
+            <h5 class="section-title mb-3">➕ Add New Trainer</h5>
+
+            <form th:action="@{/admin/trainers/create}" method="post" class="row g-3">
+
+                <div class="col-md-3">
+                    <input class="form-control modern-input" name="fullName" placeholder="Full Name" required>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="email" class="form-control modern-input" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="col-md-2">
+                    <input class="form-control modern-input" name="phone" placeholder="Phone">
+                </div>
+
+                <div class="col-md-2">
+                    <input class="form-control modern-input" name="username" placeholder="Username" required>
+                </div>
+
+                <div class="col-md-2">
+                    <input type="password" class="form-control modern-input" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="centerId" class="form-select modern-input" required>
+                        <option disabled selected>Select Center</option>
+                        <option th:each="c : ${centers}"
+                                th:value="${c.id}"
+                                th:text="${c.name}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="specializationId" class="form-select modern-input" required>
+                        <option disabled selected>Select Specialization</option>
+                        <option th:each="s : ${specializations}"
+                                th:value="${s.id}"
+                                th:text="${s.name}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary w-100 action-btn">
+                        + Add Trainer
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="section-title mb-0">📋 Trainer List</h5>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table modern-table align-middle">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Center</th>
+                        <th>Specialization</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="t : ${trainers}">
+                        <td>#<span th:text="${t.id}"></span></td>
+
+                        <td class="fw-semibold" th:text="${t.fullName}"></td>
+
+                        <td th:text="${t.email}"></td>
+
+                        <td>
+                            <span class="badge-soft" th:text="${t.center.name}"></span>
+                        </td>
+
+                        <td>
+                            <span class="badge-soft-purple" th:text="${t.specialization.name}"></span>
+                        </td>
+
+                        <td>
+                            <span th:if="${t.user.enabled}" class="status-badge active">Active</span>
+                            <span th:unless="${t.user.enabled}" class="status-badge disabled">Disabled</span>
+                        </td>
+
+                        <td>
+                            <form th:action="@{/admin/trainers/delete/{id}(id=${t.id})}" method="post">
+                                <button class="btn btn-sm btn-danger action-danger">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

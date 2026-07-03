@@ -1,0 +1,153 @@
+<div class="container-fluid py-4">
+
+    <!-- ==========================================
+                    EXAM HEADER
+    =========================================== -->
+
+    <div class="erp-banner mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+
+                    <i class="bi bi-file-earmark-text-fill me-2"></i>
+
+                    Online Exams
+
+                </h2>
+
+                <p class="mb-0 opacity-75">
+
+                    Attempt your scheduled examinations and monitor your academic performance.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <span class="badge bg-light text-primary fs-6 px-4 py-3">
+
+                    <i class="bi bi-collection me-2"></i>
+
+                    Total Exams :
+                    <span th:text="${#lists.size(exams)}"></span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                    EXAM GRID
+    =========================================== -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-4 col-md-6"
+             th:each="e : ${exams}">
+
+            <div class="card exam-card h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <div class="exam-icon">
+
+                            <i class="bi bi-file-earmark-text-fill"></i>
+
+                        </div>
+
+                        <span class="badge bg-success">
+
+                            Active
+
+                        </span>
+
+                    </div>
+
+                    <h4 class="fw-bold mb-3"
+                        th:text="${e.title}">
+                    </h4>
+
+                    <p class="text-muted mb-4"
+                       th:text="${e.description}">
+                    </p>
+
+                    <div class="exam-info mb-4">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span>
+
+                                <i class="bi bi-clock me-2"></i>
+
+                                Duration
+
+                            </span>
+
+                            <strong>
+
+                                <span th:text="${e.durationMinutes}"></span>
+
+                                min
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-grid">
+
+                        <a th:href="@{/student/exams/{id}(id=${e.id})}"
+                           class="btn btn-primary btn-lg">
+
+                            <i class="bi bi-play-fill me-2"></i>
+
+                            Start Exam
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Empty State -->
+
+        <div class="col-12"
+             th:if="${#lists.isEmpty(exams)}">
+
+            <div class="card erp-card text-center p-5">
+
+                <i class="bi bi-file-earmark-x display-2 text-secondary"></i>
+
+                <h4 class="mt-3">
+
+                    No Exams Available
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    Your trainer hasn't scheduled any exams yet.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

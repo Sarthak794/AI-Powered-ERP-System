@@ -1,0 +1,12 @@
+<table class="table">
+    <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.user.username}"></td>
+        <td>
+            <form th:action="@{/manager/students/approve/{id}(id=${s.id})}"
+                  method="post">
+                <button class="btn btn-success btn-sm">Approve</button>
+            </form>
+        </td>
+    </tr>
+</table>

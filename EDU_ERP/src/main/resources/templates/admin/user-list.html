@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>User Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/user-management.css}">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: body}"></div>
+
+<div class="d-flex">
+
+    <div th:replace="~{fragments/sidebar :: body}"></div>
+
+    <div class="user-management-page flex-grow-1">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>User Management</h2>
+
+                <p>
+                    Create users, assign multiple roles and manage system access.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ERROR MESSAGE -->
+
+        <div th:if="${error}"
+             class="alert alert-danger shadow-sm rounded-4 mb-4">
+
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+            <span th:text="${error}"></span>
+
+        </div>
+
+        <!-- CREATE USER CARD -->
+
+        <div class="glass-card mb-4">
+
+            <div class="card-title">
+
+                <i class="bi bi-person-plus-fill"></i>
+
+                Create New User
+
+            </div>
+
+            <form th:action="@{/admin/users/save}"
+                  method="post"
+                  class="row g-4">
+
+                <!-- FULL NAME -->
+
+                <div class="col-lg-3">
+
+                    <label class="form-label">
+
+                        Full Name
+
+                    </label>
+
+                    <input
+                            type="text"
+                            name="fullName"
+                            class="form-control custom-input"
+                            placeholder="Enter full name"
+                            required>
+
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="col-lg-3">
+
+                    <label class="form-label">
+
+                        Email
+
+                    </label>
+
+                    <input
+                            type="email"
+                            name="email"
+                            class="form-control custom-input"
+                            placeholder="Enter email"
+                            required>
+
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="col-lg-2">
+
+                    <label class="form-label">
+
+                        Password
+
+                    </label>
+
+                    <input
+                            type="password"
+                            name="password"
+                            class="form-control custom-input"
+                            placeholder="Password"
+                            required>
+
+                </div>
+
+                <!-- ROLES -->
+
+                <div class="col-lg-3">
+
+                    <label class="form-label">
+
+                        Roles
+
+                    </label>
+
+                    <select
+                            name="roleNames"
+                            multiple
+                            required
+                            class="form-select custom-input role-select">
+
+                        <option
+                                th:each="r : ${roles}"
+                                th:value="${r.roleName}"
+                                th:text="${r.roleName}">
+                        </option>
+
+                    </select>
+
+                    <small class="text-muted mt-2 d-block">
+
+                        Hold <strong>Ctrl</strong> (Windows) or
+                        <strong>Cmd</strong> (Mac)
+                        to select multiple roles.
+
+                    </small>
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <div class="col-lg-1 d-flex align-items-end">
+
+                    <button
+                            class="btn btn-primary custom-btn w-100">
+
+                        <i class="bi bi-plus-circle-fill"></i>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- USER TABLE STARTS BELOW -->
+		        <!-- USER TABLE -->
+
+		        <div class="glass-card">
+
+		            <div class="table-header">
+
+		                <div>
+
+		                    <h5 class="mb-1">
+		                        <i class="bi bi-people-fill me-2"></i>
+		                        Registered Users
+		                    </h5>
+
+		                    <span class="text-muted">
+		                        Total Users :
+		                        <strong th:text="${#lists.size(users)}"></strong>
+		                    </span>
+
+		                </div>
+
+		            </div>
+
+		            <div class="table-responsive">
+
+		                <table class="table custom-table align-middle">
+
+		                    <thead>
+
+		                    <tr>
+
+		                        <th width="80">ID</th>
+
+		                        <th>User</th>
+
+		                        <th>Email</th>
+
+		                        <th>Assigned Roles</th>
+
+		                    </tr>
+
+		                    </thead>
+
+		                    <tbody>
+
+		                    <!-- EMPTY STATE -->
+
+		                    <tr th:if="${#lists.isEmpty(users)}">
+
+		                        <td colspan="4">
+
+		                            <div class="empty-state">
+
+		                                <i class="bi bi-people"></i>
+
+		                                <h5>No Users Found</h5>
+
+		                                <p>
+		                                    Create your first user using the form above.
+		                                </p>
+
+		                            </div>
+
+		                        </td>
+
+		                    </tr>
+
+		                    <!-- USERS -->
+
+		                    <tr th:each="u : ${users}">
+
+		                        <!-- ID -->
+
+		                        <td>
+
+		                            <span class="fw-bold text-primary">
+
+		                                #<span th:text="${u.id}"></span>
+
+		                            </span>
+
+		                        </td>
+
+		                        <!-- USER -->
+
+		                        <td>
+
+		                            <div class="user-cell">
+
+		                                <div class="avatar"
+		                                     th:text="${#strings.substring(u.fullName,0,1).toUpperCase()}">
+		                                </div>
+
+		                                <div>
+
+		                                    <div class="username"
+		                                         th:text="${u.fullName}">
+		                                    </div>
+
+		                                    <small class="text-muted">
+
+		                                        System User
+
+		                                    </small>
+
+		                                </div>
+
+		                            </div>
+
+		                        </td>
+
+		                        <!-- EMAIL -->
+
+		                        <td>
+
+		                            <span class="email-text"
+		                                  th:text="${u.email}">
+		                            </span>
+
+		                        </td>
+
+		                        <!-- ROLES -->
+
+		                        <td>
+
+		                            <div class="role-container">
+
+		                                <span
+		                                        th:each="r : ${u.roles}"
+		                                        class="role-badge"
+		                                        th:text="${r.roleName}">
+		                                </span>
+
+		                            </div>
+
+		                        </td>
+
+		                    </tr>
+
+		                    </tbody>
+
+		                </table>
+
+		            </div>
+
+		        </div>
+
+		    </div>
+
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		</body>
+		</html>

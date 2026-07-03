@@ -1,0 +1,400 @@
+/*==================================================
+                STUDENT MANAGEMENT
+==================================================*/
+
+.sm-page{
+    animation:smFadeIn .4s ease;
+}
+
+/*==========================
+        HEADER
+==========================*/
+
+.sm-page-title{
+    font-size:30px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:5px;
+}
+
+.sm-page-subtitle{
+    color:#64748b;
+    margin:0;
+    font-size:15px;
+}
+
+/*==========================
+      CARD
+==========================*/
+
+.sm-card{
+
+    background:#fff;
+    border-radius:18px;
+    border:none;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+
+}
+
+.sm-card-header{
+
+    background:linear-gradient(90deg,#2563eb,#1d4ed8);
+    color:#fff;
+    padding:18px 24px;
+
+}
+
+.sm-card-header h5{
+
+    margin:0;
+    font-weight:600;
+
+}
+
+/*==========================
+      KPI CARDS
+==========================*/
+
+.sm-stats-card{
+
+    border-radius:18px;
+    padding:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+    transition:.35s;
+
+}
+
+.sm-stats-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.sm-stats-card h6{
+
+    font-size:14px;
+    opacity:.9;
+    margin-bottom:8px;
+
+}
+
+.sm-stats-card h2{
+
+    font-size:34px;
+    margin:0;
+    font-weight:700;
+
+}
+
+.sm-stats-icon{
+
+    font-size:42px;
+    opacity:.25;
+
+}
+
+.sm-primary{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+}
+
+.sm-success{
+
+    background:linear-gradient(135deg,#16a34a,#15803d);
+
+}
+
+.sm-danger{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+.sm-info{
+
+    background:linear-gradient(135deg,#06b6d4,#0891b2);
+
+}
+
+/*==========================
+        INPUTS
+==========================*/
+
+.sm-input{
+
+    border-radius:12px !important;
+    border:1px solid #dbe4ee !important;
+    padding:11px !important;
+
+}
+
+.sm-input:focus{
+
+    border-color:#2563eb !important;
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15) !important;
+
+}
+
+/*==========================
+        BUTTON
+==========================*/
+
+.sm-btn{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:11px 24px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.sm-btn:hover{
+
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
+}
+
+/*==========================
+      SEARCH
+==========================*/
+
+.sm-search-box{
+
+    width:320px;
+    background:#fff;
+    border-radius:50px;
+    padding:10px 18px;
+    display:flex;
+    align-items:center;
+
+}
+
+.sm-search-box i{
+
+    color:#64748b;
+
+}
+
+.sm-search-box input{
+
+    border:none;
+    outline:none;
+    margin-left:10px;
+    width:100%;
+    font-size:14px;
+
+}
+
+/*==========================
+        TABLE
+==========================*/
+
+.sm-table{
+
+    margin:0;
+
+}
+
+.sm-table thead{
+
+    background:#f8fafc;
+
+}
+
+.sm-table th{
+
+    padding:16px;
+    color:#334155;
+    font-weight:700;
+    border:none;
+
+}
+
+.sm-table td{
+
+    padding:18px 16px;
+    border-top:1px solid #eef2f7;
+    vertical-align:middle;
+
+}
+
+.sm-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.sm-table tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+/*==========================
+        AVATAR
+==========================*/
+
+.sm-avatar{
+
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:22px;
+    overflow:hidden;
+    flex-shrink:0;
+
+}
+
+.sm-avatar-img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+}
+
+/*==========================
+      ACTION BUTTONS
+==========================*/
+
+.sm-action-btn{
+
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    transition:.3s;
+    box-shadow:0 5px 12px rgba(0,0,0,.12);
+
+}
+
+.sm-action-btn:hover{
+
+    transform:translateY(-3px) scale(1.08);
+
+}
+
+.sm-action-btn i{
+
+    font-size:14px;
+
+}
+/*==========================
+      EMPTY STATE
+==========================*/
+
+.sm-empty-state{
+
+    text-align:center;
+    padding:50px;
+
+}
+
+.sm-empty-state i{
+
+    color:#cbd5e1;
+
+}
+
+.sm-empty-state h5{
+
+    margin-top:18px;
+    color:#334155;
+
+}
+
+/*==========================
+      BADGE IMPROVEMENT
+==========================*/
+
+/* Scoped only to the student table */
+.sm-table .badge{
+    border-radius:30px;
+    font-weight:600;
+    font-size:13px;
+    padding:8px 14px;
+}
+
+/*==========================
+      RESPONSIVE
+==========================*/
+
+@media(max-width:992px){
+
+.sm-search-box{
+
+    width:100%;
+    margin-top:15px;
+
+}
+
+.sm-card-header{
+
+    flex-direction:column;
+    align-items:flex-start !important;
+    gap:15px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.sm-page-title{
+
+    font-size:25px;
+
+}
+
+.sm-table{
+
+    min-width:950px;
+
+}
+
+.sm-stats-card{
+
+    margin-bottom:15px;
+
+}
+
+}
+
+/*==========================
+      ANIMATION
+==========================*/
+
+@keyframes smFadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}

@@ -1,0 +1,76 @@
+<div class="container-fluid">
+
+    <h3 class="fw-bold mb-4">Financial Reports</h3>
+
+    <!-- Month Filter -->
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <input type="month"
+                   name="month"
+                   class="form-control"
+                   th:value="${selectedMonth}">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">View</button>
+        </div>
+    </form>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Monthly Collection</h6>
+                    <h3 class="fw-bold text-success">
+                        ₹ <span th:text="${monthlyTotal}"></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Total Pending</h6>
+                    <h3 class="fw-bold text-danger">
+                        ₹ <span th:text="${totalPending}"></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Batch-wise Table -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>Batch</th>
+                    <th>Total Collected</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="entry : ${batchWise}">
+                    <td th:text="${entry.key}"></td>
+                    <td>₹ <span th:text="${entry.value}"></span></td>
+                </tr>
+
+                <tr th:if="${#maps.isEmpty(batchWise)}">
+                    <td colspan="2"
+                        class="text-center text-muted py-4">
+                        No data available
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

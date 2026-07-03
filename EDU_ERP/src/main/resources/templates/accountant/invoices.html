@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/accountant-base :: layout(~{::section})">
+
+<section>
+
+    <div class="card shadow-sm">
+        <div class="card-header fw-semibold">
+            Invoices
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Invoice No</th>
+                    <th>Student</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="inv : ${invoices}">
+                    <td th:text="${inv.invoiceNo}">INV-001</td>
+                    <td th:text="${inv.studentName}">John</td>
+                    <td>₹ <span th:text="${inv.amount}">0</span></td>
+                    <td th:text="${inv.date}">2026-01-20</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</section>
+</html>

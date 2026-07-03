@@ -1,0 +1,176 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="saas-header d-flex justify-content-between align-items-start mb-4 flex-wrap gap-2">
+
+        <div>
+            <h2 class="fw-bold mb-1">Assignment Submissions</h2>
+            <p class="text-muted mb-0" th:text="${assignment.title}">
+                Assignment Title
+            </p>
+        </div>
+
+        <a th:href="@{/trainer/assignments}"
+           class="btn btn-outline-secondary">
+            ← Back
+        </a>
+
+    </div>
+
+    <!-- ================= TABLE PANEL ================= -->
+    <div class="saas-panel">
+
+        <!-- HEADER -->
+        <div class="saas-panel-header d-flex justify-content-between align-items-center">
+
+            <h5 class="mb-0 fw-semibold">
+                Student Submissions
+            </h5>
+
+            <span class="badge bg-primary px-3 py-2">
+                Total: <span th:text="${#lists.size(submissions)}"></span>
+            </span>
+
+        </div>
+
+        <!-- BODY -->
+        <div class="saas-panel-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table saas-table align-middle mb-0">
+
+                    <thead>
+
+                    <tr>
+                        <th>Student</th>
+                        <th>Submitted</th>
+                        <th>File</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                        <th>Marks</th>
+                        <th>Remarks</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <!-- ROW -->
+                    <tr th:each="s : ${submissions}">
+
+                        <!-- Student -->
+                        <td class="fw-semibold"
+                            th:text="${s.student.fullName}">
+                        </td>
+
+                        <!-- Submitted At -->
+                        <td>
+                            <span class="text-muted"
+                                  th:text="${s.submittedAt}">
+                            </span>
+                        </td>
+
+                        <!-- File -->
+                        <td>
+
+                            <a th:href="${s.filePath}"
+                               target="_blank"
+                               class="btn btn-sm btn-success">
+
+                                <i class="bi bi-file-earmark-pdf me-1"></i>
+                                View
+
+                            </a>
+
+                        </td>
+
+                        <!-- Status -->
+                        <td>
+
+                            <span th:if="${s.reviewed}"
+                                  class="badge bg-success px-3 py-2">
+                                Reviewed
+                            </span>
+
+                            <span th:unless="${s.reviewed}"
+                                  class="badge bg-warning text-dark px-3 py-2">
+                                Pending
+                            </span>
+
+                        </td>
+
+                        <!-- Actions -->
+                        <td>
+
+                            <div class="d-flex flex-wrap gap-2">
+
+                                <a th:href="${s.filePath}"
+                                   target="_blank"
+                                   class="btn btn-sm btn-primary">
+                                    View
+                                </a>
+
+                                <a th:href="${s.filePath}"
+                                   download
+                                   class="btn btn-sm btn-success">
+                                    Download
+                                </a>
+
+                                <a th:href="@{/trainer/assignments/submission/{id}/review(id=${s.id})}"
+                                   class="btn btn-sm btn-warning text-white">
+                                    Review
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                        <!-- Marks -->
+                        <td>
+                            <span class="fw-semibold"
+                                  th:text="${s.marksAwarded != null ? s.marksAwarded : '-'}">
+                            </span>
+                        </td>
+
+                        <!-- Remarks -->
+                        <td>
+                            <span class="text-muted"
+                                  th:text="${s.trainerRemarks != null ? s.trainerRemarks : '-'}">
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    <!-- EMPTY STATE -->
+                    <tr th:if="${#lists.isEmpty(submissions)}">
+
+                        <td colspan="7" class="text-center py-5">
+
+                            <div class="text-muted">
+
+                                <i class="bi bi-inbox display-5 d-block mb-3"></i>
+
+                                <h5 class="fw-semibold">No Submissions Yet</h5>
+
+                                <p class="mb-0">
+                                    Students haven’t submitted anything for this assignment.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

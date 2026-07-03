@@ -1,0 +1,189 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="erp-header mb-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+            <div>
+                <h2 class="fw-bold mb-1">
+                    Create Assignment
+                </h2>
+                <p class="text-muted mb-0">
+                    Design and distribute assignments to your batch
+                </p>
+            </div>
+
+            <a th:href="@{/trainer/assignments}"
+               class="btn btn-light border">
+
+                ← Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="row g-4">
+
+        <!-- FORM -->
+        <div class="col-xl-8">
+
+            <div class="erp-panel">
+
+                <div class="erp-panel-header">
+                    <h5 class="fw-bold mb-0">
+                        Assignment Details
+                    </h5>
+                </div>
+
+                <div class="erp-panel-body">
+
+                    <form th:action="@{/trainer/assignments/create}"
+                          method="post"
+                          enctype="multipart/form-data">
+
+                        <!-- TITLE -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Assignment Title
+                            </label>
+
+                            <input type="text"
+                                   name="title"
+                                   class="form-control saas-input"
+                                   placeholder="e.g. Java Streams Practice"
+                                   required>
+
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Description
+                            </label>
+
+                            <textarea name="description"
+                                      class="form-control saas-input"
+                                      rows="5"
+                                      placeholder="Write assignment instructions..."></textarea>
+
+                        </div>
+
+                        <!-- BATCH + DATE -->
+                        <div class="row g-3 mb-4">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+                                    Select Batch
+                                </label>
+
+                                <select name="batch.id"
+                                        class="form-select saas-input"
+                                        required>
+
+                                    <option value="">
+                                        Choose Batch
+                                    </option>
+
+                                    <option th:each="b : ${batches}"
+                                            th:value="${b.id}"
+                                            th:text="${b.name}">
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+                                    Due Date
+                                </label>
+
+                                <input type="date"
+                                       name="dueDate"
+                                       class="form-control saas-input"
+                                       required>
+
+                            </div>
+
+                        </div>
+
+                        <!-- FILE UPLOAD -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Assignment File (PDF)
+                            </label>
+
+                            <input type="file"
+                                   name="file"
+                                   class="form-control saas-input"
+                                   accept=".pdf">
+
+                            <small class="text-muted">
+                                Upload instructions or question paper (optional)
+                            </small>
+
+                        </div>
+
+                        <!-- SUBMIT -->
+                        <button type="submit"
+                                class="btn btn-primary saas-btn px-4">
+
+                            🚀 Create Assignment
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INFO PANEL -->
+        <div class="col-xl-4">
+
+            <div class="erp-panel h-100">
+
+                <div class="erp-panel-header">
+                    <h5 class="fw-bold mb-0">
+                        Tips
+                    </h5>
+                </div>
+
+                <div class="erp-panel-body">
+
+                    <div class="tip-box">
+                        📌 Keep assignment title clear and specific
+                    </div>
+
+                    <div class="tip-box">
+                        ⏳ Set realistic due dates for students
+                    </div>
+
+                    <div class="tip-box">
+                        📄 Attach PDF for structured questions
+                    </div>
+
+                    <div class="tip-box">
+                        🎯 Align assignments with batch syllabus
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,178 @@
+<div class="user-management-page container-fluid">
+
+    <!-- Header -->
+    <div class="page-header mb-4">
+        <div>
+            <h2>User Management</h2>
+            <p>Create users and manage system access.</p>
+        </div>
+    </div>
+
+    <!-- Create User Card -->
+    <div class="glass-card mb-4">
+
+        <div class="card-title">
+            <i class="bi bi-person-plus-fill"></i>
+            Create New User
+        </div>
+
+        <form th:action="@{/admin/users/create}" method="post" class="row g-4">
+
+            <div class="col-lg-4">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control custom-input"
+                       placeholder="Enter username"
+                       required>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password"
+                       class="form-control custom-input"
+                       placeholder="Enter password"
+                       required>
+            </div>
+
+            <div class="col-lg-3">
+                <label class="form-label">Role</label>
+
+                <select name="role"
+                        class="form-select custom-input">
+
+                    <option th:each="r : ${roles}"
+                            th:value="${r}"
+                            th:text="${r}">
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="col-lg-1 d-flex align-items-end">
+                <button class="btn btn-primary custom-btn w-100">
+                    <i class="bi bi-plus-circle"></i>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- User Table -->
+
+    <div class="glass-card">
+
+        <div class="table-header">
+
+            <div>
+                <h5>Registered Users</h5>
+                <span>Total Users :
+                    <strong th:text="${#lists.size(users)}"></strong>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table custom-table align-middle">
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th width="140">Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="user : ${users}">
+
+                    <td>
+                        <strong>#<span th:text="${user.id}"></span></strong>
+                    </td>
+
+                    <td>
+
+                        <div class="user-cell">
+
+                            <div class="avatar"
+                                 th:text="${#strings.substring(user.username,0,1).toUpperCase()}">
+                            </div>
+
+                            <div>
+
+                                <div class="username"
+                                     th:text="${user.username}">
+                                </div>
+
+                                <small class="text-muted">
+                                    ERP User
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        <span class="role-badge"
+                              th:text="${user.role}">
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span th:if="${user.enabled}"
+                              class="status enabled">
+
+                            ● Enabled
+
+                        </span>
+
+                        <span th:unless="${user.enabled}"
+                              class="status disabled">
+
+                            ● Disabled
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <form th:action="@{/admin/users/toggle/{id}(id=${user.id})}"
+                              method="post">
+
+                            <button class="btn btn-sm action-btn"
+                                    th:classappend="${user.enabled} ? 'disable-btn' : 'enable-btn'">
+
+                                <span th:text="${user.enabled} ? 'Disable' : 'Enable'"></span>
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

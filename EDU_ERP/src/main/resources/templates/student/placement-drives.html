@@ -1,0 +1,293 @@
+<div class="container-fluid py-4">
+
+    <!-- ======================================== -->
+    <!-- HEADER -->
+    <!-- ======================================== -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+
+                    <i class="bi bi-briefcase-fill me-2"></i>
+
+                    Placement Drives
+
+                </h2>
+
+                <p class="text-muted mb-0">
+
+                    Discover companies recruiting from your institute and apply online.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <span class="badge bg-primary fs-6 px-4 py-3">
+
+                    Total Drives :
+                    <span th:text="${#lists.size(drives)}"></span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ======================================== -->
+    <!-- DRIVES -->
+    <!-- ======================================== -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-6"
+             th:each="drive : ${drives}">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body p-4">
+
+                    <!-- TOP -->
+
+                    <div class="d-flex justify-content-between">
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1"
+                                th:text="${drive.driveTitle}">
+                            </h4>
+
+                            <h6 class="text-primary fw-semibold"
+                                th:text="${drive.company.companyName}">
+                            </h6>
+
+                        </div>
+
+                        <div>
+
+                            <span class="badge bg-success fs-6">
+
+                                ₹
+                                <span th:text="${drive.packageOffered}">
+                                </span>
+
+                                LPA
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- DETAILS -->
+
+                    <div class="row gy-3">
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+
+                                <i class="bi bi-calendar-event"></i>
+
+                                Drive Date
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${drive.driveDate}">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+
+                                <i class="bi bi-geo-alt"></i>
+
+                                Venue
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${drive.venue}">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+
+                                Qualification
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${drive.qualification != null ? drive.qualification.name : 'Any'}">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+
+                                Specialization
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${drive.specialization != null ? drive.specialization.name : 'Any'}">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+
+                                Minimum Attendance
+
+                            </small>
+
+                            <div>
+
+                                <span class="badge bg-warning text-dark">
+
+                                    <span th:text="${drive.minimumAttendance}">
+                                    </span> %
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- STATUS -->
+
+                    <div class="mb-3">
+
+                        <!-- Applied -->
+
+                        <span class="badge bg-primary px-3 py-2"
+
+                              th:if="${applicationService.hasApplied(student,drive)}">
+
+                            <i class="bi bi-check-circle-fill me-1"></i>
+
+                            Applied
+
+                        </span>
+
+                        <!-- Eligible -->
+
+                        <span class="badge bg-success px-3 py-2"
+
+                              th:if="${!applicationService.hasApplied(student,drive)
+                              and applicationService.isEligible(student,drive)}">
+
+                            <i class="bi bi-patch-check-fill me-1"></i>
+
+                            Eligible
+
+                        </span>
+
+                        <!-- Not Eligible -->
+
+                        <span class="badge bg-danger px-3 py-2"
+
+                              th:if="${!applicationService.hasApplied(student,drive)
+                              and !applicationService.isEligible(student,drive)}">
+
+                            <i class="bi bi-x-circle-fill me-1"></i>
+
+                            Not Eligible
+
+                        </span>
+
+                    </div>
+
+                    <!-- BUTTON -->
+
+                    <form th:action="@{/student/placement-drives/apply/{id}(id=${drive.id})}"
+                          method="post">
+
+                        <button
+                                class="btn btn-primary w-100 btn-lg"
+
+                                th:disabled="${applicationService.hasApplied(student,drive)
+                                or !applicationService.isEligible(student,drive)}">
+
+                            <span th:if="${applicationService.hasApplied(student,drive)}">
+
+                                <i class="bi bi-check-circle-fill me-2"></i>
+
+                                Already Applied
+
+                            </span>
+
+                            <span th:unless="${applicationService.hasApplied(student,drive)}">
+
+                                <i class="bi bi-send-fill me-2"></i>
+
+                                Apply Now
+
+                            </span>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- EMPTY STATE -->
+
+        <div class="col-12"
+             th:if="${#lists.isEmpty(drives)}">
+
+            <div class="card dashboard-card">
+
+                <div class="card-body text-center py-5">
+
+                    <i class="bi bi-briefcase display-1 text-muted"></i>
+
+                    <h3 class="fw-bold mt-4">
+
+                        No Placement Drives
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        There are currently no placement drives available.
+                        Please check again later.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

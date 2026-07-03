@@ -1,0 +1,50 @@
+<div class="container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="att-card-header mb-3">
+        <h3 class="fw-bold mb-1">Attendance</h3>
+        <p class="text-muted mb-0">Mark daily attendance for selected batch</p>
+    </div>
+
+    <!-- CARD -->
+    <div class="att-card">
+
+        <form th:action="@{/admin/attendance/mark}" method="get"
+              class="row g-4 align-items-end">
+
+            <!-- BATCH -->
+            <div class="col-md-4">
+                <label class="form-label">Batch</label>
+                <select name="batchId" class="form-select att-input" required>
+                    <option disabled selected>Select Batch</option>
+
+                    <option th:each="b : ${batches}"
+                            th:value="${b.id}"
+                            th:text="${b.name}">
+                    </option>
+
+                </select>
+            </div>
+
+            <!-- DATE -->
+            <div class="col-md-4">
+                <label class="form-label">Date</label>
+                <input type="date"
+                       name="date"
+                       th:value="${today}"
+                       class="form-control att-input"
+                       required>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="col-md-4">
+                <button class="btn att-btn w-100">
+                    Mark Attendance
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

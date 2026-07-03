@@ -1,0 +1,192 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">Batch Performance</h3>
+            <p class="text-muted mb-0">
+                Overview of student progress and batch analytics
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- ================= KPI CARDS ================= -->
+    <div class="row g-4">
+
+        <!-- STUDENTS -->
+        <div class="col-md-3">
+
+            <div class="erp-kpi blue text-center">
+
+                <div class="kpi-icon mb-2">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div class="kpi-title">Students</div>
+
+                <div class="kpi-value"
+                     th:text="${performance.totalStudents}">
+                    0
+                </div>
+
+                <div class="kpi-footer">
+                    Enrolled learners
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATTENDANCE -->
+        <div class="col-md-3">
+
+            <div class="erp-kpi green text-center">
+
+                <div class="kpi-icon mb-2">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
+
+                <div class="kpi-title">Attendance Avg</div>
+
+                <div class="kpi-value"
+                     th:text="${#numbers.formatDecimal(performance.avgAttendance, 1, 2) + '%'}">
+                    0%
+                </div>
+
+                <div class="kpi-footer">
+                    Overall attendance rate
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EXAM SCORE -->
+        <div class="col-md-3">
+
+            <div class="erp-kpi purple text-center">
+
+                <div class="kpi-icon mb-2">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+
+                <div class="kpi-title">Exam Avg</div>
+
+                <div class="kpi-value"
+                     th:text="${#numbers.formatDecimal(performance.avgExamScore, 1, 2)}">
+                    0
+                </div>
+
+                <div class="kpi-footer">
+                    Average performance
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOP PERFORMER -->
+        <div class="col-md-3">
+
+            <div class="erp-kpi orange text-center">
+
+                <div class="kpi-icon mb-2">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+
+                <div class="kpi-title">Top Performer</div>
+
+                <div class="kpi-value"
+                     th:text="${performance.topPerformer}">
+                    -
+                </div>
+
+                <div class="kpi-footer">
+                    Highest scoring student
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STYLE ================= -->
+<style>
+
+.erp-kpi{
+
+    color:white;
+    border-radius:22px;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    min-height:170px;
+    transition:.3s;
+
+}
+
+.erp-kpi:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.erp-kpi::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    right:-40px;
+    top:-40px;
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+}
+
+.kpi-icon{
+    font-size:34px;
+}
+
+.kpi-title{
+    font-size:13px;
+    opacity:.85;
+    margin-top:10px;
+}
+
+.kpi-value{
+    font-size:34px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+.kpi-footer{
+    font-size:12px;
+    opacity:.8;
+}
+
+/* COLORS */
+.blue{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.green{
+    background:linear-gradient(135deg,#059669,#10b981);
+}
+
+.purple{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+}
+
+.orange{
+    background:linear-gradient(135deg,#ea580c,#f97316);
+}
+
+</style>

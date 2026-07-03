@@ -1,0 +1,826 @@
+<!-- ===========================================
+        PROFILE HEADER V2
+=========================================== -->
+
+<div class="profile-banner-v2 mb-4">
+
+    <div class="row align-items-center">
+
+        <!-- LEFT -->
+
+        <div class="col-lg-3 text-center">
+
+            <img th:if="${student.profilePhoto != null}"
+                 th:src="@{'/uploads/profile/' + ${student.profilePhoto}}"
+                 class="profile-avatar-v2">
+
+            <img th:if="${student.profilePhoto == null}"
+                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                 class="profile-avatar-v2">
+
+            <div class="mt-3">
+
+                <span class="badge bg-success px-3 py-2 rounded-pill">
+
+                    <i class="bi bi-patch-check-fill me-2"></i>
+
+                    Active Student
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- CENTER -->
+
+        <div class="col-lg-6">
+
+            <h2 class="fw-bold text-white mb-2"
+                th:text="${student.fullName}">
+            </h2>
+
+            <h6 class="text-white-50 mb-4">
+
+                Student ERP Profile
+
+            </h6>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <div class="profile-chip">
+
+                        <i class="bi bi-person-badge-fill"></i>
+
+                        <span>
+                            Roll :
+                            <strong th:text="${student.rollNumber}"></strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="profile-chip">
+
+                        <i class="bi bi-mortarboard-fill"></i>
+
+                        <span th:text="${student.specialization?.name}">
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="profile-chip">
+
+                        <i class="bi bi-people-fill"></i>
+
+                        <span th:text="${student.batch?.name}">
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="profile-chip">
+
+                        <i class="bi bi-building"></i>
+
+                        <span th:text="${student.center?.name}">
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-12">
+
+                    <div class="profile-chip">
+
+                        <i class="bi bi-envelope-fill"></i>
+
+                        <span th:text="${student.email}">
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="col-lg-3 text-lg-end mt-4 mt-lg-0">
+
+            <div class="glass-card mb-4">
+
+                <small class="text-white">
+
+                    Profile Completion
+
+                </small>
+
+                <h2 class="fw-bold text-warning mt-2">
+
+                    <span th:text="${profileCompletion}"></span>%
+
+                </h2>
+
+                <div class="progress mt-3">
+
+                    <div class="progress-bar bg-warning"
+
+                         th:style="'width:'+${profileCompletion}+'%'">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a th:href="@{/student/profile/edit}"
+
+               class="btn btn-light btn-lg rounded-pill px-4">
+
+                <i class="bi bi-pencil-square me-2"></i>
+
+                Edit Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+                    QUICK STATS V2
+====================================================== -->
+
+<div class="row g-4 mb-5">
+
+    <!-- Attendance -->
+
+    <div class="col-lg-3 col-md-6">
+
+        <div class="profile-stat-card stat-primary">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-calendar-check-fill"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <small>Attendance</small>
+
+                <h2 th:text="${attendancePercentage + '%'}"></h2>
+
+                <span class="text-success">
+                    Excellent
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Exam Average -->
+
+    <div class="col-lg-3 col-md-6">
+
+        <div class="profile-stat-card stat-success">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-graph-up-arrow"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <small>Exam Average</small>
+
+                <h2 th:text="${examAverage}"></h2>
+
+                <span class="text-muted">
+                    Overall Performance
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Pending Fees -->
+
+    <div class="col-lg-3 col-md-6">
+
+        <div class="profile-stat-card stat-danger">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-wallet2"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <small>Pending Fees</small>
+
+                <h2>
+
+                    ₹<span th:text="${pendingFees}"></span>
+
+                </h2>
+
+                <span class="text-danger">
+
+                    Outstanding
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Current Batch -->
+
+    <div class="col-lg-3 col-md-6">
+
+        <div class="profile-stat-card stat-warning">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-people-fill"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <small>Current Batch</small>
+
+                <h5 class="fw-bold"
+                    th:text="${student.batch?.name}">
+                </h5>
+
+                <span class="text-muted">
+
+                    Active Batch
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+                PERSONAL INFORMATION V2
+====================================================== -->
+
+<div class="card info-card-v2 mb-4">
+
+    <div class="section-header">
+
+        <div>
+
+            <h4>
+
+                <i class="bi bi-person-vcard-fill text-primary me-2"></i>
+
+                Personal Information
+
+            </h4>
+
+            <small class="text-muted">
+
+                Your personal details
+
+            </small>
+
+        </div>
+
+        <a th:href="@{/student/profile/edit}"
+
+           class="btn btn-primary rounded-pill">
+
+            <i class="bi bi-pencil-square me-2"></i>
+
+            Edit
+
+        </a>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <div class="info-icon bg-primary-subtle">
+
+                        <i class="bi bi-envelope-fill text-primary"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Email</small>
+
+                        <h6 th:text="${student.email}"></h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <div class="info-icon bg-success-subtle">
+
+                        <i class="bi bi-telephone-fill text-success"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Phone</small>
+
+                        <h6 th:text="${student.phone}"></h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <div class="info-icon bg-warning-subtle">
+
+                        <i class="bi bi-calendar-event-fill text-warning"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Date of Birth</small>
+
+                        <h6 th:text="${student.dob}"></h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <div class="info-icon bg-info-subtle">
+
+                        <i class="bi bi-gender-ambiguous text-info"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Gender</small>
+
+                        <h6 th:text="${student.gender}"></h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12">
+
+                <div class="info-box">
+
+                    <div class="info-icon bg-danger-subtle">
+
+                        <i class="bi bi-geo-alt-fill text-danger"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Address</small>
+
+                        <h6 th:text="${student.address}"></h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+                ACADEMIC INFORMATION V2
+====================================================== -->
+
+<div class="card info-card-v2 mb-4">
+
+    <div class="section-header">
+
+        <div>
+
+            <h4>
+
+                <i class="bi bi-mortarboard-fill text-success me-2"></i>
+
+                Academic Information
+
+            </h4>
+
+            <small class="text-muted">
+
+                Your academic details & trainer information
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <!-- LEFT -->
+
+            <div class="col-lg-7">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Qualification</small>
+
+                            <h6 th:text="${student.qualification?.name}"></h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Specialization</small>
+
+                            <h6 th:text="${student.specialization?.name}"></h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Training Center</small>
+
+                            <h6 th:text="${student.center?.name}"></h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Current Batch</small>
+
+                            <h6 th:text="${student.batch?.name}"></h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Account Status</small>
+
+                            <span class="badge bg-success"
+                                  th:if="${student.approved}">
+                                Approved
+                            </span>
+
+                            <span class="badge bg-warning text-dark"
+                                  th:unless="${student.approved}">
+                                Pending Approval
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="academic-box">
+
+                            <small>Student ID</small>
+
+                            <h6 th:text="${student.rollNumber}"></h6>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="col-lg-5">
+
+                <div class="trainer-card">
+
+                    <div class="trainer-avatar">
+
+                        <i class="bi bi-person-workspace"></i>
+
+                    </div>
+
+                    <h5 class="mt-3">
+
+                        Trainer
+
+                    </h5>
+
+                    <h4 class="fw-bold"
+                        th:text="${student.batch != null ? student.batch.trainer.fullName : '-'}">
+                    </h4>
+
+                    <hr>
+
+                    <div class="trainer-item">
+
+                        <i class="bi bi-envelope-fill"></i>
+
+                        <span th:text="${student.batch != null ? student.batch.trainer.email : '-'}">
+                        </span>
+
+                    </div>
+
+                    <div class="trainer-item">
+
+                        <i class="bi bi-telephone-fill"></i>
+
+                        <span th:text="${student.batch != null ? student.batch.trainer.phone : '-'}">
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+
+                       class="btn btn-success mt-4 w-100">
+
+                        <i class="bi bi-chat-dots-fill me-2"></i>
+
+                        Contact Trainer
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+                DOCUMENTS & PLACEMENT V2
+====================================================== -->
+
+<div class="row g-4">
+
+    <!-- Resume -->
+
+    <div class="col-lg-6">
+
+        <div class="resume-card-v2">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-file-earmark-pdf-fill text-danger me-2"></i>
+
+                        Resume
+
+                    </h4>
+
+                    <small class="text-muted">
+
+                        Placement Resume
+
+                    </small>
+
+                </div>
+
+                <span class="badge bg-success"
+
+                      th:if="${student.resumePath!=null}">
+
+                    Uploaded
+
+                </span>
+
+                <span class="badge bg-danger"
+
+                      th:unless="${student.resumePath!=null}">
+
+                    Missing
+
+                </span>
+
+            </div>
+
+            <div class="resume-preview">
+
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+
+            </div>
+
+            <div class="d-grid gap-3 mt-4">
+
+                <a th:if="${student.resumePath!=null}"
+
+                   th:href="@{'/uploads/1/resumes/'+${student.resumePath}}"
+
+                   target="_blank"
+
+                   class="btn btn-primary">
+
+                    <i class="bi bi-eye-fill me-2"></i>
+
+                    View Resume
+
+                </a>
+
+                <a th:if="${student.resumePath!=null}"
+
+                   th:href="@{'/uploads/1/resumes/'+${student.resumePath}}"
+
+                   download
+
+                   class="btn btn-outline-primary">
+
+                    <i class="bi bi-download me-2"></i>
+
+                    Download Resume
+
+                </a>
+
+                <a th:unless="${student.resumePath!=null}"
+
+                   th:href="@{/student/resume}"
+
+                   class="btn btn-warning">
+
+                    <i class="bi bi-upload me-2"></i>
+
+                    Upload Resume
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Placement -->
+
+    <div class="col-lg-6">
+
+        <div class="placement-card-v2">
+
+            <h4 class="mb-4">
+
+                <i class="bi bi-briefcase-fill me-2"></i>
+
+                Placement Readiness
+
+            </h4>
+
+            <div class="placement-score">
+
+                <h1>
+
+                    <span th:text="${profileCompletion}"></span>%
+
+                </h1>
+
+            </div>
+
+            <div class="progress mt-4">
+
+                <div class="progress-bar bg-success"
+
+                     th:style="'width:'+${profileCompletion}+'%'">
+
+                </div>
+
+            </div>
+
+            <div class="mt-4">
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>Resume Uploaded</span>
+
+                    <i class="bi"
+
+                       th:classappend="${student.resumePath!=null}
+                       ? ' bi-check-circle-fill text-success'
+                       : ' bi-x-circle-fill text-danger'">
+
+                    </i>
+
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>Profile Completed</span>
+
+                    <i class="bi"
+
+                       th:classappend="${profileCompletion>=80}
+                       ? ' bi-check-circle-fill text-success'
+                       : ' bi-x-circle-fill text-danger'">
+
+                    </i>
+
+                </div>
+
+                <div class="d-flex justify-content-between">
+
+                    <span>Ready For Placement</span>
+
+                    <span class="badge"
+
+                          th:classappend="${profileCompletion>=80}
+                          ? ' bg-success'
+                          : ' bg-warning text-dark'">
+
+                        <span th:text="${profileCompletion>=80 ? 'YES' : 'NO'}"></span>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

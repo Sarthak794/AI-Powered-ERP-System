@@ -1,0 +1,108 @@
+<div class="batch-page container-fluid mt-4">
+
+    <div class="batch-header">
+        <h3>Batch Management</h3>
+        <p>Manage batches, assign trainers and students efficiently</p>
+    </div>
+
+    <!-- Alerts -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- CREATE BATCH CARD -->
+    <div class="batch-card mb-4">
+
+        <h5 class="section-title">Create Batch</h5>
+
+        <form th:action="@{/admin/batches/create}" method="post" class="batch-form">
+
+            <input class="form-control" name="name" placeholder="Batch Name" required>
+
+            <select name="centerId" class="form-select" required>
+                <option disabled selected>Center</option>
+                <option th:each="c : ${centers}"
+                        th:value="${c.id}"
+                        th:text="${c.name}"></option>
+            </select>
+
+            <select name="qualificationId" class="form-select" required>
+                <option disabled selected>Qualification</option>
+                <option th:each="q : ${qualifications}"
+                        th:value="${q.id}"
+                        th:text="${q.name}"></option>
+            </select>
+
+            <select name="specializationId" class="form-select" required>
+                <option disabled selected>Specialization</option>
+                <option th:each="s : ${specializations}"
+                        th:value="${s.id}"
+                        th:text="${s.name}"></option>
+            </select>
+
+            <select name="trainerId" class="form-select" required>
+                <option disabled selected>Trainer</option>
+                <option th:each="t : ${trainers}"
+                        th:value="${t.id}"
+                        th:text="${t.fullName}"></option>
+            </select>
+
+            <button class="btn-primary-action">Create Batch</button>
+        </form>
+    </div>
+
+    <!-- ASSIGN STUDENT CARD -->
+    <div class="batch-card mb-4">
+
+        <h5 class="section-title">Assign Student</h5>
+
+        <form th:action="@{/admin/batches/assign-student}" method="post" class="batch-form">
+
+            <select name="studentId" class="form-select" required>
+                <option disabled selected>Select Student</option>
+                <option th:each="s : ${students}"
+                        th:value="${s.id}"
+                        th:text="${s.fullName}"></option>
+            </select>
+
+            <select name="batchId" class="form-select" required>
+                <option disabled selected>Select Batch</option>
+                <option th:each="b : ${batches}"
+                        th:value="${b.id}"
+                        th:text="${b.name}"></option>
+            </select>
+
+            <button class="btn-primary-action">Assign</button>
+        </form>
+    </div>
+
+    <!-- TABLE -->
+    <div class="batch-card">
+
+        <h5 class="section-title">All Batches</h5>
+
+        <div class="table-responsive">
+            <table class="table batch-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Center</th>
+                    <th>Qualification</th>
+                    <th>Specialization</th>
+                    <th>Trainer</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="b : ${batches}">
+                    <td th:text="${b.name}"></td>
+                    <td th:text="${b.center.name}"></td>
+                    <td th:text="${b.qualification.name}"></td>
+                    <td th:text="${b.specialization.name}"></td>
+                    <td th:text="${b.trainer.fullName}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

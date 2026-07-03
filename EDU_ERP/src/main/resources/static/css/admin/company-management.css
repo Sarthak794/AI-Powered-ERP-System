@@ -1,0 +1,165 @@
+/* PAGE */
+.company-page {
+    background: #f6f8fb;
+}
+
+/* HEADER */
+.page-header h3 {
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.page-header p {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* CARD */
+.ui-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    border: 1px solid #eef0f3;
+    margin-bottom: 20px;
+}
+
+/* FORM GRID (THIS FIXES EVERYTHING) */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group.action {
+    grid-column: span 2;
+    display: flex;
+    align-items: end;
+}
+
+/* INPUTS */
+.form-control {
+    border-radius: 12px;
+    border: 1px solid #dbe2ea;
+    padding: 10px 12px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.form-control:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    outline: none;
+}
+
+/* BUTTON */
+.btn-primary-action {
+    width: 100%;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 11px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.25);
+}
+
+/* TABLE HEADER */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.table-header h5 {
+    font-weight: 700;
+}
+
+/* TABLE */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead {
+    background: #111827;
+    color: white;
+}
+
+.modern-table th {
+    padding: 12px;
+    font-size: 13px;
+}
+
+.modern-table td {
+    padding: 12px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.modern-table tbody tr {
+    transition: 0.2s;
+}
+
+.modern-table tbody tr:hover {
+    background: #f3f4f6;
+}
+
+/* BADGE */
+.badge {
+    background: rgb(0, 255, 0);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* DELETE BUTTON */
+.btn-danger-action {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.btn-danger-action:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full,
+    .form-group.action {
+        grid-column: span 1;
+    }
+}

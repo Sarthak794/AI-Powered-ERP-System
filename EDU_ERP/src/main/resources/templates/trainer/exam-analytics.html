@@ -1,0 +1,117 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+
+        <div>
+            <h2 class="fw-bold mb-1">Question Analytics</h2>
+            <p class="text-muted mb-0">
+                Performance insights and question-wise accuracy tracking
+            </p>
+        </div>
+
+        <span class="badge bg-primary px-3 py-2 fs-6">
+            Analytics Module
+        </span>
+
+    </div>
+
+    <!-- ================= SUMMARY KPI ================= -->
+    <div class="row g-4 mb-4">
+
+        <!-- Total Attempts -->
+        <div class="col-md-6 col-xl-3">
+            <div class="ui-kpi blue">
+                <div class="title">Total Attempts</div>
+                <div class="value" th:text="${summary.totalAttempts}">0</div>
+            </div>
+        </div>
+
+        <!-- Average Score -->
+        <div class="col-md-6 col-xl-3">
+            <div class="ui-kpi green">
+                <div class="title">Average Score</div>
+                <div class="value" th:text="${summary.averageScore}">0</div>
+            </div>
+        </div>
+
+        <!-- Highest Score -->
+        <div class="col-md-6 col-xl-3">
+            <div class="ui-kpi cyan">
+                <div class="title">Highest Score</div>
+                <div class="value" th:text="${summary.highestScore}">0</div>
+            </div>
+        </div>
+
+        <!-- Pass Percentage -->
+        <div class="col-md-6 col-xl-3">
+            <div class="ui-kpi red">
+                <div class="title">Pass %</div>
+                <div class="value"
+                     th:text="${summary.passPercentage + '%'}">
+                    0%
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= QUESTION ANALYTICS TABLE ================= -->
+    <div class="ui-panel">
+
+        <div class="ui-panel-header">
+            Question-wise Performance Analysis
+        </div>
+
+        <div class="ui-panel-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table ui-table align-middle mb-0">
+
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Total Answers</th>
+                        <th>Correct Answers</th>
+                        <th>Accuracy</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="a : ${analytics}">
+
+                        <td class="fw-semibold" th:text="${a.question}"></td>
+
+                        <td th:text="${a.totalAttempts}"></td>
+
+                        <td th:text="${a.correctAttempts}"></td>
+
+                        <td>
+
+                            <span class="ui-badge"
+                                  th:classappend="${
+                                      a.accuracy >= 80 ? ' bg-success text-white' :
+                                      a.accuracy >= 50 ? ' bg-warning text-dark' :
+                                      ' bg-danger text-white'
+                                  }"
+                                  th:text="${a.accuracy + '%'}">
+                                0%
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="att-card-header mb-3">
+        <h3 class="fw-bold mb-1">Attendance Report</h3>
+        <p class="text-muted mb-0">View and manage student attendance records</p>
+    </div>
+
+    <!-- FILTER CARD -->
+    <div class="att-card mb-4">
+
+        <form th:action="@{/admin/attendance/view}" method="post"
+              class="row g-3 align-items-end">
+
+            <div class="col-md-4">
+                <label class="form-label">Batch</label>
+                <select name="batchId" class="form-select att-input" required>
+                    <option disabled selected>Select Batch</option>
+                    <option th:each="b : ${batches}"
+                            th:value="${b.id}"
+                            th:text="${b.name}"
+                            th:selected="${b.id == selectedBatch}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Date</label>
+                <input type="date" name="date" class="form-control att-input"
+                       th:value="${date}">
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary att-btn w-100">View</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="att-card">
+
+        <table class="table att-table" th:if="${records}">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Student</th>
+                <th>Roll No</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="a : ${records}">
+                <td th:text="${a.date}"></td>
+
+                <td>
+                    <div class="att-user">
+                        <div class="att-avatar">
+                            <span th:text="${#strings.substring(a.student.fullName,0,1)}"></span>
+                        </div>
+                        <span th:text="${a.student.fullName}"></span>
+                    </div>
+                </td>
+
+                <td th:text="${a.student.rollNumber}"></td>
+
+                <td>
+                    <span th:if="${a.present}" class="att-badge present">Present</span>
+                    <span th:unless="${a.present}" class="att-badge absent">Absent</span>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

@@ -1,0 +1,238 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    🎉 Exam Result
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Your exam has been successfully evaluated.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= RESULT CARD ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0 mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="row align-items-center">
+
+                <!-- Exam Details -->
+
+                <div class="col-lg-8">
+
+                    <h3 class="fw-bold mb-4"
+                        th:text="${attempt.exam.title}">
+                    </h3>
+
+                    <div class="row g-4">
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    📝
+                                </div>
+
+                                <div class="text-muted">
+                                    Score
+                                </div>
+
+                                <div class="stat-value text-success"
+                                     th:text="${attempt.score}">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    🎯
+                                </div>
+
+                                <div class="text-muted">
+                                    Total Marks
+                                </div>
+
+                                <div class="stat-value text-primary"
+                                     th:text="${attempt.exam.totalMarks}">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    📈
+                                </div>
+
+                                <div class="text-muted">
+                                    Percentage
+                                </div>
+
+                                <div class="stat-value text-warning"
+                                     th:text="${(attempt.score*100)/attempt.exam.totalMarks + '%'}">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Pass / Fail -->
+
+                <div class="col-lg-4 text-center">
+
+                    <div th:if="${(attempt.score*100)/attempt.exam.totalMarks >= 40}">
+
+                        <i class="bi bi-patch-check-fill text-success"
+                           style="font-size:90px;"></i>
+
+                        <h3 class="text-success fw-bold mt-3">
+                            PASS
+                        </h3>
+
+                    </div>
+
+                    <div th:unless="${(attempt.score*100)/attempt.exam.totalMarks >= 40}">
+
+                        <i class="bi bi-x-octagon-fill text-danger"
+                           style="font-size:90px;"></i>
+
+                        <h3 class="text-danger fw-bold mt-3">
+                            FAIL
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= DETAILS ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">
+
+                Submission Details
+
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="info-label">
+
+                        Submitted On
+
+                    </div>
+
+                    <div class="info-value"
+                         th:text="${attempt.submittedAt}">
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="info-label">
+
+                        Evaluation Status
+
+                    </div>
+
+                    <div class="info-value text-success fw-semibold">
+
+                        Completed
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= ACTIONS ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-4">
+
+                Quick Actions
+
+            </h5>
+
+            <div class="d-flex flex-wrap gap-3">
+
+                <a href="/student/exams/history"
+                   class="btn btn-outline-primary">
+
+                    <i class="bi bi-clock-history me-2"></i>
+
+                    Exam History
+
+                </a>
+
+                <a th:href="@{/student/exams/review/{id}(id=${attempt.exam.id})}"
+                   class="btn btn-warning text-white">
+
+                    <i class="bi bi-eye-fill me-2"></i>
+
+                    Review Answers
+
+                </a>
+
+                <a th:href="@{/student/exams/result/{id}/pdf(id=${attempt.exam.id})}"
+                   class="btn btn-success">
+
+                    <i class="bi bi-download me-2"></i>
+
+                    Download Scorecard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

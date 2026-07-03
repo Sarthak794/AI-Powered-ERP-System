@@ -1,0 +1,700 @@
+<!-- ================= DASHBOARD HEADER ================= -->
+
+<div class="container-fluid py-4">
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    Welcome,
+                    <span class="text-warning"
+                          th:text="${student.fullName}">
+                    </span> 👋
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Here's your academic dashboard and latest activity.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <div class="profile-progress-box">
+
+                    <small class="text-muted">
+                        Profile Completion
+                    </small>
+
+                    <h4 class="fw-bold text-warning mb-2">
+                        <span th:text="${profileCompletion}"></span>%
+                    </h4>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-warning"
+                             th:style="'width:'+${profileCompletion}+'%'">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- KPI ROW -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="modern-card primary-card">
+
+                <i class="bi bi-calendar-check"></i>
+
+                <small>Attendance</small>
+
+                <h3 id="attendanceCount">0%</h3>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="modern-card danger-card">
+
+                <i class="bi bi-credit-card"></i>
+
+                <small>Pending Fees</small>
+
+                <h3>
+                    ₹<span th:text="${pendingFees}"></span>
+                </h3>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="modern-card success-card">
+
+                <i class="bi bi-journal-check"></i>
+
+                <small>Assignments</small>
+
+                <h3 th:text="${pendingAssignments}">
+                </h3>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="modern-card info-card">
+
+                <i class="bi bi-mortarboard"></i>
+
+                <small>Upcoming Exams</small>
+
+                <h3 th:text="${upcomingExamCount}">
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+	<!-- ================= PROFILE + SUMMARY SECTION ================= -->
+
+	<div class="row g-4 mb-4">
+
+	    <!-- PROFILE CARD -->
+	    <div class="col-lg-4">
+
+	        <div class="card profile-card-v2 h-100">
+
+	            <div class="card-body text-center p-4">
+
+	                <div class="profile-cover"></div>
+
+	                <div class="profile-content">
+
+	                    <img th:if="${student.profilePhoto != null}"
+	                         th:src="@{'/uploads/profile/' + ${student.profilePhoto}}"
+	                         class="student-avatar">
+
+	                    <img th:if="${student.profilePhoto == null}"
+	                         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+	                         class="student-avatar">
+
+	                    <h4 class="fw-bold mt-3 mb-1"
+	                        th:text="${student.fullName}">
+	                    </h4>
+
+	                    <span class="badge bg-primary px-3 py-2">
+	                        Roll No :
+	                        <span th:text="${student.rollNumber}"></span>
+	                    </span>
+
+	                    <div class="mt-4 text-start">
+
+	                        <div class="info-item">
+	                            <i class="bi bi-people-fill"></i>
+	                            <div>
+	                                <small>Batch</small>
+	                                <h6 th:text="${student.batch != null ? student.batch.name : '-'}"></h6>
+	                            </div>
+	                        </div>
+
+	                        <div class="info-item">
+	                            <i class="bi bi-mortarboard-fill"></i>
+	                            <div>
+	                                <small>Specialization</small>
+	                                <h6 th:text="${student.specialization != null ? student.specialization.name : '-'}"></h6>
+	                            </div>
+	                        </div>
+
+	                        <div class="info-item">
+	                            <i class="bi bi-envelope-fill"></i>
+	                            <div>
+	                                <small>Email</small>
+	                                <h6 th:text="${student.email}"></h6>
+	                            </div>
+	                        </div>
+
+	                    </div>
+
+	                    <div class="d-grid mt-4">
+	                        <a th:href="@{/student/profile}"
+	                           class="btn btn-primary btn-lg">
+	                            <i class="bi bi-person-circle"></i>
+	                            View Profile
+	                        </a>
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- ACADEMIC SUMMARY -->
+	    <div class="col-lg-8">
+
+	        <div class="row g-4">
+
+	            <!-- Average Score -->
+	            <div class="col-md-6">
+
+	                <div class="summary-card">
+
+	                    <div class="summary-icon bg-primary-subtle text-primary">
+	                        <i class="bi bi-graph-up-arrow"></i>
+	                    </div>
+
+	                    <div>
+	                        <small class="text-muted">Average Score</small>
+	                        <h2 class="fw-bold mb-0"
+	                            th:text="${#numbers.formatDecimal(averageScore,1,2)}">
+	                        </h2>
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <!-- Highest Score -->
+	            <div class="col-md-6">
+
+	                <div class="summary-card">
+
+	                    <div class="summary-icon bg-success-subtle text-success">
+	                        <i class="bi bi-trophy-fill"></i>
+	                    </div>
+
+	                    <div>
+	                        <small class="text-muted">Highest Score</small>
+	                        <h2 class="fw-bold mb-0"
+	                            th:text="${highestScore}">
+	                        </h2>
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <!-- Documents -->
+	            <div class="col-md-6">
+
+	                <div class="summary-card">
+
+	                    <div class="summary-icon bg-warning-subtle text-warning">
+	                        <i class="bi bi-folder-fill"></i>
+	                    </div>
+
+	                    <div>
+	                        <small class="text-muted">Uploaded Documents</small>
+	                        <h2 class="fw-bold mb-0"
+	                            th:text="${documentCount}">
+	                        </h2>
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <!-- Assignments -->
+	            <div class="col-md-6">
+
+	                <div class="card h-100 border-0 shadow-sm">
+
+	                    <div class="card-body">
+
+	                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+	                            <h5 class="fw-bold mb-0">
+	                                Assignments
+	                            </h5>
+
+	                            <i class="bi bi-journal-check text-primary fs-4"></i>
+
+	                        </div>
+
+	                        <div class="mb-3">
+
+	                            <div class="d-flex justify-content-between">
+	                                <small>Assigned</small>
+	                                <strong th:text="${assignedAssignments}"></strong>
+	                            </div>
+
+	                        </div>
+
+	                        <div class="mb-3">
+
+	                            <div class="d-flex justify-content-between">
+	                                <small>Submitted</small>
+	                                <strong class="text-success"
+	                                        th:text="${submittedAssignments}">
+	                                </strong>
+	                            </div>
+
+	                        </div>
+
+	                        <div>
+
+	                            <div class="d-flex justify-content-between">
+	                                <small>Pending</small>
+	                                <strong class="text-danger"
+	                                        th:text="${pendingAssignments}">
+	                                </strong>
+	                            </div>
+
+	                        </div>
+
+	                        <div class="progress mt-3">
+
+	                            <div class="progress-bar bg-success"
+	                                 th:style="'width:' + (${assignedAssignments}==0 ? 0 : (${submittedAssignments}*100/${assignedAssignments})) + '%'">
+	                            </div>
+
+	                        </div>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+	<!-- ================= PLACEMENT & EXAMS ================= -->
+
+	<div class="row g-4 mt-1">
+
+	    <!-- Placement Status -->
+
+	    <div class="col-lg-6">
+
+	        <div class="card border-0 shadow-sm h-100">
+
+	            <div class="card-body p-4">
+
+	                <div class="d-flex justify-content-between align-items-center mb-4">
+
+	                    <div>
+
+	                        <h5 class="fw-bold mb-1">
+	                            Placement Status
+	                        </h5>
+
+	                        <small class="text-muted">
+	                            Current placement progress
+	                        </small>
+
+	                    </div>
+
+	                    <div class="summary-icon bg-success-subtle text-success">
+	                        <i class="bi bi-briefcase-fill"></i>
+	                    </div>
+
+	                </div>
+
+	                <div class="mb-3">
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+	                        <span>Applied Drives</span>
+
+	                        <strong th:text="${appliedDrives}"></strong>
+
+	                    </div>
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+	                        <span>Selected</span>
+
+	                        <strong class="text-success"
+	                                th:text="${selectedDrives}">
+	                        </strong>
+
+	                    </div>
+
+	                    <div class="d-flex justify-content-between">
+
+	                        <span>Offer Letter</span>
+
+	                        <span class="badge"
+	                              th:classappend="${offerReceived} ? ' bg-success' : ' bg-danger'">
+
+	                            <span th:text="${offerReceived} ? 'Received' : 'Pending'">
+	                            </span>
+
+	                        </span>
+
+	                    </div>
+
+	                </div>
+
+	                <hr>
+
+	                <small class="text-muted">
+	                    Placement Progress
+	                </small>
+
+	                <div class="progress mt-2">
+
+	                    <div class="progress-bar bg-success"
+	                         th:style="'width:' + (${appliedDrives}==0 ? 0 : (${selectedDrives}*100/${appliedDrives})) + '%'">
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- Upcoming Exams -->
+
+	    <div class="col-lg-6">
+
+	        <div class="card border-0 shadow-sm h-100">
+
+	            <div class="card-body p-4">
+
+	                <div class="d-flex justify-content-between align-items-center mb-4">
+
+	                    <div>
+
+	                        <h5 class="fw-bold mb-1">
+	                            Upcoming Exams
+	                        </h5>
+
+	                        <small class="text-muted">
+	                            Your next scheduled examination
+	                        </small>
+
+	                    </div>
+
+	                    <div class="summary-icon bg-primary-subtle text-primary">
+	                        <i class="bi bi-calendar-event-fill"></i>
+	                    </div>
+
+	                </div>
+
+	                <div class="mb-4">
+
+	                    <h3 class="fw-bold"
+	                        th:text="${nextExamName}">
+	                    </h3>
+
+	                    <p class="text-muted mb-0">
+	                        Total Upcoming Exams :
+	                        <strong th:text="${upcomingExamCount}">
+	                        </strong>
+	                    </p>
+
+	                </div>
+
+	                <a th:href="@{/student/exams}"
+	                   class="btn btn-primary w-100">
+
+	                    <i class="bi bi-arrow-right-circle me-2"></i>
+
+	                    Go To Exams
+
+	                </a>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+	<!-- ================= RECENT ACTIVITY + QUICK ACTIONS ================= -->
+
+	<div class="row g-4 mt-3">
+
+	    <!-- Recent Activity -->
+
+	    <div class="col-lg-6">
+
+	        <div class="card border-0 shadow-sm h-100">
+
+	            <div class="card-body p-4">
+
+	                <div class="d-flex justify-content-between align-items-center mb-4">
+
+	                    <h5 class="fw-bold mb-0">
+	                        <i class="bi bi-clock-history text-primary me-2"></i>
+	                        Recent Activity
+	                    </h5>
+
+	                    <span class="badge bg-primary">
+	                        Today
+	                    </span>
+
+	                </div>
+
+	                <div class="timeline">
+
+	                    <div class="timeline-item">
+
+	                        <div class="timeline-icon bg-success">
+	                            <i class="bi bi-check-lg"></i>
+	                        </div>
+
+	                        <div class="timeline-content">
+
+	                            <h6 class="mb-1">
+	                                Assignment Status Updated
+	                            </h6>
+
+	                            <small class="text-muted">
+	                                Pending Assignments :
+	                                <strong th:text="${pendingAssignments}"></strong>
+	                            </small>
+
+	                        </div>
+
+	                    </div>
+
+	                    <div class="timeline-item">
+
+	                        <div class="timeline-icon bg-warning">
+	                            <i class="bi bi-credit-card"></i>
+	                        </div>
+
+	                        <div class="timeline-content">
+
+	                            <h6 class="mb-1">
+	                                Fee Status
+	                            </h6>
+
+	                            <small class="text-muted">
+	                                Pending Fees :
+	                                ₹<span th:text="${pendingFees}"></span>
+	                            </small>
+
+	                        </div>
+
+	                    </div>
+
+	                    <div class="timeline-item">
+
+	                        <div class="timeline-icon bg-info">
+	                            <i class="bi bi-mortarboard"></i>
+	                        </div>
+
+	                        <div class="timeline-content">
+
+	                            <h6 class="mb-1">
+	                                Upcoming Exam
+	                            </h6>
+
+	                            <small class="text-muted"
+	                                   th:text="${nextExamName}">
+	                            </small>
+
+	                        </div>
+
+	                    </div>
+
+	                    <div class="timeline-item border-0">
+
+	                        <div class="timeline-icon bg-primary">
+	                            <i class="bi bi-briefcase"></i>
+	                        </div>
+
+	                        <div class="timeline-content">
+
+	                            <h6 class="mb-1">
+	                                Placement Progress
+	                            </h6>
+
+	                            <small class="text-muted">
+
+	                                Applied :
+	                                <span th:text="${appliedDrives}"></span>
+
+	                                |
+
+	                                Selected :
+	                                <span th:text="${selectedDrives}"></span>
+
+	                            </small>
+
+	                        </div>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- Quick Actions -->
+
+	    <div class="col-lg-6">
+
+	        <div class="card border-0 shadow-sm h-100">
+
+	            <div class="card-body p-4">
+
+	                <h5 class="fw-bold mb-4">
+
+	                    <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
+
+	                    Quick Actions
+
+	                </h5>
+
+	                <div class="row g-3">
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/attendance}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-calendar-check"></i>
+
+	                            <span>Attendance</span>
+
+	                        </a>
+
+	                    </div>
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/exams}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-file-earmark-text"></i>
+
+	                            <span>Exams</span>
+
+	                        </a>
+
+	                    </div>
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/placement-drives}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-briefcase"></i>
+
+	                            <span>Placements</span>
+
+	                        </a>
+
+	                    </div>
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/documents}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-folder2-open"></i>
+
+	                            <span>Documents</span>
+
+	                        </a>
+
+	                    </div>
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/profile}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-person-circle"></i>
+
+	                            <span>Profile</span>
+
+	                        </a>
+
+	                    </div>
+
+	                    <div class="col-6">
+
+	                        <a th:href="@{/student/payment}"
+	                           class="quick-box">
+
+	                            <i class="bi bi-credit-card"></i>
+
+	                            <span>Fees</span>
+
+	                        </a>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>

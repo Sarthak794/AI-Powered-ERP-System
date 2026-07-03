@@ -1,0 +1,222 @@
+<div class="container-fluid">
+
+    <!-- ========================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================= -->
+
+    <div class="notification-banner mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+
+                    <i class="fas fa-wallet me-2"></i>
+
+                    My Fee Payments
+
+                </h2>
+
+                <p class="mb-0">
+
+                    View your complete payment history and download receipts anytime.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <i class="fas fa-file-invoice-dollar fa-4x opacity-50"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PAYMENT SUMMARY -->
+    <!-- ========================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-6">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="metric-icon bg-soft-success mb-3">
+
+                        <i class="fas fa-money-check-dollar"></i>
+
+                    </div>
+
+                    <h6 class="text-muted">
+                        Total Payments
+                    </h6>
+
+                    <h2 class="fw-bold text-success"
+                        th:text="${#lists.size(payments)}">
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="metric-icon bg-soft-primary mb-3">
+
+                        <i class="fas fa-file-pdf"></i>
+
+                    </div>
+
+                    <h6 class="text-muted">
+                        Receipts Available
+                    </h6>
+
+                    <h2 class="fw-bold text-primary"
+                        th:text="${#lists.size(payments)}">
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PAYMENT HISTORY -->
+    <!-- ========================= -->
+
+    <div class="card dashboard-card">
+
+        <div class="card-header bg-white border-0 pt-4 px-4">
+
+            <h5 class="fw-bold mb-0">
+
+                <i class="fas fa-clock-rotate-left me-2 text-primary"></i>
+
+                Payment History
+
+            </h5>
+
+        </div>
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-light">
+
+                    <tr>
+
+                        <th>Date & Time</th>
+
+                        <th>Amount</th>
+
+                        <th>Transaction ID</th>
+
+                        <th class="text-center">Receipt</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="p : ${payments}">
+
+                        <td>
+
+                            <div class="fw-semibold"
+                                 th:text="${#temporals.format(p.paymentTime,'dd MMM yyyy')}">
+                            </div>
+
+                            <small class="text-muted"
+                                   th:text="${#temporals.format(p.paymentTime,'hh:mm a')}">
+                            </small>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-success fs-6 px-3 py-2">
+
+                                ₹ <span th:text="${p.amount}"></span>
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <code th:text="${p.razorpayPaymentId}"></code>
+
+                        </td>
+
+                        <td class="text-center">
+
+                            <a th:href="@{/student/fees/receipt/{id}(id=${p.id})}"
+                               class="btn btn-outline-primary btn-sm">
+
+                                <i class="fas fa-download me-1"></i>
+
+                                Receipt
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    <tr th:if="${#lists.isEmpty(payments)}">
+
+                        <td colspan="4">
+
+                            <div class="text-center py-5">
+
+                                <i class="fas fa-wallet fa-4x text-secondary mb-3"></i>
+
+                                <h4 class="fw-bold">
+
+                                    No Payments Yet
+
+                                </h4>
+
+                                <p class="text-muted mb-0">
+
+                                    Your payment history will appear here once you make your first payment.
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,1555 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HERO PROFILE ================= -->
+
+    <div class="profile-banner mb-4">
+
+        <div class="profile-left">
+
+            <div class="profile-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <div>
+
+                <h2 class="profile-name"
+                    th:text="${trainer.fullName}">
+                    Trainer Name
+                </h2>
+
+                <div class="profile-subtitle">
+
+                    <span class="me-3">
+                        <i class="bi bi-mortarboard-fill me-1"></i>
+                        <span th:text="${trainer.specialization.name}">
+                            Java Full Stack
+                        </span>
+                    </span>
+
+                    <span>
+                        <i class="bi bi-building me-1"></i>
+                        <span th:text="${trainer.center.name}">
+                            Pune Center
+                        </span>
+                    </span>
+
+                </div>
+
+                <span class="status-pill">
+                    <i class="bi bi-check-circle-fill me-1"></i>
+                    Active Trainer
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="profile-right">
+
+            <button class="btn btn-light rounded-pill px-4 shadow-sm">
+
+                <i class="bi bi-pencil-square me-2"></i>
+
+                Edit Profile
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= QUICK STATS ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div>
+
+                    <h3>185</h3>
+
+                    <p>Total Students</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="bi bi-collection-fill"></i>
+                </div>
+
+                <div>
+
+                    <h3>12</h3>
+
+                    <p>Active Batches</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
+
+                <div>
+
+                    <h3>96%</h3>
+
+                    <p>Attendance</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+
+                <div>
+
+                    <h3>4.9</h3>
+
+                    <p>Trainer Rating</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= PERSONAL INFO ================= -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-6">
+
+            <div class="profile-card">
+
+                <div class="card-header-custom">
+
+                    <i class="bi bi-person-vcard-fill"></i>
+
+                    Personal Information
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>FULL NAME</small>
+
+                            <h6 th:text="${trainer.fullName}">
+                                John Doe
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-envelope-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>EMAIL ADDRESS</small>
+
+                            <h6 th:text="${trainer.email}">
+                                trainer@gmail.com
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-telephone-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>PHONE NUMBER</small>
+
+                            <h6 th:text="${trainer.phone != null ? trainer.phone : 'Not Available'}">
+                                9876543210
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-box mb-0">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-person-badge-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>USERNAME</small>
+
+                            <h6 th:text="${trainer.user.username}">
+                                trainer01
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+		        <!-- ================= PROFESSIONAL INFORMATION ================= -->
+
+		        <div class="col-lg-6">
+
+		            <div class="profile-card">
+
+		                <div class="card-header-custom">
+
+		                    <i class="bi bi-briefcase-fill"></i>
+
+		                    Professional Information
+
+		                </div>
+
+		                <div class="card-body p-4">
+
+		                    <div class="info-box">
+
+		                        <div class="info-icon">
+
+		                            <i class="bi bi-building"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>CENTER</small>
+
+		                            <h6 th:text="${trainer.center.name}">
+		                                Pune Center
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="info-box">
+
+		                        <div class="info-icon">
+
+		                            <i class="bi bi-journal-code"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>SPECIALIZATION</small>
+
+		                            <h6 th:text="${trainer.specialization.name}">
+		                                Java Full Stack
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="info-box">
+
+		                        <div class="info-icon">
+
+		                            <i class="bi bi-award-fill"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>QUALIFICATION</small>
+
+		                            <h6 th:text="${trainer.specialization.qualification.name}">
+		                                Bachelor of Engineering
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="info-box mb-0">
+
+		                        <div class="info-icon">
+
+		                            <i class="bi bi-shield-check"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>ROLE</small>
+
+		                            <h6>
+
+		                                <span class="role-badge">
+
+		                                    <i class="bi bi-patch-check-fill me-1"></i>
+
+		                                    <span th:text="${trainer.user.role}">
+		                                        TRAINER
+		                                    </span>
+
+		                                </span>
+
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                </div>
+
+		            </div>
+
+		        </div>
+
+		    </div>
+
+		    <!-- ================= SECOND ROW ================= -->
+
+		    <div class="row g-4 mt-1">
+
+		        <!-- CONTACT INFORMATION -->
+
+		        <div class="col-lg-6">
+
+		            <div class="profile-card">
+
+		                <div class="card-header-custom">
+
+		                    <i class="bi bi-telephone-fill"></i>
+
+		                    Contact Information
+
+		                </div>
+
+		                <div class="card-body p-4">
+
+		                    <div class="contact-item">
+
+		                        <div class="contact-icon bg-primary">
+
+		                            <i class="bi bi-envelope-fill"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>Email Address</small>
+
+		                            <h6 class="mb-0"
+		                                th:text="${trainer.email}">
+		                                trainer@gmail.com
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                    <hr>
+
+		                    <div class="contact-item">
+
+		                        <div class="contact-icon bg-success">
+
+		                            <i class="bi bi-telephone-fill"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>Phone Number</small>
+
+		                            <h6 class="mb-0"
+		                                th:text="${trainer.phone != null ? trainer.phone : 'Not Available'}">
+		                                9876543210
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                    <hr>
+
+		                    <div class="contact-item">
+
+		                        <div class="contact-icon bg-info">
+
+		                            <i class="bi bi-person-circle"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <small>Username</small>
+
+		                            <h6 class="mb-0"
+		                                th:text="${trainer.user.username}">
+		                                trainer01
+		                            </h6>
+
+		                        </div>
+
+		                    </div>
+
+		                </div>
+
+		            </div>
+
+		        </div>
+
+		        <!-- ACCOUNT INFORMATION -->
+
+		        <div class="col-lg-6">
+
+		            <div class="profile-card">
+
+		                <div class="card-header-custom">
+
+		                    <i class="bi bi-shield-lock-fill"></i>
+
+		                    Account Information
+
+		                </div>
+
+		                <div class="card-body">
+
+		                    <div class="timeline-item">
+
+		                        <div class="timeline-icon bg-success">
+
+		                            <i class="bi bi-check-circle-fill"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <h6 class="mb-1">
+		                                Account Status
+		                            </h6>
+
+		                            <span class="badge bg-success px-3 py-2">
+		                                Active
+		                            </span>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="timeline-item">
+
+		                        <div class="timeline-icon bg-primary">
+
+		                            <i class="bi bi-person-badge-fill"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <h6 class="mb-1">
+		                                User Role
+		                            </h6>
+
+		                            <p class="text-muted mb-0"
+		                               th:text="${trainer.user.role}">
+		                                TRAINER
+		                            </p>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="timeline-item">
+
+		                        <div class="timeline-icon bg-warning">
+
+		                            <i class="bi bi-building"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <h6 class="mb-1">
+		                                Training Center
+		                            </h6>
+
+		                            <p class="text-muted mb-0"
+		                               th:text="${trainer.center.name}">
+		                                Pune Center
+		                            </p>
+
+		                        </div>
+
+		                    </div>
+
+		                    <div class="timeline-item mb-0">
+
+		                        <div class="timeline-icon bg-danger">
+
+		                            <i class="bi bi-book-half"></i>
+
+		                        </div>
+
+		                        <div>
+
+		                            <h6 class="mb-1">
+		                                Expertise
+		                            </h6>
+
+		                            <p class="text-muted mb-0"
+		                               th:text="${trainer.specialization.name}">
+		                                Java Full Stack
+		                            </p>
+
+		                        </div>
+
+		                    </div>
+
+		                </div>
+
+		            </div>
+
+		        </div>
+
+		    </div>
+
+		</div>
+		
+		<style>
+			/*====================================================
+			            GOOGLE FONT
+			====================================================*/
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+			/*====================================================
+			                    BODY
+			====================================================*/
+
+			body{
+			    font-family:'Poppins',sans-serif;
+			    background:#f5f7fb;
+			}
+
+			/*====================================================
+			                HERO BANNER
+			====================================================*/
+
+			.profile-banner{
+
+			    background:linear-gradient(135deg,#2563eb,#4f46e5,#7c3aed);
+
+			    border-radius:24px;
+
+			    padding:35px 40px;
+
+			    display:flex;
+
+			    justify-content:space-between;
+
+			    align-items:center;
+
+			    color:#fff;
+
+			    box-shadow:0 18px 45px rgba(37,99,235,.25);
+
+			    overflow:hidden;
+
+			    position:relative;
+
+			}
+
+			.profile-banner::before{
+
+			    content:"";
+
+			    position:absolute;
+
+			    width:250px;
+
+			    height:250px;
+
+			    right:-60px;
+
+			    top:-60px;
+
+			    border-radius:50%;
+
+			    background:rgba(255,255,255,.08);
+
+			}
+
+			.profile-banner::after{
+
+			    content:"";
+
+			    position:absolute;
+
+			    width:180px;
+
+			    height:180px;
+
+			    left:-60px;
+
+			    bottom:-70px;
+
+			    border-radius:50%;
+
+			    background:rgba(255,255,255,.05);
+
+			}
+
+			.profile-left{
+
+			    display:flex;
+
+			    align-items:center;
+
+			    gap:25px;
+
+			    z-index:2;
+
+			}
+
+			.profile-avatar{
+
+			    width:110px;
+
+			    height:110px;
+
+			    border-radius:50%;
+
+			    background:rgba(255,255,255,.18);
+
+			    backdrop-filter:blur(10px);
+
+			    display:flex;
+
+			    align-items:center;
+
+			    justify-content:center;
+
+			    font-size:58px;
+
+			    border:3px solid rgba(255,255,255,.25);
+
+			}
+
+			.profile-name{
+
+			    font-size:30px;
+
+			    font-weight:700;
+
+			    margin-bottom:8px;
+
+			}
+
+			.profile-subtitle{
+
+			    font-size:15px;
+
+			    opacity:.95;
+
+			    margin-bottom:18px;
+
+			}
+
+			.profile-right{
+
+			    z-index:2;
+
+			}
+
+			/*====================================================
+			                STATUS BADGE
+			====================================================*/
+
+			.status-pill{
+
+			    display:inline-flex;
+
+			    align-items:center;
+
+			    gap:6px;
+
+			    background:#16a34a;
+
+			    color:#fff;
+
+			    border-radius:30px;
+
+			    padding:8px 18px;
+
+			    font-size:13px;
+
+			    font-weight:600;
+
+			    box-shadow:0 8px 18px rgba(22,163,74,.25);
+
+			}
+
+			/*====================================================
+			                BUTTON
+			====================================================*/
+
+			.profile-right .btn{
+
+			    border:none;
+
+			    padding:12px 24px;
+
+			    font-weight:600;
+
+			    transition:.35s;
+
+			}
+
+			.profile-right .btn:hover{
+
+			    transform:translateY(-3px);
+
+			    box-shadow:0 12px 25px rgba(0,0,0,.15);
+
+			}
+
+			/*====================================================
+			                STAT CARDS
+			====================================================*/
+
+			.stat-card{
+
+			    background:#fff;
+
+			    border-radius:20px;
+
+			    padding:24px;
+
+			    display:flex;
+
+			    align-items:center;
+
+			    gap:18px;
+
+			    transition:.35s;
+
+			    border:1px solid #edf2f7;
+
+			    box-shadow:0 10px 25px rgba(15,23,42,.05);
+
+			}
+
+			.stat-card:hover{
+
+			    transform:translateY(-8px);
+
+			    box-shadow:0 20px 45px rgba(37,99,235,.12);
+
+			}
+
+			.stat-icon{
+
+			    width:65px;
+
+			    height:65px;
+
+			    border-radius:18px;
+
+			    display:flex;
+
+			    justify-content:center;
+
+			    align-items:center;
+
+			    font-size:28px;
+
+			    color:#fff;
+
+			}
+
+			.blue{
+
+			    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+			}
+
+			.green{
+
+			    background:linear-gradient(135deg,#16a34a,#22c55e);
+
+			}
+
+			.orange{
+
+			    background:linear-gradient(135deg,#ea580c,#fb923c);
+
+			}
+
+			.purple{
+
+			    background:linear-gradient(135deg,#7c3aed,#a855f7);
+
+			}
+
+			.stat-card h3{
+
+			    margin:0;
+
+			    font-size:28px;
+
+			    font-weight:700;
+
+			}
+
+			.stat-card p{
+
+			    margin:4px 0 0;
+
+			    color:#64748b;
+
+			    font-size:14px;
+
+			}
+
+			/*====================================================
+			                PROFILE CARD
+			====================================================*/
+
+			.profile-card{
+
+			    background:#fff;
+
+			    border-radius:20px;
+
+			    overflow:hidden;
+
+			    border:1px solid #edf2f7;
+
+			    box-shadow:0 10px 30px rgba(15,23,42,.05);
+
+			    transition:.35s;
+
+			}
+
+			.profile-card:hover{
+
+			    transform:translateY(-6px);
+
+			    box-shadow:0 18px 40px rgba(37,99,235,.10);
+
+			}
+
+			/*====================================================
+			                CARD HEADER
+			====================================================*/
+
+			.card-header-custom{
+
+			    background:#fff;
+
+			    border-bottom:1px solid #edf2f7;
+
+			    padding:20px 25px;
+
+			    font-size:18px;
+
+			    font-weight:700;
+
+			    display:flex;
+
+			    align-items:center;
+
+			    gap:10px;
+
+			}
+
+			.card-header-custom i{
+
+			    color:#2563eb;
+
+			    font-size:22px;
+
+			}
+
+			/*====================================================
+			                INFO BOX
+			====================================================*/
+
+			.info-box{
+
+			    display:flex;
+
+			    align-items:center;
+
+			    gap:18px;
+
+			    padding:18px 0;
+
+			    border-bottom:1px solid #eef2f7;
+
+			}
+
+			.info-box:last-child{
+
+			    border-bottom:none;
+
+			}
+
+			.info-icon{
+
+			    width:52px;
+
+			    height:52px;
+
+			    border-radius:14px;
+
+			    background:#eff6ff;
+
+			    color:#2563eb;
+
+			    display:flex;
+
+			    justify-content:center;
+
+			    align-items:center;
+
+			    font-size:22px;
+
+			    flex-shrink:0;
+
+			}
+
+			.info-box small{
+
+			    display:block;
+
+			    text-transform:uppercase;
+
+			    font-size:11px;
+
+			    letter-spacing:1px;
+
+			    color:#94a3b8;
+
+			    margin-bottom:6px;
+
+			    font-weight:600;
+
+			}
+
+			.info-box h6{
+
+			    margin:0;
+
+			    font-size:16px;
+
+			    font-weight:600;
+
+			    color:#1e293b;
+
+			}
+
+			/*====================================================
+			                ROLE BADGE
+			====================================================*/
+
+			.role-badge{
+
+			    display:inline-flex;
+
+			    align-items:center;
+
+			    gap:6px;
+
+			    background:#eff6ff;
+
+			    color:#2563eb;
+
+			    border-radius:30px;
+
+			    padding:8px 18px;
+
+			    font-weight:600;
+
+			    font-size:14px;
+
+			}
+
+			/*====================================================
+			                HR
+			====================================================*/
+
+			hr{
+
+			    margin:18px 0;
+
+			    opacity:.08;
+
+			}
+			/*====================================================
+			                CONTACT ITEMS
+			====================================================*/
+
+			.contact-item{
+
+			    display:flex;
+
+			    align-items:center;
+
+			    gap:18px;
+
+			    padding:12px 0;
+
+			}
+
+			.contact-item small{
+
+			    display:block;
+
+			    color:#94a3b8;
+
+			    font-size:12px;
+
+			    text-transform:uppercase;
+
+			    letter-spacing:1px;
+
+			    margin-bottom:5px;
+
+			    font-weight:600;
+
+			}
+
+			.contact-item h6{
+
+			    margin:0;
+
+			    font-size:16px;
+
+			    font-weight:600;
+
+			    color:#1e293b;
+
+			}
+
+			.contact-icon{
+
+			    width:52px;
+
+			    height:52px;
+
+			    border-radius:14px;
+
+			    display:flex;
+
+			    justify-content:center;
+
+			    align-items:center;
+
+			    color:#fff;
+
+			    font-size:20px;
+
+			    flex-shrink:0;
+
+			    box-shadow:0 10px 20px rgba(0,0,0,.12);
+
+			}
+
+			/*====================================================
+			                TIMELINE
+			====================================================*/
+
+			.timeline-item{
+
+			    display:flex;
+
+			    gap:18px;
+
+			    align-items:flex-start;
+
+			    padding:18px 0;
+
+			    position:relative;
+
+			}
+
+			.timeline-item:not(:last-child){
+
+			    border-bottom:1px solid #edf2f7;
+
+			}
+
+			.timeline-icon{
+
+			    width:52px;
+
+			    height:52px;
+
+			    border-radius:50%;
+
+			    display:flex;
+
+			    justify-content:center;
+
+			    align-items:center;
+
+			    color:#fff;
+
+			    font-size:20px;
+
+			    flex-shrink:0;
+
+			    box-shadow:0 10px 20px rgba(0,0,0,.12);
+
+			}
+
+			.timeline-item h6{
+
+			    font-weight:600;
+
+			    color:#1e293b;
+
+			}
+
+			.timeline-item p{
+
+			    margin:0;
+
+			    color:#64748b;
+
+			    font-size:14px;
+
+			}
+
+			/*====================================================
+			                CARD ANIMATION
+			====================================================*/
+
+			.profile-card,
+			.stat-card{
+
+			    animation:fadeUp .6s ease;
+
+			}
+
+			@keyframes fadeUp{
+
+			    from{
+
+			        opacity:0;
+
+			        transform:translateY(20px);
+
+			    }
+
+			    to{
+
+			        opacity:1;
+
+			        transform:translateY(0);
+
+			    }
+
+			}
+
+			/*====================================================
+			                GLASS EFFECT
+			====================================================*/
+
+			.profile-banner{
+
+			    backdrop-filter:blur(18px);
+
+			}
+
+			.profile-card{
+
+			    backdrop-filter:blur(12px);
+
+			}
+
+			/*====================================================
+			                TABLE RESET
+			====================================================*/
+
+			.table{
+
+			    margin-bottom:0;
+
+			}
+
+			.table td{
+
+			    border:none;
+
+			}
+
+			/*====================================================
+			                CUSTOM SCROLLBAR
+			====================================================*/
+
+			::-webkit-scrollbar{
+
+			    width:10px;
+
+			}
+
+			::-webkit-scrollbar-track{
+
+			    background:#eef2f7;
+
+			}
+
+			::-webkit-scrollbar-thumb{
+
+			    background:#cbd5e1;
+
+			    border-radius:20px;
+
+			}
+
+			::-webkit-scrollbar-thumb:hover{
+
+			    background:#94a3b8;
+
+			}
+
+			/*====================================================
+			                BADGES
+			====================================================*/
+
+			.badge{
+
+			    font-weight:600;
+
+			    border-radius:30px;
+
+			}
+
+			/*====================================================
+			                HOVER EFFECTS
+			====================================================*/
+
+			.info-box{
+
+			    transition:.30s;
+
+			    border-radius:12px;
+
+			    padding-left:8px;
+
+			    padding-right:8px;
+
+			}
+
+			.info-box:hover{
+
+			    background:#f8fafc;
+
+			    transform:translateX(6px);
+
+			}
+
+			.contact-item{
+
+			    transition:.30s;
+
+			    border-radius:12px;
+
+			    padding-left:8px;
+
+			    padding-right:8px;
+
+			}
+
+			.contact-item:hover{
+
+			    background:#f8fafc;
+
+			    transform:translateX(6px);
+
+			}
+
+			.timeline-item{
+
+			    transition:.30s;
+
+			    border-radius:12px;
+
+			    padding-left:8px;
+
+			    padding-right:8px;
+
+			}
+
+			.timeline-item:hover{
+
+			    background:#f8fafc;
+
+			    transform:translateX(6px);
+
+			}
+
+			/*====================================================
+			                ICON ANIMATION
+			====================================================*/
+
+			.info-icon,
+
+			.contact-icon,
+
+			.timeline-icon{
+
+			    transition:.35s;
+
+			}
+
+			.profile-card:hover .info-icon,
+
+			.profile-card:hover .contact-icon,
+
+			.profile-card:hover .timeline-icon{
+
+			    transform:scale(1.08) rotate(-5deg);
+
+			}
+
+			/*====================================================
+			                PROFILE AVATAR
+			====================================================*/
+
+			.profile-avatar{
+
+			    transition:.35s;
+
+			}
+
+			.profile-banner:hover .profile-avatar{
+
+			    transform:scale(1.05) rotate(4deg);
+
+			}
+
+			/*====================================================
+			                MOBILE
+			====================================================*/
+
+			@media(max-width:992px){
+
+			    .profile-banner{
+
+			        flex-direction:column;
+
+			        text-align:center;
+
+			        gap:30px;
+
+			    }
+
+			    .profile-left{
+
+			        flex-direction:column;
+
+			    }
+
+			    .profile-right{
+
+			        width:100%;
+
+			    }
+
+			    .profile-right .btn{
+
+			        width:100%;
+
+			    }
+
+			}
+
+			@media(max-width:768px){
+
+			    .profile-banner{
+
+			        padding:30px 22px;
+
+			    }
+
+			    .profile-name{
+
+			        font-size:24px;
+
+			    }
+
+			    .profile-avatar{
+
+			        width:90px;
+
+			        height:90px;
+
+			        font-size:48px;
+
+			    }
+
+			    .stat-card{
+
+			        padding:18px;
+
+			    }
+
+			    .stat-card h3{
+
+			        font-size:22px;
+
+			    }
+
+			    .stat-icon{
+
+			        width:55px;
+
+			        height:55px;
+
+			        font-size:24px;
+
+			    }
+
+			    .card-header-custom{
+
+			        font-size:16px;
+
+			        padding:18px;
+
+			    }
+
+			}
+
+			@media(max-width:576px){
+
+			    .profile-banner{
+
+			        border-radius:18px;
+
+			    }
+
+			    .profile-card{
+
+			        border-radius:16px;
+
+			    }
+
+			    .stat-card{
+
+			        border-radius:16px;
+
+			    }
+
+			    .info-box{
+
+			        flex-direction:column;
+
+			        align-items:flex-start;
+
+			    }
+
+			    .contact-item{
+
+			        flex-direction:column;
+
+			        align-items:flex-start;
+
+			    }
+
+			    .timeline-item{
+
+			        flex-direction:column;
+
+			    }
+
+			}
+
+			/*====================================================
+			                PREMIUM SHADOWS
+			====================================================*/
+
+			.profile-card{
+
+			    box-shadow:
+			    0 8px 20px rgba(15,23,42,.05),
+			    0 2px 6px rgba(15,23,42,.04);
+
+			}
+
+			.profile-card:hover{
+
+			    box-shadow:
+			    0 25px 50px rgba(37,99,235,.12),
+			    0 8px 20px rgba(15,23,42,.06);
+
+			}
+
+			.stat-card:hover{
+
+			    box-shadow:
+			    0 20px 40px rgba(59,130,246,.15);
+
+			}
+
+			/*====================================================
+			                END
+			====================================================*/
+		</style>

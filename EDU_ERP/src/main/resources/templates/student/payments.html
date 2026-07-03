@@ -1,0 +1,439 @@
+<div class="container-fluid py-4">
+
+    <!-- ========================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    <i class="bi bi-credit-card me-2"></i>
+                    Fee Management
+                </h2>
+
+                <p class="text-muted mb-0">
+                    View payment history and securely pay your pending fees online.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <span class="badge bg-primary fs-6 px-4 py-3">
+                    Pending :
+                    ₹ <span th:text="${pendingFee}"></span>
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SUMMARY -->
+    <!-- ========================================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="metric-icon bg-soft-primary mb-3">
+                        💰
+                    </div>
+
+                    <h6 class="text-muted">
+                        Total Fees
+                    </h6>
+
+                    <h2 class="fw-bold text-primary">
+                        ₹ <span th:text="${totalFee}"></span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="metric-icon bg-soft-success mb-3">
+                        ✅
+                    </div>
+
+                    <h6 class="text-muted">
+                        Paid
+                    </h6>
+
+                    <h2 class="fw-bold text-success">
+                        ₹ <span th:text="${paidFee}"></span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="metric-icon bg-soft-danger mb-3">
+                        ⚠️
+                    </div>
+
+                    <h6 class="text-muted">
+                        Pending
+                    </h6>
+
+                    <h2 class="fw-bold text-danger">
+                        ₹ <span id="pendingFee"
+                                 th:text="${pendingFee}"></span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PAYMENT SECTION -->
+    <!-- ========================================= -->
+
+    <div class="row g-4">
+
+        <!-- PAYMENT HISTORY -->
+
+        <div class="col-lg-8">
+
+            <div class="card dashboard-card">
+
+                <div class="card-header bg-white border-0 py-3">
+
+                    <h5 class="fw-bold mb-0">
+                        Payment History
+                    </h5>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-light">
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Amount</th>
+
+                            <th>Transaction ID</th>
+
+                            <th>Receipt</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="p : ${payments}">
+
+                            <td th:text="${#temporals.format(p.paymentTime,'dd MMM yyyy HH:mm')}">
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-success fs-6">
+                                    ₹ <span th:text="${p.amount}"></span>
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <small class="text-muted"
+                                       th:text="${p.razorpayPaymentId}">
+                                </small>
+
+                            </td>
+
+                            <td>
+
+                                <a th:href="@{/student/fees/receipt/{id}(id=${p.id})}"
+                                   class="btn btn-sm btn-outline-primary">
+
+                                    <i class="bi bi-download me-1"></i>
+
+                                    Receipt
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(payments)}">
+
+                            <td colspan="4"
+                                class="text-center py-5">
+
+                                <i class="bi bi-wallet2 fs-1 text-muted"></i>
+
+                                <h5 class="mt-3">
+                                    No Payments Yet
+                                </h5>
+
+                                <p class="text-muted">
+                                    Your payment history will appear here.
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PAYMENT CARD -->
+
+        <div class="col-lg-4">
+
+            <div class="card dashboard-card sticky-top">
+
+                <div class="card-body p-4">
+
+                    <h4 class="fw-bold mb-3">
+
+                        Pay Fees
+
+                    </h4>
+
+                    <div th:if="${pendingFee>0}">
+
+                        <label class="form-label">
+
+                            Amount
+
+                        </label>
+
+                        <input
+                                type="number"
+                                id="amount"
+                                class="form-control form-control-lg mb-2"
+                                min="1"
+                                th:value="${pendingFee}">
+
+                        <small class="text-muted">
+
+                            Maximum :
+                            ₹ <span th:text="${pendingFee}"></span>
+
+                        </small>
+
+                        <hr>
+
+                        <button
+                                id="payBtn"
+                                class="btn btn-primary w-100 btn-lg"
+                                onclick="pay()">
+
+                            <i class="bi bi-credit-card me-2"></i>
+
+                            Pay Securely
+
+                        </button>
+
+                        <div class="text-center mt-3">
+
+                            <small class="text-muted">
+
+                                🔒 Protected by Razorpay Secure Checkout
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div th:if="${pendingFee==0}">
+
+                        <div class="text-center py-4">
+
+                            <div class="display-3">
+                                🎉
+                            </div>
+
+                            <h4 class="fw-bold text-success mt-3">
+
+                                Fees Cleared
+
+                            </h4>
+
+                            <p class="text-muted">
+
+                                Thank you! All your dues are paid.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+function pay() {
+
+    const amountInput=document.getElementById("amount");
+    const payBtn=document.getElementById("payBtn");
+
+    const amount=parseInt(amountInput.value);
+
+    const pending=parseInt(
+        document.getElementById("pendingFee").innerText
+    );
+
+    if(!amount||amount<=0){
+
+        alert("Please enter a valid amount");
+
+        return;
+    }
+
+    if(amount>pending){
+
+        alert("Amount cannot exceed pending fee");
+
+        return;
+    }
+
+    payBtn.disabled=true;
+
+    payBtn.innerHTML="Processing...";
+
+    fetch("/student/payment/create-order",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+        },
+
+        body:"amount="+amount
+
+    })
+
+    .then(res=>res.json())
+
+    .then(order=>{
+
+        const options={
+
+            key:"rzp_test_S6WQ2uQjWU4HfG",
+
+            amount:order.amount,
+
+            currency:"INR",
+
+            order_id:order.id,
+
+            name:"SR Education Institute",
+
+            description:"Fee Payment",
+
+            handler:function(response){
+
+                const form=document.createElement("form");
+
+                form.method="POST";
+
+                form.action="/student/payment/success";
+
+                form.innerHTML=`
+
+                <input type="hidden" name="amount" value="${amount}">
+
+                <input type="hidden" name="razorpay_order_id"
+                       value="${response.razorpay_order_id}">
+
+                <input type="hidden" name="razorpay_payment_id"
+                       value="${response.razorpay_payment_id}">
+
+                `;
+
+                document.body.appendChild(form);
+
+                form.submit();
+
+            },
+
+            modal:{
+
+                ondismiss:function(){
+
+                    payBtn.disabled=false;
+
+                    payBtn.innerHTML="Pay Securely";
+
+                }
+
+            }
+
+        };
+
+        new Razorpay(options).open();
+
+    })
+
+    .catch(()=>{
+
+        alert("Payment initialization failed");
+
+        payBtn.disabled=false;
+
+        payBtn.innerHTML="Pay Securely";
+
+    });
+
+}
+
+</script>

@@ -1,0 +1,119 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= ALERTS ================= -->
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show saas-alert">
+        <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show saas-alert">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <div class="saas-header mb-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+            <div>
+                <h2 class="fw-bold mb-1">Attendance Management</h2>
+                <p class="text-muted mb-0">
+                    Select batch and load students for marking attendance
+                </p>
+            </div>
+
+            <span class="badge bg-primary px-3 py-2">
+                Trainer Module
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MAIN CARD ================= -->
+    <div class="saas-panel">
+
+        <div class="saas-panel-header">
+            <h5 class="mb-0 fw-semibold">Select Batch</h5>
+        </div>
+
+        <div class="saas-panel-body">
+
+            <form th:action="@{/trainer/attendance/batch}"
+                  method="post">
+
+                <div class="row g-3 align-items-end">
+
+                    <!-- BATCH SELECT -->
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Choose Batch
+                        </label>
+
+                        <select name="batchId"
+                                class="form-select saas-input"
+                                required>
+
+                            <option disabled selected>
+                                Select Batch
+                            </option>
+
+                            <option th:each="b : ${batches}"
+                                    th:value="${b.id}"
+                                    th:text="${b.name}">
+                            </option>
+
+                        </select>
+
+                        <small class="text-muted">
+                            Only active batches are shown
+                        </small>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="col-md-3">
+
+                        <button class="btn btn-primary w-100 saas-btn">
+
+                            <i class="bi bi-people me-1"></i>
+                            Load Students
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ================= INFO CARD ================= -->
+    <div class="saas-card mt-4 p-3">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <div class="fs-3">📊</div>
+
+            <div>
+
+                <h6 class="fw-bold mb-1">
+                    Attendance Workflow
+                </h6>
+
+                <small class="text-muted">
+                    Select a batch → Load students → Mark present/absent → Save attendance
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

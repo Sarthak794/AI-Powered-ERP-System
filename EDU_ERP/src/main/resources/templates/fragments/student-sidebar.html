@@ -1,0 +1,342 @@
+<div th:fragment="body"
+     class="sidebar d-flex flex-column vh-100 shadow-sm">
+
+    <!-- ======================================== -->
+    <!-- LOGO / PROFILE -->
+    <!-- ======================================== -->
+
+    <div class="text-center p-4 border-bottom">
+
+        <div class="mb-3">
+
+            <img th:if="${student != null && student.profilePhoto != null}"
+                 th:src="@{'/uploads/profile/' + ${student.profilePhoto}}"
+                 class="rounded-circle shadow"
+                 style="width:85px;height:85px;object-fit:cover;">
+
+            <img th:if="${student == null || student.profilePhoto == null}"
+                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                 class="rounded-circle shadow"
+                 style="width:85px;height:85px;object-fit:cover;">
+
+        </div>
+
+        <h5 class="fw-bold mb-1"
+            th:text="${student != null ? student.fullName : 'Student'}">
+            Student
+        </h5>
+
+        <small class="text-muted"
+               th:text="${student != null ? student.rollNumber : ''}">
+        </small>
+
+    </div>
+
+    <!-- ======================================== -->
+    <!-- MENU -->
+    <!-- ======================================== -->
+
+    <div class="flex-grow-1 overflow-auto px-3 py-3">
+
+        <!-- DASHBOARD -->
+
+        <div class="section-title">
+            Dashboard
+        </div>
+
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+
+                <a th:href="@{/student/dashboard}"
+                   class="nav-link"
+                   th:classappend="${activePage=='dashboard'} ? ' active'">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a th:href="@{/student/profile}"
+                   class="nav-link"
+                   th:classappend="${activePage=='profile'} ? ' active'">
+
+                    <i class="bi bi-person-circle"></i>
+
+                    <span>My Profile</span>
+
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a th:href="@{/student/profile/edit}"
+                   class="nav-link"
+                   th:classappend="${activePage=='profile-edit'} ? ' active'">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    <span>Edit Profile</span>
+
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a th:href="@{/student/notifications}"
+                   class="nav-link"
+                   th:classappend="${activePage=='notifications'} ? ' active'">
+
+                    <i class="bi bi-bell"></i>
+
+                    <span>Notifications</span>
+
+                </a>
+
+            </li>
+
+        </ul>
+		<!-- ======================================== -->
+		<!-- ACADEMICS -->
+		<!-- ======================================== -->
+
+		<div class="section-title mt-4">
+		    Academics
+		</div>
+
+		<ul class="nav flex-column">
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/attendance}"
+		           class="nav-link"
+		           th:classappend="${activePage=='attendance'} ? ' active'">
+
+		            <i class="bi bi-calendar-check"></i>
+
+		            <span>Attendance</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/assignments}"
+		           class="nav-link"
+		           th:classappend="${activePage=='assignments'} ? ' active'">
+
+		            <i class="bi bi-journal-text"></i>
+
+		            <span>Assignments</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/exams}"
+		           class="nav-link"
+		           th:classappend="${activePage=='exams'} ? ' active'">
+
+		            <i class="bi bi-file-earmark-text"></i>
+
+		            <span>Online Exams</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/exams/history}"
+		           class="nav-link"
+		           th:classappend="${activePage=='results'} ? ' active'">
+
+		            <i class="bi bi-bar-chart"></i>
+
+		            <span>Exam Results</span>
+
+		        </a>
+
+		    </li>
+
+		</ul>
+
+		<!-- ======================================== -->
+		<!-- FEES -->
+		<!-- ======================================== -->
+
+		<div class="section-title mt-4">
+		    Fees
+		</div>
+
+		<ul class="nav flex-column">
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/payment}"
+		           class="nav-link"
+		           th:classappend="${activePage=='payment'} ? ' active'">
+
+		            <i class="bi bi-credit-card"></i>
+
+		            <span>Pay Fees</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/payments}"
+		           class="nav-link"
+		           th:classappend="${activePage=='payments'} ? ' active'">
+
+		            <i class="bi bi-receipt-cutoff"></i>
+
+		            <span>Fee Receipts</span>
+
+		        </a>
+
+		    </li>
+
+		</ul>
+
+		<!-- ======================================== -->
+		<!-- PLACEMENTS -->
+		<!-- ======================================== -->
+
+		<div class="section-title mt-4">
+		    Placements
+		</div>
+
+		<ul class="nav flex-column">
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/placement-drives}"
+		           class="nav-link"
+		           th:classappend="${activePage=='placement-drives'} ? ' active'">
+
+		            <i class="bi bi-briefcase"></i>
+
+		            <span>Placement Drives</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/my-applications}"
+		           class="nav-link"
+		           th:classappend="${activePage=='applications'} ? ' active'">
+
+		            <i class="bi bi-file-earmark-check"></i>
+
+		            <span>My Applications</span>
+
+		        </a>
+
+		    </li>
+
+		    <li class="nav-item">
+
+		        <a th:href="@{/student/offer-letters}"
+		           class="nav-link"
+		           th:classappend="${activePage=='offers'} ? ' active'">
+
+		            <i class="bi bi-award"></i>
+
+		            <span>Offer Letters</span>
+
+		        </a>
+
+		    </li>
+
+		</ul>
+		        <!-- ======================================== -->
+		        <!-- DOCUMENTS -->
+		        <!-- ======================================== -->
+
+		        <div class="section-title mt-4">
+		            Documents
+		        </div>
+
+		        <ul class="nav flex-column">
+
+		            <li class="nav-item">
+
+		                <a th:href="@{/student/resume}"
+		                   class="nav-link"
+		                   th:classappend="${activePage=='resume'} ? ' active'">
+
+		                    <i class="bi bi-file-earmark-arrow-up"></i>
+
+		                    <span>Resume Upload</span>
+
+		                </a>
+
+		            </li>
+
+		            <li class="nav-item">
+
+		                <a th:href="@{/student/documents}"
+		                   class="nav-link"
+		                   th:classappend="${activePage=='documents'} ? ' active'">
+
+		                    <i class="bi bi-folder2-open"></i>
+
+		                    <span>My Documents</span>
+
+		                </a>
+
+		            </li>
+
+		        </ul>
+
+		    </div>
+
+		    <!-- ======================================== -->
+		    <!-- FOOTER -->
+		    <!-- ======================================== -->
+
+		    <div class="border-top p-3">
+
+		        <a th:href="@{/logout}"
+		           class="nav-link text-danger fw-semibold">
+
+		            <i class="bi bi-box-arrow-right me-2"></i>
+
+		            <span>Logout</span>
+
+		        </a>
+
+		        <hr class="my-3">
+
+		        <div class="text-center">
+
+		            <small class="text-muted">
+
+		                <strong>SR ERP</strong>
+
+		                <br>
+
+		                Student Portal v1.0
+
+		            </small>
+
+		        </div>
+
+		    </div>
+
+		</div>

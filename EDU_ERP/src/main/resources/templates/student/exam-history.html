@@ -1,0 +1,189 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    📚 Exam History
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Review all your completed examinations and performance.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= HISTORY ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0">
+
+        <div class="card-body p-0">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                <tr>
+
+                    <th>Exam</th>
+
+                    <th>Score</th>
+
+                    <th>Percentage</th>
+
+                    <th>Status</th>
+
+                    <th>Date</th>
+
+                    <th class="text-center">Actions</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="a : ${attempts}">
+
+                    <td>
+
+                        <div class="fw-semibold"
+                             th:text="${a.exam.title}">
+                        </div>
+
+                        <small class="text-muted">
+
+                            Total Marks :
+                            <span th:text="${a.exam.totalMarks}"></span>
+
+                        </small>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success fs-6"
+                              th:text="${a.score}">
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <div class="progress"
+                             style="height:10px; width:130px;">
+
+                            <div class="progress-bar"
+
+                                 th:classappend="
+                                 ${(a.score*100)/a.exam.totalMarks>=80} ? ' bg-success' :
+                                 (${(a.score*100)/a.exam.totalMarks>=60} ? ' bg-info' :
+                                 (${(a.score*100)/a.exam.totalMarks>=40} ? ' bg-warning' :
+                                 ' bg-danger'))"
+
+                                 th:style="'width:'+${(a.score*100)/a.exam.totalMarks}+'%'">
+
+                            </div>
+
+                        </div>
+
+                        <small class="fw-semibold"
+                               th:text="${(a.score*100)/a.exam.totalMarks+'%'}">
+                        </small>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success"
+                              th:if="${(a.score*100)/a.exam.totalMarks>=40}">
+                            PASS
+                        </span>
+
+                        <span class="badge bg-danger"
+                              th:unless="${(a.score*100)/a.exam.totalMarks>=40}">
+                            FAIL
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="text-muted"
+                              th:text="${#temporals.format(a.submittedAt,'dd MMM yyyy HH:mm')}">
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <div class="d-flex gap-2 justify-content-center">
+
+                            <a th:href="@{/student/exams/result/{id}(id=${a.exam.id})}"
+                               class="btn btn-sm btn-outline-success">
+
+                                <i class="bi bi-bar-chart-fill"></i>
+
+                            </a>
+
+                            <a th:href="@{/student/exams/review/{id}(id=${a.exam.id})}"
+                               class="btn btn-sm btn-outline-primary">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+                            <a th:href="@{/student/exams/result/{id}/pdf(id=${a.exam.id})}"
+                               class="btn btn-sm btn-outline-danger">
+
+                                <i class="bi bi-download"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(attempts)}">
+
+                    <td colspan="6"
+                        class="text-center py-5">
+
+                        <i class="bi bi-journal-x fs-1 text-muted"></i>
+
+                        <h5 class="mt-3">
+
+                            No Exams Attempted Yet
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            Your completed exams will appear here.
+
+                        </p>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

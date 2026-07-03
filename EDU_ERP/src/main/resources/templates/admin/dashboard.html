@@ -1,0 +1,378 @@
+<div class="dashboard-page container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <p>System overview, activity & performance insights</p>
+    </div>
+
+    <!-- KPI HERO CARDS -->
+    <div class="kpi-grid">
+
+        <div class="kpi-card primary">
+            <div>
+                <span>Total Users</span>
+                <h3 th:text="${totalUsers}">0</h3>
+            </div>
+            <div class="kpi-icon">👥</div>
+        </div>
+
+        <div class="kpi-card success">
+            <div>
+                <span>Students</span>
+                <h3 th:text="${totalStudents}">0</h3>
+            </div>
+            <div class="kpi-icon">🎓</div>
+        </div>
+
+        <div class="kpi-card warning">
+            <div>
+                <span>Trainers</span>
+                <h3 th:text="${totalTrainers}">0</h3>
+            </div>
+            <div class="kpi-icon">🧑‍🏫</div>
+        </div>
+
+        <div class="kpi-card danger">
+            <div>
+                <span>Admins</span>
+                <h3 th:text="${totalAdmins}">0</h3>
+            </div>
+            <div class="kpi-icon">🛡️</div>
+        </div>
+
+        <div class="kpi-card info">
+            <div>
+                <span>Managers</span>
+                <h3 th:text="${totalManagers}">0</h3>
+            </div>
+            <div class="kpi-icon">📊</div>
+        </div>
+
+        <div class="kpi-card dark">
+            <div>
+                <span>Accounts</span>
+                <h3 th:text="${totalAccountants}">0</h3>
+            </div>
+            <div class="kpi-icon">💼</div>
+        </div>
+
+    </div>
+	<!-- PLACEMENT INSIGHTS -->
+	<div class="placement-section">
+
+	    <div class="section-title">
+	        <h4>Placement Insights</h4>
+	        <p>Real-time placement performance overview</p>
+	    </div>
+
+	    <div class="placement-grid">
+
+	        <div class="placement-card primary">
+	            <h6>Placed Students</h6>
+	            <h3 th:text="${placedStudents}">0</h3>
+	        </div>
+
+	        <div class="placement-card success">
+	            <h6>Placement Rate</h6>
+	            <h3 th:text="${placementRate + '%'}">0%</h3>
+	        </div>
+
+	        <div class="placement-card warning">
+	            <h6>Active Drives</h6>
+	            <h3 th:text="${activeDrives}">0</h3>
+	        </div>
+
+	        <div class="placement-card info">
+	            <h6>Highest Package</h6>
+	            <h3 th:text="${highestPackage + ' LPA'}">0 LPA</h3>
+	        </div>
+
+	        <div class="placement-card danger">
+	            <h6>Pending Applications</h6>
+	            <h3 th:text="${pendingApplications}">0</h3>
+	        </div>
+
+	        <div class="placement-card dark">
+	            <h6>Companies Visited</h6>
+	            <h3 th:text="${companiesVisited}">0</h3>
+	        </div>
+
+	    </div>
+
+	</div>
+	<!-- PLACEMENT ANALYTICS -->
+	<div class="section-title">
+	    <h4>Placement Analytics</h4>
+	    <p>Performance trends & insights</p>
+	</div>
+
+	<div class="analytics-grid">
+
+	    <!-- LEFT: TREND CHART -->
+	    <div class="analytics-card large">
+
+	        <div class="card-head">
+	            <h5>Monthly Placement Trend</h5>
+	            <span class="badge-soft">2025</span>
+	        </div>
+
+	        <canvas id="placementTrendChart"></canvas>
+
+	    </div>
+
+	    <!-- RIGHT: INSIGHTS -->
+	    <div class="analytics-side">
+
+	        <div class="mini-card">
+	            <h6>Top Company</h6>
+	            <h3 th:text="${topCompany}">TCS</h3>
+	        </div>
+
+	        <div class="mini-card">
+	            <h6>Top Batch</h6>
+	            <h3 th:text="${topBatch}">Batch A</h3>
+	        </div>
+
+	        <div class="mini-card">
+	            <h6>Avg Package</h6>
+	            <h3 th:text="${avgPackage + ' LPA'}">0 LPA</h3>
+	        </div>
+
+	        <div class="mini-card highlight">
+	            <h6>Placement Growth</h6>
+	            <h3 th:text="${placementGrowth + '%'}">0%</h3>
+	        </div>
+
+	    </div>
+
+	</div>
+
+
+	<!-- COMPANY WISE + BATCH WISE -->
+	<div class="analytics-grid bottom">
+
+	    <div class="analytics-card">
+	        <div class="card-head">
+	            <h5>Company-wise Placements</h5>
+	        </div>
+	        <canvas id="companyChart"></canvas>
+	    </div>
+
+	    <div class="analytics-card">
+	        <div class="card-head">
+	            <h5>Batch Success Rate</h5>
+	        </div>
+	        <canvas id="batchChart"></canvas>
+	    </div>
+
+	</div>
+
+    <!-- MAIN GRID -->
+    <div class="dashboard-grid">
+
+        <!-- ACTIVITY -->
+        <div class="ui-card glass">
+
+            <div class="card-head">
+                <h5>Recent Activity</h5>
+                <span class="badge-soft">Live</span>
+            </div>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+                    <div class="icon">👤</div>
+                    <div>
+                        <b>New student registered</b>
+                        <small>2 minutes ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">🏢</div>
+                    <div>
+                        <b>Company added</b>
+                        <small>15 minutes ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="icon">📚</div>
+                    <div>
+                        <b>Batch updated</b>
+                        <small>1 hour ago</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- EMPTY SPACE / FUTURE WIDGET -->
+        <div class="ui-card glass center">
+            <h5>System Status</h5>
+            <p class="muted">Real-time analytics coming soon</p>
+        </div>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="section-title">
+        <h4>Quick Actions</h4>
+        <p>Core admin operations</p>
+    </div>
+
+    <div class="action-grid">
+
+        <a class="action-card" href="/admin/users">
+            <div class="action-top">
+                <span>👥</span>
+                <h5>User Management</h5>
+            </div>
+            <p>Manage system users</p>
+        </a>
+
+        <a class="action-card" href="/admin/students">
+            <div class="action-top">
+                <span>🎓</span>
+                <h5>Students</h5>
+            </div>
+            <p>Student records</p>
+        </a>
+
+        <a class="action-card" href="/admin/batches">
+            <div class="action-top">
+                <span>📚</span>
+                <h5>Batches</h5>
+            </div>
+            <p>Training batches</p>
+        </a>
+
+        <a class="action-card" href="/admin/attendance">
+            <div class="action-top">
+                <span>📅</span>
+                <h5>Attendance</h5>
+            </div>
+            <p>Track attendance</p>
+        </a>
+
+        <a class="action-card" href="/admin/companies">
+            <div class="action-top">
+                <span>🏢</span>
+                <h5>Companies</h5>
+            </div>
+            <p>Recruiter list</p>
+        </a>
+
+        <a class="action-card" href="/admin/exam-analytics">
+            <div class="action-top">
+                <span>📊</span>
+                <h5>Analytics</h5>
+            </div>
+            <p>Performance insights</p>
+        </a>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script th:inline="javascript">
+
+/* =========================
+   SAFE DATA FROM BACKEND
+========================= */
+
+const months = /*[[${monthsJson}]]*/ [] || [];
+const placements = /*[[${placementsJson}]]*/ [] || [];
+
+const companies = /*[[${companiesJson}]]*/ [] || [];
+const companyPlacements = /*[[${companyPlacementsJson}]]*/ [] || [];
+
+const batches = /*[[${batchesJson}]]*/ [] || [];
+const batchRates = /*[[${batchRatesJson}]]*/ [] || [];
+
+/* =========================
+   SAFE HELPERS
+========================= */
+
+function safeChartData(data) {
+    return Array.isArray(data) ? data : [];
+}
+
+/* =========================
+   MONTHLY TREND CHART
+========================= */
+
+const trendCtx = document.getElementById('placementTrendChart');
+
+if (trendCtx) {
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: safeChartData(months),
+            datasets: [{
+                label: 'Placements',
+                data: safeChartData(placements),
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            }
+        }
+    });
+}
+
+/* =========================
+   COMPANY CHART
+========================= */
+
+const companyCtx = document.getElementById('companyChart');
+
+if (companyCtx) {
+    new Chart(companyCtx, {
+        type: 'bar',
+        data: {
+            labels: safeChartData(companies),
+            datasets: [{
+                label: 'Students Placed',
+                data: safeChartData(companyPlacements),
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+}
+
+/* =========================
+   BATCH CHART
+========================= */
+
+const batchCtx = document.getElementById('batchChart');
+
+if (batchCtx) {
+    new Chart(batchCtx, {
+        type: 'doughnut',
+        data: {
+            labels: safeChartData(batches),
+            datasets: [{
+                data: safeChartData(batchRates),
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+}
+
+</script>

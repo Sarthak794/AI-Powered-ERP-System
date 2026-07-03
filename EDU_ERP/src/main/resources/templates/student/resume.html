@@ -1,0 +1,1354 @@
+<div class="container-fluid py-4">
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="bg-primary bg-gradient rounded-circle d-flex justify-content-center align-items-center"
+                             style="width:70px;height:70px;">
+
+                            <i class="bi bi-file-earmark-person-fill text-white fs-2"></i>
+
+                        </div>
+
+                        <div class="ms-4">
+
+                            <h2 class="fw-bold mb-1">
+
+                                Resume Studio AI
+
+                            </h2>
+
+                            <p class="text-muted mb-0">
+
+                                Upload, analyze and optimize your resume using Artificial Intelligence.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                    <span class="badge bg-primary px-4 py-3 fs-6">
+
+                        AI Powered
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- UPLOAD + PREVIEW -->
+    <!-- ========================================================= -->
+
+    <div class="row g-4">
+
+        <!-- ================================= -->
+        <!-- Upload Resume -->
+        <!-- ================================= -->
+
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-header bg-white border-0 py-3">
+
+                    <h5 class="fw-bold mb-0">
+
+                        <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>
+
+                        Upload Resume
+
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/student/resume/upload}"
+
+                          method="post"
+
+                          enctype="multipart/form-data">
+
+                        <div class="border border-2 border-primary-subtle rounded-4 p-5 text-center">
+
+                            <div class="mb-3">
+
+                                <i class="bi bi-file-earmark-arrow-up text-primary"
+                                   style="font-size:70px;"></i>
+
+                            </div>
+
+                            <h4 class="fw-bold">
+
+                                Drag & Drop Resume
+
+                            </h4>
+
+                            <p class="text-muted">
+
+                                Upload PDF Resume for AI Analysis
+
+                            </p>
+
+                            <input type="file"
+
+                                   class="form-control"
+
+                                   name="file"
+
+                                   accept=".pdf"
+
+                                   required>
+
+                            <small class="text-muted d-block mt-3">
+
+                                Supported Format : PDF
+
+                            </small>
+
+                            <small class="text-muted">
+
+                                Maximum Size : 5 MB
+
+                            </small>
+
+                        </div>
+
+                        <button class="btn btn-primary btn-lg w-100 mt-4">
+
+                            <i class="bi bi-upload me-2"></i>
+
+                            Upload Resume
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- Resume Preview -->
+        <!-- ================================= -->
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-header bg-white border-0 py-3">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h5 class="fw-bold mb-0">
+
+                            <i class="bi bi-eye-fill text-primary me-2"></i>
+
+                            Resume Preview
+
+                        </h5>
+
+                        <span class="badge bg-success"
+
+                              th:if="${student.resumePath!=null}">
+
+                            Active Resume
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Resume Exists -->
+
+                    <div th:if="${student.resumePath!=null}">
+
+                        <iframe
+
+                                th:src="@{'/uploads/resumes/'+${student.resumePath}}"
+
+                                style="width:100%;
+                                       height:520px;
+                                       border:none;
+                                       border-radius:15px;">
+
+                        </iframe>
+
+                        <div class="row mt-4">
+
+                            <div class="col-6">
+
+                                <a class="btn btn-outline-primary w-100"
+
+                                   target="_blank"
+
+                                   th:href="@{'/uploads/resumes/'+${student.resumePath}}">
+
+                                    <i class="bi bi-box-arrow-up-right me-2"></i>
+
+                                    Open
+
+                                </a>
+
+                            </div>
+
+                            <div class="col-6">
+
+                                <a class="btn btn-success w-100"
+
+                                   download
+
+                                   th:href="@{'/uploads/resumes/'+${student.resumePath}}">
+
+                                    <i class="bi bi-download me-2"></i>
+
+                                    Download
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- No Resume -->
+
+                    <div th:if="${student.resumePath==null}"
+
+                         class="text-center py-5">
+
+                        <i class="bi bi-file-earmark-x"
+
+                           style="font-size:80px;color:#adb5bd;"></i>
+
+                        <h4 class="fw-bold mt-4">
+
+                            No Resume Uploaded
+
+                        </h4>
+
+                        <p class="text-muted">
+
+                            Upload your resume to unlock AI-powered career insights.
+
+                        </p>
+
+                        <span class="badge bg-warning text-dark px-3 py-2">
+
+                            Waiting For Upload
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- ================= FEATURES ================= -->
+	<!-- ========================================================= -->
+	<!-- AI DASHBOARD -->
+	<!-- ========================================================= -->
+
+	<div class="row mt-4 g-4">
+
+	    <!-- ATS SCORE -->
+
+	    <div class="col-lg-3 col-md-6">
+
+	        <div class="card border-0 shadow-sm rounded-4 h-100">
+
+	            <div class="card-body text-center p-4">
+
+	                <div class="bg-success bg-gradient rounded-circle mx-auto mb-3
+	                            d-flex align-items-center justify-content-center"
+	                     style="width:70px;height:70px;">
+
+	                    <i class="bi bi-speedometer2 fs-2 text-white"></i>
+
+	                </div>
+
+	                <h6 class="text-muted">
+
+	                    ATS SCORE
+
+	                </h6>
+
+	                <h1 class="fw-bold text-success"
+	                    th:text="${analysis.atsScore+'%'}">
+
+	                    91%
+
+	                </h1>
+
+	                <div class="progress mt-3"
+	                     style="height:8px;">
+
+	                    <div class="progress-bar bg-success"
+
+	                         th:style="'width:'+${analysis.atsScore}+'%'">
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- RESUME HEALTH -->
+
+	    <div class="col-lg-3 col-md-6">
+
+	        <div class="card border-0 shadow-sm rounded-4 h-100">
+
+	            <div class="card-body text-center p-4">
+
+	                <div class="bg-danger bg-gradient rounded-circle mx-auto mb-3
+	                            d-flex align-items-center justify-content-center"
+	                     style="width:70px;height:70px;">
+
+	                    <i class="bi bi-heart-pulse-fill fs-2 text-white"></i>
+
+	                </div>
+
+	                <h6 class="text-muted">
+
+	                    RESUME HEALTH
+
+	                </h6>
+
+	                <h1 class="fw-bold text-danger"
+	                    th:text="${analysis.resumeHealth+'%'}">
+
+	                </h1>
+
+	                <div class="progress mt-3"
+	                     style="height:8px;">
+
+	                    <div class="progress-bar bg-danger"
+
+	                         th:style="'width:'+${analysis.resumeHealth}+'%'">
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- AI CONFIDENCE -->
+
+	    <div class="col-lg-3 col-md-6">
+
+	        <div class="card border-0 shadow-sm rounded-4 h-100">
+
+	            <div class="card-body text-center p-4">
+
+	                <div class="bg-primary bg-gradient rounded-circle mx-auto mb-3
+	                            d-flex align-items-center justify-content-center"
+	                     style="width:70px;height:70px;">
+
+	                    <i class="bi bi-cpu-fill fs-2 text-white"></i>
+
+	                </div>
+
+	                <h6 class="text-muted">
+
+	                    AI CONFIDENCE
+
+	                </h6>
+
+	                <h1 class="fw-bold text-primary"
+	                    th:text="${analysis.aiConfidence+'%'}">
+
+	                </h1>
+
+	                <small class="text-muted">
+
+	                    AI Accuracy Level
+
+	                </small>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	    <!-- JOB MATCH -->
+
+	    <div class="col-lg-3 col-md-6">
+
+	        <div class="card border-0 shadow-sm rounded-4 h-100">
+
+	            <div class="card-body text-center p-4">
+
+	                <div class="bg-warning bg-gradient rounded-circle mx-auto mb-3
+	                            d-flex align-items-center justify-content-center"
+	                     style="width:70px;height:70px;">
+
+	                    <i class="bi bi-bullseye fs-2 text-white"></i>
+
+	                </div>
+
+	                <h6 class="text-muted">
+
+	                    JOB MATCH
+
+	                </h6>
+
+	                <h2 class="fw-bold text-warning"
+
+	                    th:text="${analysis.jobMatch}">
+
+	                </h2>
+
+	                <small class="text-muted">
+
+	                    Based on Resume
+
+	                </small>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
+	<!-- ========================================================= -->
+	<!-- RESUME PERFORMANCE -->
+	<!-- ========================================================= -->
+
+	<div class="card border-0 shadow-sm rounded-4 mt-4">
+
+	    <div class="card-header bg-white border-0 py-3">
+
+	        <h5 class="fw-bold mb-0">
+
+	            <i class="bi bi-graph-up-arrow me-2 text-success"></i>
+
+	            Resume Performance
+
+	        </h5>
+
+	    </div>
+
+	    <div class="card-body">
+
+	        <div class="row">
+
+	            <div class="col-lg-6">
+
+	                <h6 class="fw-bold">
+
+	                    ATS Performance
+
+	                </h6>
+
+	                <div class="progress mb-4"
+	                     style="height:15px;">
+
+	                    <div class="progress-bar bg-success"
+
+	                         th:style="'width:'+${analysis.atsScore}+'%'">
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <div class="col-lg-6">
+
+	                <h6 class="fw-bold">
+
+	                    Resume Health
+
+	                </h6>
+
+	                <div class="progress mb-4"
+	                     style="height:15px;">
+
+	                    <div class="progress-bar bg-danger"
+
+	                         th:style="'width:'+${analysis.resumeHealth}+'%'">
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	        <div class="row text-center mt-3">
+
+	            <div class="col-md-4">
+
+	                <h4 class="fw-bold text-success"
+
+	                    th:text="${analysis.keywordCoverage}">
+
+	                </h4>
+
+	                <small class="text-muted">
+
+	                    Skills Detected
+
+	                </small>
+
+	            </div>
+
+	            <div class="col-md-4">
+
+	                <h4 class="fw-bold text-primary"
+
+	                    th:text="${analysis.improvementPotential}">
+
+	                </h4>
+
+	                <small class="text-muted">
+
+	                    ATS Improvement
+
+	                </small>
+
+	            </div>
+
+	            <div class="col-md-4">
+
+	                <span class="badge bg-success fs-6"
+
+	                      th:if="${analysis.recruiterReady}">
+
+	                    Recruiter Ready
+
+	                </span>
+
+	                <span class="badge bg-danger fs-6"
+
+	                      th:unless="${analysis.recruiterReady}">
+
+	                    Needs Improvement
+
+	                </span>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+	<!-- ========================================================= -->
+	<!-- AI RESUME INTELLIGENCE -->
+	<!-- ========================================================= -->
+
+	<div class="card border-0 shadow-sm rounded-4 mt-4">
+
+	    <div class="card-header bg-primary text-white py-3">
+
+	        <h4 class="mb-0 fw-bold">
+
+	            <i class="bi bi-cpu-fill me-2"></i>
+
+	            AI Resume Intelligence
+
+	        </h4>
+
+	    </div>
+
+	    <div class="card-body">
+
+	        <!-- NO RESUME -->
+
+	        <div th:if="${student.resumePath==null}"
+
+	             class="text-center py-5">
+
+	            <i class="bi bi-robot"
+
+	               style="font-size:70px;color:#adb5bd;"></i>
+
+	            <h3 class="fw-bold mt-4">
+
+	                AI Analysis Locked
+
+	            </h3>
+
+	            <p class="text-muted">
+
+	                Upload your resume to unlock ATS Analysis,
+	                Career Intelligence and AI Suggestions.
+
+	            </p>
+
+	        </div>
+
+	        <!-- AI DATA -->
+
+	        <div th:if="${student.resumePath!=null}">
+
+	            <div class="row">
+
+	                <!-- LEFT -->
+
+	                <div class="col-lg-7">
+
+	                    <h5 class="fw-bold mb-4">
+
+	                        Detected Technical Skills
+
+	                    </h5>
+
+	                    <div class="mb-4">
+
+	                        <span
+
+	                                th:each="skill : ${analysis.detectedKeywords}"
+
+	                                class="badge rounded-pill bg-primary px-3 py-2 me-2 mb-2"
+
+	                                th:text="${skill}">
+
+	                        </span>
+
+	                    </div>
+
+	                    <hr>
+
+	                    <h5 class="fw-bold mb-3">
+
+	                        Keyword Coverage
+
+	                    </h5>
+
+	                    <div class="progress"
+
+	                         style="height:18px;">
+
+	                        <div class="progress-bar bg-success"
+
+	                             role="progressbar"
+
+	                             th:style="'width:'+((${analysis.keywordCoverage}*5)>100?100:(${analysis.keywordCoverage}*5))+'%'">
+
+	                        </div>
+
+	                    </div>
+
+	                    <small class="text-muted">
+
+	                        <span th:text="${analysis.keywordCoverage}"></span>
+
+	                        technical keywords detected.
+
+	                    </small>
+
+	                </div>
+
+	                <!-- RIGHT -->
+
+	                <div class="col-lg-5">
+
+	                    <div class="card bg-light border-0">
+
+	                        <div class="card-body">
+
+	                            <h5 class="fw-bold text-danger">
+
+	                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+	                                Missing Sections
+
+	                            </h5>
+
+	                            <div th:if="${#lists.isEmpty(analysis.missingSections)}">
+
+	                                <div class="alert alert-success">
+
+	                                    <i class="bi bi-check-circle-fill me-2"></i>
+
+	                                    Excellent Resume Structure
+
+	                                </div>
+
+	                            </div>
+
+	                            <div th:unless="${#lists.isEmpty(analysis.missingSections)}">
+
+	                                <span
+
+	                                        class="badge bg-danger me-2 mb-2"
+
+	                                        th:each="item:${analysis.missingSections}"
+
+	                                        th:text="${item}">
+
+	                                </span>
+
+	                            </div>
+
+	                        </div>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <hr class="my-4">
+
+	            <h5 class="fw-bold mb-3">
+
+	                <i class="bi bi-stars text-warning me-2"></i>
+
+	                AI Suggestions
+
+	            </h5>
+
+	            <div class="list-group">
+
+	                <div
+
+	                        class="list-group-item border-0 shadow-sm rounded-3 mb-3"
+
+	                        th:each="item:${analysis.suggestions}">
+
+	                    <i class="bi bi-lightbulb-fill text-warning me-2"></i>
+
+	                    <span th:text="${item}"></span>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+	<!-- ========================================================= -->
+	<!-- RESUME ANALYTICS DASHBOARD -->
+	<!-- ========================================================= -->
+
+	<div class="card border-0 shadow-sm rounded-4 mt-4">
+
+	    <div class="card-header bg-dark text-white py-3">
+
+	        <h4 class="mb-0 fw-bold">
+
+	            <i class="bi bi-bar-chart-line-fill me-2"></i>
+
+	            Resume Analytics Dashboard
+
+	        </h4>
+
+	    </div>
+
+	    <div class="card-body">
+
+	        <div class="row">
+
+	            <!-- ========================================= -->
+	            <!-- LEFT : SECTION SCORES -->
+	            <!-- ========================================= -->
+
+	            <div class="col-lg-7">
+
+	                <h5 class="fw-bold mb-4">
+
+	                    Section Wise Performance
+
+	                </h5>
+
+	                <div th:each="section : ${analysis.sectionScores}">
+
+	                    <div class="d-flex justify-content-between">
+
+	                        <strong
+
+	                                th:text="${section.key}">
+
+	                            Education
+
+	                        </strong>
+
+	                        <strong
+
+	                                class="text-success"
+
+	                                th:text="${section.value + ' / 20'}">
+
+	                            10 / 20
+
+	                        </strong>
+
+	                    </div>
+
+	                    <div class="progress mb-4"
+
+	                         style="height:12px;">
+
+	                        <div
+
+	                                class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+
+	                                role="progressbar"
+
+	                                th:style="'width:' + (${section.value}*5) + '%'">
+
+	                        </div>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	            <!-- ========================================= -->
+	            <!-- RIGHT : CAREER INTELLIGENCE -->
+	            <!-- ========================================= -->
+
+	            <div class="col-lg-5">
+
+	                <div class="card bg-light border-0 rounded-4">
+
+	                    <div class="card-body">
+
+	                        <h5 class="fw-bold mb-4">
+
+	                            <i class="bi bi-stars text-warning me-2"></i>
+
+	                            Career Intelligence
+
+	                        </h5>
+
+	                        <table class="table table-borderless align-middle">
+
+	                            <tr>
+
+	                                <th width="50%">
+
+	                                    Resume Level
+
+	                                </th>
+
+	                                <td class="text-end">
+
+	                                    <span
+
+	                                            class="badge bg-primary fs-6"
+
+	                                            th:text="${analysis.resumeLevel}">
+
+	                                    </span>
+
+	                                </td>
+
+	                            </tr>
+
+	                            <tr>
+
+	                                <th>
+
+	                                    Recommended Role
+
+	                                </th>
+
+	                                <td class="text-end fw-bold"
+
+	                                    th:text="${analysis.recommendedRole}">
+
+	                                </td>
+
+	                            </tr>
+
+	                            <tr>
+
+	                                <th>
+
+	                                    Job Match
+
+	                                </th>
+
+	                                <td class="text-end">
+
+	                                    <span
+
+	                                            class="badge bg-success fs-6"
+
+	                                            th:text="${analysis.jobMatch}">
+
+	                                    </span>
+
+	                                </td>
+
+	                            </tr>
+
+	                            <tr>
+
+	                                <th>
+
+	                                    ATS Improvement
+
+	                                </th>
+
+	                                <td class="text-end fw-bold text-primary"
+
+	                                    th:text="'+'+${analysis.improvementPotential}+' Points'">
+
+	                                </td>
+
+	                            </tr>
+
+	                            <tr>
+
+	                                <th>
+
+	                                    Recruiter Ready
+
+	                                </th>
+
+	                                <td class="text-end">
+
+	                                    <span
+
+	                                            class="badge bg-success"
+
+	                                            th:if="${analysis.recruiterReady}">
+
+	                                        YES
+
+	                                    </span>
+
+	                                    <span
+
+	                                            class="badge bg-danger"
+
+	                                            th:unless="${analysis.recruiterReady}">
+
+	                                        NO
+
+	                                    </span>
+
+	                                </td>
+
+	                            </tr>
+
+	                            <tr>
+
+	                                <th>
+
+	                                    AI Confidence
+
+	                                </th>
+
+	                                <td class="text-end fw-bold text-primary"
+
+	                                    th:text="${analysis.aiConfidence+'%'}">
+
+	                                </td>
+
+	                            </tr>
+
+	                        </table>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
+	<!-- ========================================================= -->
+	<!-- QUICK ACTIONS -->
+	<!-- ========================================================= -->
+
+	<div class="row mt-4 g-4">
+
+	    <div class="col-lg-3">
+
+	        <button class="btn btn-primary w-100 py-3">
+
+	            <i class="bi bi-magic me-2"></i>
+
+	            Improve Resume
+
+	        </button>
+
+	    </div>
+
+	    <div class="col-lg-3">
+
+	        <button class="btn btn-success w-100 py-3">
+
+	            <i class="bi bi-search me-2"></i>
+
+	            Find Jobs
+
+	        </button>
+
+	    </div>
+
+	    <div class="col-lg-3">
+
+	        <button class="btn btn-warning text-dark w-100 py-3">
+
+	            <i class="bi bi-download me-2"></i>
+
+	            Export Report
+
+	        </button>
+
+	    </div>
+
+	    <div class="col-lg-3">
+
+	        <button class="btn btn-dark w-100 py-3">
+
+	            <i class="bi bi-share me-2"></i>
+
+	            Share Resume
+
+	        </button>
+
+	    </div>
+
+	</div>
+	
+	<!-- ========================================================= -->
+	<!-- FOOTER -->
+	<!-- ========================================================= -->
+
+	<div class="text-center mt-5 mb-3">
+
+	    <hr>
+
+	    <p class="text-muted">
+
+	        <i class="bi bi-cpu-fill text-primary"></i>
+
+	        AI Resume Studio
+
+	        |
+
+	        Powered by Spring Boot
+
+	        |
+
+	        ATS Engine
+
+	        |
+
+	        Resume Intelligence
+			
+			|
+			
+			Sarthak@2004
+
+	    </p>
+
+	</div>
+	<style>
+
+	/* ==========================================================
+	   RESUME STUDIO UI
+	========================================================== */
+
+	body{
+
+	    background:#f4f7fb;
+
+	}
+
+	/* ===================== CARDS ===================== */
+
+	.card{
+
+	    border:none;
+
+	    border-radius:18px;
+
+	    transition:.35s;
+
+	    overflow:hidden;
+
+	}
+
+	.card:hover{
+
+	    transform:translateY(-6px);
+
+	    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+	}
+
+	/* ===================== HEADER ===================== */
+
+	.card-header{
+
+	    border:none;
+
+	    font-weight:700;
+
+	}
+
+	/* ===================== BUTTONS ===================== */
+
+	.btn{
+
+	    border-radius:12px;
+
+	    transition:.3s;
+
+	}
+
+	.btn:hover{
+
+	    transform:translateY(-2px);
+
+	}
+
+	/* ===================== BADGES ===================== */
+
+	.badge{
+
+	    border-radius:30px;
+
+	    font-weight:600;
+
+	    padding:10px 18px;
+
+	}
+
+	/* ===================== PROGRESS ===================== */
+
+	.progress{
+
+	    border-radius:20px;
+
+	    overflow:hidden;
+
+	    background:#e9ecef;
+
+	}
+
+	.progress-bar{
+
+	    border-radius:20px;
+
+	    transition:1s;
+
+	}
+
+	/* ===================== TABLE ===================== */
+
+	.table tr{
+
+	    vertical-align:middle;
+
+	}
+
+	.table th{
+
+	    color:#555;
+
+	    font-weight:600;
+
+	}
+
+	/* ===================== SKILLS ===================== */
+
+	.bg-primary.rounded-pill{
+
+	    font-size:.9rem;
+
+	    transition:.3s;
+
+	}
+
+	.bg-primary.rounded-pill:hover{
+
+	    transform:scale(1.08);
+
+	}
+
+	/* ===================== LIST GROUP ===================== */
+
+	.list-group-item{
+
+	    border-radius:14px !important;
+
+	    transition:.3s;
+
+	}
+
+	.list-group-item:hover{
+
+	    transform:translateX(6px);
+
+	}
+
+	/* ===================== QUICK ACTION ===================== */
+
+	.btn-primary{
+
+	    background:linear-gradient(45deg,#0d6efd,#3d8bfd);
+
+	}
+
+	.btn-success{
+
+	    background:linear-gradient(45deg,#198754,#38c172);
+
+	}
+
+	.btn-warning{
+
+	    background:linear-gradient(45deg,#ffc107,#ffda6a);
+
+	}
+
+	.btn-dark{
+
+	    background:linear-gradient(45deg,#212529,#495057);
+
+	}
+
+	/* ===================== ICONS ===================== */
+
+	.bi{
+
+	    transition:.3s;
+
+	}
+
+	.card:hover .bi{
+
+	    transform:scale(1.15);
+
+	}
+
+	/* ===================== IFRAME ===================== */
+
+	iframe{
+
+	    border-radius:15px;
+
+	    background:white;
+
+	}
+
+	/* ===================== SCROLL ===================== */
+
+	::-webkit-scrollbar{
+
+	    width:8px;
+
+	}
+
+	::-webkit-scrollbar-thumb{
+
+	    background:#0d6efd;
+
+	    border-radius:20px;
+
+	}
+
+	/* ===================== MOBILE ===================== */
+
+	@media(max-width:992px){
+
+	    h1{
+
+	        font-size:2rem;
+
+	    }
+
+	    h2{
+
+	        font-size:1.6rem;
+
+	    }
+
+	    h4{
+
+	        font-size:1.2rem;
+
+	    }
+
+	    iframe{
+
+	        height:420px !important;
+
+	    }
+
+	}
+
+	</style>
+	<script>
+
+	document.addEventListener("DOMContentLoaded",function(){
+
+	    document.querySelectorAll(".progress-bar").forEach(function(bar){
+
+	        let width=bar.style.width;
+
+	        bar.style.width="0%";
+
+	        setTimeout(function(){
+
+	            bar.style.width=width;
+
+	        },300);
+
+	    });
+
+	});
+
+	</script>

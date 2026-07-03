@@ -1,0 +1,181 @@
+<div class="container-fluid py-4 trainer-salary-page">
+
+    <!-- Header -->
+    <div class="dashboard-header mb-4">
+        <div>
+            <h2 class="page-title">
+                <i class="fas fa-money-check-dollar me-2"></i>
+                Trainer Salary Management
+            </h2>
+            <p class="page-subtitle">
+                Allocate and manage monthly trainer salaries
+            </p>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show">
+        <span th:text="${success}"></span>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+        <span th:text="${error}"></span>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Salary Form -->
+
+    <div class="dashboard-card mb-4">
+
+        <div class="card-header-custom">
+            <h5>
+                <i class="fas fa-wallet me-2"></i>
+                Allot / Update Trainer Salary
+            </h5>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form th:action="@{/admin/trainer-salary/allot}" method="post">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-8">
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Trainer
+                            </label>
+
+                            <select name="trainerId"
+                                    class="form-select custom-input"
+                                    required>
+
+                                <option disabled selected>
+                                    Select Trainer
+                                </option>
+
+                                <option th:each="t : ${trainers}"
+                                        th:value="${t.id}"
+                                        th:text="${t.fullName}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Monthly Salary
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    ₹
+                                </span>
+
+                                <input type="number"
+                                       class="form-control custom-input"
+                                       name="monthlyAmount"
+                                       placeholder="Enter Monthly Salary"
+                                       required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="text-end">
+
+                            <button class="btn btn-primary custom-btn px-5">
+
+                                <i class="fas fa-save me-2"></i>
+
+                                Save Salary
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Salary Records -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header-custom">
+            <h5>
+                <i class="fas fa-list me-2"></i>
+                Trainer Salary Records
+            </h5>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover analytics-table mb-0 align-middle">
+
+                <thead>
+
+                <tr>
+                    <th>Trainer</th>
+                    <th>Monthly Salary</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="s : ${salaries}">
+
+                    <td class="fw-semibold"
+                        th:text="${s.trainer.fullName}">
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success text-white">
+
+                            ₹ <span th:text="${s.monthlyAmount}"></span>
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(salaries)}">
+
+                    <td colspan="2"
+                        class="text-center text-muted py-5">
+
+                        <i class="fas fa-folder-open fa-2x mb-3"></i>
+
+                        <br>
+
+                        No Salary Records Available
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

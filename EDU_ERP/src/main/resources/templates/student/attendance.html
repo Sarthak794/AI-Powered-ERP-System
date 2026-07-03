@@ -1,0 +1,364 @@
+<div class="container-fluid py-4">
+
+    <!-- HERO -->
+
+    <div class="attendance-banner mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+
+                    Attendance Analytics
+
+                </h2>
+
+                <p class="mb-0 opacity-75">
+
+                    Track your attendance performance and stay eligible.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-end">
+
+                <h1 class="fw-bold">
+
+                    <span th:text="${attendancePercentage}">
+                    </span>%
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- KPI -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-3">
+
+            <div class="erp-stat">
+
+                <div class="erp-stat-icon bg-soft-success">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+                <h3 class="mt-3"
+                    th:text="${presentDays}">
+                </h3>
+
+                <small>Present Days</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="erp-stat">
+
+                <div class="erp-stat-icon bg-soft-danger">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                </div>
+
+                <h3 class="mt-3"
+                    th:text="${absentDays}">
+                </h3>
+
+                <small>Absent Days</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="erp-stat">
+
+                <div class="erp-stat-icon bg-soft-primary">
+
+                    <i class="bi bi-building-fill"></i>
+
+                </div>
+
+                <h3 class="mt-3"
+                    th:text="${totalClasses}">
+                </h3>
+
+                <small>Total Classes</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="erp-stat">
+
+                <div class="erp-stat-icon bg-soft-warning">
+
+                    <i class="bi bi-bar-chart-fill"></i>
+
+                </div>
+
+                <h3 class="mt-3">
+
+                    <span th:text="${attendancePercentage}">
+                    </span>%
+
+                </h3>
+
+                <small>Attendance Rate</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- WARNING -->
+
+    <div th:if="${attendancePercentage < 75}"
+         class="alert alert-danger shadow-sm">
+
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+        Your attendance is below 75%.
+        Please improve attendance to remain eligible.
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="card erp-card">
+
+        <div class="erp-card-header">
+
+            <div class="erp-section">
+
+                <div>
+
+                    <h4>
+
+                        Attendance History
+
+                    </h4>
+
+                    <small>
+
+                        Complete attendance records
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="erp-card-body p-0">
+
+            <table class="table erp-table mb-0">
+
+                <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                </thead>
+
+				<tbody>
+
+				<tr th:if="${#lists.isEmpty(attendance)}">
+
+				    <td colspan="2"
+				        class="text-center py-5">
+
+				        <i class="bi bi-calendar-x fs-1 text-muted"></i>
+
+				        <p class="mt-3 text-muted">
+
+				            No attendance records found.
+
+				        </p>
+
+				    </td>
+
+				</tr>
+
+				<tr th:each="a : ${attendance}">
+
+				    <td th:text="${a.date}">
+				    </td>
+
+				    <td>
+
+				        <span th:if="${a.present}"
+				              class="erp-badge-success">
+
+				            Present
+
+				        </span>
+
+				        <span th:unless="${a.present}"
+				              class="erp-badge-danger">
+
+				            Absent
+
+				        </span>
+
+				    </td>
+
+				</tr>
+
+				</tbody>
+				
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="row g-4 mb-4">
+
+    <!-- Performance -->
+
+    <div class="col-lg-6">
+
+        <div class="card erp-card h-100">
+
+            <div class="erp-card-header">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-graph-up-arrow text-success me-2"></i>
+
+                    Attendance Insights
+
+                </h5>
+
+            </div>
+
+            <div class="erp-card-body">
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>Attendance Rate</span>
+
+                    <strong th:text="${attendancePercentage + '%'}"></strong>
+
+                </div>
+
+                <div class="progress mb-4">
+
+                    <div class="progress-bar bg-success"
+                         th:style="'width:' + ${attendancePercentage} + '%'">
+                    </div>
+
+                </div>
+
+                <div th:if="${attendancePercentage >= 90}"
+                     class="alert alert-success mb-0">
+
+                    Excellent Attendance Performance 🎉
+
+                </div>
+
+                <div th:if="${attendancePercentage >= 75 && attendancePercentage < 90}"
+                     class="alert alert-warning mb-0">
+
+                    Good Attendance. Keep Improving 👍
+
+                </div>
+
+                <div th:if="${attendancePercentage < 75}"
+                     class="alert alert-danger mb-0">
+
+                    Attendance Below Required Level ⚠️
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Eligibility -->
+
+    <div class="col-lg-6">
+
+        <div class="card erp-card h-100">
+
+            <div class="erp-card-header">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-award-fill text-primary me-2"></i>
+
+                    Eligibility Status
+
+                </h5>
+
+            </div>
+
+            <div class="erp-card-body">
+
+                <div class="text-center">
+
+                    <h1 class="display-4 fw-bold">
+
+                        <span th:text="${attendancePercentage}">
+                        </span>%
+
+                    </h1>
+
+                    <span th:if="${attendancePercentage >= 75}"
+                          class="badge bg-success fs-6">
+
+                        Eligible
+
+                    </span>
+
+                    <span th:if="${attendancePercentage < 75}"
+                          class="badge bg-danger fs-6">
+
+                        Not Eligible
+
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <p class="mb-0 text-muted">
+
+                    Minimum required attendance:
+                    <strong>75%</strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

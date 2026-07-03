@@ -1,0 +1,237 @@
+<div class="container-fluid py-4 placement-page">
+
+    <!-- Header -->
+
+    <div class="dashboard-header mb-4">
+
+        <div>
+
+            <h2 class="page-title">
+                <i class="fas fa-briefcase me-2"></i>
+                Placement Applications
+            </h2>
+
+            <p class="page-subtitle">
+                Manage student placement lifecycle and recruitment process
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header-custom">
+
+            <h5>
+                <i class="fas fa-list-check me-2"></i>
+                Placement Application Records
+            </h5>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle placement-table mb-0">
+
+                <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Drive</th>
+                    <th>Status</th>
+                    <th>Update Status</th>
+                    <th>Resume</th>
+                    <th>Offer Letter</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:if="${#lists.isEmpty(applications)}">
+
+                    <td colspan="7"
+                        class="text-center py-5 text-muted">
+
+                        <i class="fas fa-folder-open fa-2x mb-3"></i>
+
+                        <br>
+
+                        No Applications Found
+
+                    </td>
+
+                </tr>
+
+                <tr th:each="app : ${applications}">
+
+                    <!-- Student -->
+
+                    <td>
+
+                        <div class="d-flex align-items-center">
+
+                            <div class="student-avatar">
+
+                                <i class="fas fa-user-graduate"></i>
+
+                            </div>
+
+                            <div class="ms-3 fw-semibold"
+                                 th:text="${app.student.fullName}">
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <!-- Company -->
+
+                    <td class="fw-semibold"
+                        th:text="${app.placementDrive.company.companyName}">
+                    </td>
+
+                    <!-- Drive -->
+
+                    <td th:text="${app.placementDrive.driveTitle}">
+                    </td>
+
+                    <!-- Status -->
+
+                    <td>
+
+                        <span class="badge px-3 py-2"
+
+                              th:classappend="
+                              ${app.status.name()=='APPLIED'}?' bg-secondary':
+                              (${app.status.name()=='SHORTLISTED'}?' bg-info':
+                              (${app.status.name()=='APTITUDE_CLEARED'}?' bg-primary':
+                              (${app.status.name()=='TECHNICAL_CLEARED'}?' bg-warning':
+                              (${app.status.name()=='HR_CLEARED'}?' bg-dark':
+                              (${app.status.name()=='SELECTED'}?' bg-success':' bg-danger')))))"
+
+                              th:text="${#strings.replace(app.status.name(),'_',' ')}">
+
+                        </span>
+
+                    </td>
+
+                    <!-- Update -->
+
+                    <td>
+
+                        <form th:action="@{/admin/applications/update}"
+                              method="post"
+                              class="d-flex gap-2">
+
+                            <input type="hidden"
+                                   name="applicationId"
+                                   th:value="${app.id}">
+
+                            <select name="status"
+                                    class="form-select form-select-sm">
+
+                                <option value="APPLIED">Applied</option>
+
+                                <option value="SHORTLISTED">Shortlisted</option>
+
+                                <option value="APTITUDE_CLEARED">Aptitude Cleared</option>
+
+                                <option value="TECHNICAL_CLEARED">Technical Cleared</option>
+
+                                <option value="HR_CLEARED">HR Cleared</option>
+
+                                <option value="SELECTED">Selected</option>
+
+                                <option value="REJECTED">Rejected</option>
+
+                            </select>
+
+                            <button class="btn btn-primary btn-sm">
+
+                                Save
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                    <!-- Resume -->
+
+                    <td>
+
+                        <a th:if="${app.student.resumePath!=null}"
+                           th:href="@{/admin/resume/download/{studentId}(studentId=${app.student.id})}"
+                           class="btn btn-outline-primary btn-sm">
+
+                            <i class="fas fa-download me-1"></i>
+
+                            Resume
+
+                        </a>
+
+                        <span th:if="${app.student.resumePath==null}"
+                              class="badge bg-light text-dark">
+
+                            Not Uploaded
+
+                        </span>
+
+                    </td>
+
+                    <!-- Offer Letter -->
+
+                    <td>
+
+                        <form th:if="${app.status.name()=='SELECTED'}"
+
+                              th:action="@{/admin/offer-letter/upload}"
+
+                              method="post"
+
+                              enctype="multipart/form-data"
+
+                              class="d-flex gap-2">
+
+                            <input type="hidden"
+                                   name="applicationId"
+                                   th:value="${app.id}">
+
+                            <input type="file"
+                                   class="form-control form-control-sm"
+                                   name="file"
+                                   accept=".pdf">
+
+                            <button class="btn btn-success btn-sm">
+
+                                Upload
+
+                            </button>
+
+                        </form>
+
+                        <span th:if="${app.status.name()!='SELECTED'}"
+                              class="text-muted">
+
+                            --
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

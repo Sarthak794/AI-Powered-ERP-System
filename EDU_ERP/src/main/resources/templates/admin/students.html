@@ -1,0 +1,625 @@
+<div class="container-fluid py-4 sm-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="sm-page-title">
+                <i class="fas fa-user-graduate me-2"></i>
+                Student Management
+            </h2>
+
+            <p class="sm-page-subtitle">
+                Register, manage and monitor student accounts
+            </p>
+
+        </div>
+
+        <button class="btn sm-btn">
+
+            <i class="fas fa-plus-circle me-2"></i>
+
+            Register Student
+
+        </button>
+
+    </div>
+
+    <!-- ================= ALERTS ================= -->
+
+    <div th:if="${success}"
+         class="alert alert-success alert-dismissible fade show">
+
+        <span th:text="${success}"></span>
+
+        <button class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
+
+    <div th:if="${error}"
+         class="alert alert-danger alert-dismissible fade show">
+
+        <span th:text="${error}"></span>
+
+        <button class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
+
+    <!-- ================= KPI CARDS ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="sm-stats-card sm-primary">
+
+                <div>
+
+                    <h6>Total Students</h6>
+
+                    <h2 th:text="${#lists.size(students)}"></h2>
+
+                </div>
+
+                <i class="fas fa-users sm-stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="sm-stats-card sm-success">
+
+                <div>
+
+                    <h6>Active Accounts</h6>
+
+                    <h2 th:text="${students.?[user.enabled].size()}"></h2>
+
+                </div>
+
+                <i class="fas fa-user-check sm-stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="sm-stats-card sm-danger">
+
+                <div>
+
+                    <h6>Disabled</h6>
+
+                    <h2 th:text="${students.?[!user.enabled].size()}"></h2>
+
+                </div>
+
+                <i class="fas fa-user-lock sm-stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="sm-stats-card sm-info">
+
+                <div>
+
+                    <h6>Centers</h6>
+
+                    <h2 th:text="${#lists.size(centers)}"></h2>
+
+                </div>
+
+                <i class="fas fa-building sm-stats-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= REGISTER CARD ================= -->
+
+    <div class="sm-card mb-4">
+
+        <div class="sm-card-header">
+
+            <h5>
+
+                <i class="fas fa-user-plus me-2"></i>
+
+                Register New Student
+
+            </h5>
+
+        </div>
+
+        <div class="card-body p-4">
+
+            <form th:action="@{/admin/students/create}"
+                  method="post">
+
+                <div class="row g-4">
+
+                    <!-- Full Name -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Full Name
+
+                        </label>
+
+                        <input class="form-control sm-input"
+                               name="fullName"
+                               placeholder="Enter Full Name"
+                               required>
+
+                    </div>
+
+                    <!-- Roll -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Roll Number
+
+                        </label>
+
+                        <input class="form-control sm-input"
+                               name="rollNumber"
+                               placeholder="Enter Roll Number"
+                               required>
+
+                    </div>
+
+                    <!-- Email -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Email
+
+                        </label>
+
+                        <input type="email"
+                               class="form-control sm-input"
+                               name="email"
+                               placeholder="Enter Email"
+                               required>
+
+                    </div>
+
+                    <!-- Phone -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Phone Number
+
+                        </label>
+
+                        <input class="form-control sm-input"
+                               name="phone"
+                               placeholder="Enter Phone Number"
+                               required>
+
+                    </div>
+
+                    <!-- Username -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Username
+
+                        </label>
+
+                        <input class="form-control sm-input"
+                               name="username"
+                               placeholder="Enter Username"
+                               required>
+
+                    </div>
+
+                    <!-- Password -->
+
+                    <div class="col-lg-6">
+
+                        <label class="form-label fw-semibold">
+
+                            Password
+
+                        </label>
+
+                        <input type="password"
+                               class="form-control sm-input"
+                               name="password"
+                               placeholder="Enter Password"
+                               required>
+
+                    </div>
+
+                    <!-- Center -->
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Center
+
+                        </label>
+
+                        <select class="form-select sm-input"
+                                name="centerId"
+                                required>
+
+                            <option disabled selected>
+
+                                Select Center
+
+                            </option>
+
+                            <option th:each="c : ${centers}"
+                                    th:value="${c.id}"
+                                    th:text="${c.name}">
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Qualification -->
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Qualification
+
+                        </label>
+
+                        <select class="form-select sm-input"
+                                name="qualificationId"
+                                required>
+
+                            <option disabled selected>
+
+                                Select Qualification
+
+                            </option>
+
+                            <option th:each="q : ${qualifications}"
+                                    th:value="${q.id}"
+                                    th:text="${q.name}">
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Specialization -->
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Specialization
+
+                        </label>
+
+                        <select class="form-select sm-input"
+                                name="specializationId"
+                                required>
+
+                            <option disabled selected>
+
+                                Select Specialization
+
+                            </option>
+
+                            <option th:each="s : ${specializations}"
+                                    th:value="${s.id}"
+                                    th:text="${s.name}">
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Button -->
+
+                    <div class="col-12 text-end">
+
+                        <button class="btn sm-btn px-5">
+
+                            <i class="fas fa-user-plus me-2"></i>
+
+                            Register Student
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+	<!-- ==========================================================
+	                    STUDENT LIST
+	=========================================================== -->
+
+	<div class="sm-card">
+
+	    <div class="sm-card-header d-flex justify-content-between align-items-center flex-wrap">
+
+	        <h5 class="mb-0">
+
+	            <i class="fas fa-users me-2"></i>
+
+	            Registered Students
+
+	        </h5>
+
+	        <div class="sm-search-box mt-3 mt-lg-0">
+
+	            <i class="fas fa-search"></i>
+
+	            <input type="text"
+	                   id="smStudentSearch"
+	                   placeholder="Search student...">
+
+	        </div>
+
+	    </div>
+
+	    <div class="table-responsive">
+
+	        <table class="table table-hover sm-table align-middle mb-0">
+
+	            <thead>
+
+	            <tr>
+
+	                <th width="300">Student</th>
+
+	                <th>Roll No.</th>
+
+	                <th>Email</th>
+
+	                <th>Username</th>
+
+	                <th>Status</th>
+
+	                <th width="170">Actions</th>
+
+	            </tr>
+
+	            </thead>
+
+	            <tbody id="smStudentTable">
+
+	            <!-- EMPTY -->
+
+	            <tr th:if="${#lists.isEmpty(students)}">
+
+	                <td colspan="6">
+
+	                    <div class="sm-empty-state">
+
+	                        <i class="fas fa-user-slash fa-3x mb-3"></i>
+
+	                        <h5>No Students Found</h5>
+
+	                        <p class="text-muted">
+
+	                            Register your first student to begin.
+
+	                        </p>
+
+	                    </div>
+
+	                </td>
+
+	            </tr>
+
+	            <!-- DATA -->
+
+	            <tr th:each="s : ${students}">
+
+	                <!-- STUDENT -->
+
+	                <td>
+
+	                    <div class="d-flex align-items-center">
+
+	                        <div class="sm-avatar">
+
+	                            <span th:if="${s.profilePhoto == null}">
+
+	                                <i class="fas fa-user-graduate"></i>
+
+	                            </span>
+
+	                            <img th:if="${s.profilePhoto != null}"
+	                                 th:src="@{'/uploads/profile/' + ${s.profilePhoto}}"
+	                                 class="sm-avatar-img">
+
+	                        </div>
+
+	                        <div class="ms-3">
+
+	                            <div class="fw-bold"
+	                                 th:text="${s.fullName}">
+	                            </div>
+
+	                            <small class="text-muted">
+
+	                                Student ID :
+	                                <span th:text="${s.id}"></span>
+
+	                            </small>
+
+	                        </div>
+
+	                    </div>
+
+	                </td>
+
+	                <!-- Roll -->
+
+	                <td>
+
+	                    <span class="badge bg-primary text-white px-3 py-2"
+	                          th:text="${s.rollNumber}">
+	                    </span>
+
+	                </td>
+
+	                <!-- Email -->
+
+	                <td>
+
+	                    <i class="fas fa-envelope text-primary me-2"></i>
+
+	                    <span th:text="${s.email}"></span>
+
+	                </td>
+
+	                <!-- Username -->
+
+	                <td>
+
+	                    <span class="fw-semibold"
+	                          th:text="${s.user.username}">
+	                    </span>
+
+	                </td>
+
+	                <!-- Status -->
+
+	                <td>
+
+	                    <span th:if="${s.user.enabled}"
+	                          class="badge bg-success text-white px-3 py-2">
+
+	                        <i class="fas fa-check-circle me-1"></i>
+
+	                        Active
+
+	                    </span>
+
+	                    <span th:unless="${s.user.enabled}"
+	                          class="badge bg-danger text-white px-3 py-2">
+
+	                        <i class="fas fa-ban me-1"></i>
+
+	                        Disabled
+
+	                    </span>
+
+	                </td>
+
+	                <!-- ACTIONS -->
+
+	                <td>
+
+	                    <div class="d-flex gap-2">
+
+	                        <!-- VIEW -->
+
+	                        <a href="#"
+	                           class="btn btn-info btn-sm rounded-circle sm-action-btn text-white"
+	                           title="View">
+
+	                            <i class="fas fa-eye"></i>
+
+	                        </a>
+
+	                        <!-- EDIT -->
+
+	                        <a href="#"
+	                           class="btn btn-warning btn-sm rounded-circle sm-action-btn text-white"
+	                           title="Edit">
+
+	                            <i class="fas fa-edit"></i>
+
+	                        </a>
+
+	                        <!-- DELETE -->
+
+	                        <form th:action="@{/admin/students/delete/{id}(id=${s.id})}"
+	                              method="post"
+	                              onsubmit="return confirm('Delete this student?');">
+
+	                            <button class="btn btn-danger btn-sm rounded-circle sm-action-btn text-white"
+	                                    title="Delete">
+
+	                                <i class="fas fa-trash"></i>
+
+	                            </button>
+
+	                        </form>
+
+	                    </div>
+
+	                </td>
+
+	            </tr>
+
+	            </tbody>
+
+	        </table>
+
+	    </div>
+
+	</div>
+
+	<!-- ==========================================================
+	                    SEARCH SCRIPT
+	=========================================================== -->
+
+	<script>
+
+	document.getElementById("smStudentSearch")
+	.addEventListener("keyup", function () {
+
+	    let filter = this.value.toLowerCase();
+
+	    let rows =
+	        document.querySelectorAll("#smStudentTable tr");
+
+	    rows.forEach(function(row){
+
+	        row.style.display =
+	            row.innerText.toLowerCase().includes(filter)
+	            ? ""
+	            : "none";
+
+	    });
+
+	});
+
+	</script>

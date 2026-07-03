@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>States</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: body}"></div>
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div th:replace="fragments/sidebar :: body"></div>
+
+    <div class="p-4 w-100">
+
+        <h3 class="mb-3">States</h3>
+
+        <!-- Add State -->
+        <form th:action="@{/admin/states/save}" method="post" class="row g-2 mb-4">
+            <div class="col-md-6">
+                <input type="text"
+                       th:field="${state.name}"
+                       class="form-control"
+                       placeholder="Enter state name"
+                       required>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100">Add</button>
+            </div>
+        </form>
+
+        <!-- State Table -->
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>State Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="s : ${states}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.name}"></td>
+                    <td>
+                        <a th:href="@{/admin/states/delete/{id}(id=${s.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete state?')">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

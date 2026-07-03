@@ -1,0 +1,56 @@
+<div class="container-fluid">
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header">
+
+            <h4 class="mb-0">
+                Submit Assignment
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <h5 th:text="${assignment.title}">
+            </h5>
+
+            <p th:text="${assignment.description}">
+            </p>
+
+            <form
+                    th:action="@{/student/assignments/{id}/submit(id=${assignment.id})}"
+                    method="post"
+                    enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Upload Solution
+
+                    </label>
+
+                    <input
+                            type="file"
+                            name="file"
+                            class="form-control"
+                            accept=".pdf,.doc,.docx,.zip"
+                            required>
+
+                </div>
+
+                <button
+                        class="btn btn-primary">
+
+                    Submit Assignment
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

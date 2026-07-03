@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Notifications</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/student-header :: body"></div>
+
+<div class="d-flex">
+
+    <div th:replace="fragments/student-sidebar :: body"></div>
+
+    <main class="flex-grow-1 p-4">
+
+        <!-- =============================== -->
+        <!-- PAGE HEADER -->
+        <!-- =============================== -->
+
+        <div class="notification-banner mb-4">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <h2 class="fw-bold mb-2">
+                        <i class="fas fa-bell me-2"></i>
+                        Notifications
+                    </h2>
+
+                    <p class="mb-0 opacity-75">
+                        Stay updated with your exams, assignments,
+                        placements, fee reminders and institute announcements.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                    <a th:href="@{/student/notifications/read-all}"
+                       class="btn btn-light fw-semibold">
+
+                        <i class="fas fa-check-double me-2"></i>
+                        Mark All Read
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =============================== -->
+        <!-- QUICK STATS -->
+        <!-- =============================== -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-md-6">
+
+                <div class="card dashboard-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="metric-icon bg-soft-primary mb-3">
+
+                            <i class="fas fa-envelope-open-text"></i>
+
+                        </div>
+
+                        <h6 class="text-muted">
+                            Total Notifications
+                        </h6>
+
+                        <h2 class="fw-bold text-primary"
+                            th:text="${#lists.size(notifications)}">
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card dashboard-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="metric-icon bg-soft-warning mb-3">
+
+                            <i class="fas fa-bell"></i>
+
+                        </div>
+
+                        <h6 class="text-muted">
+                            Unread Notifications
+                        </h6>
+
+                        <h2 class="fw-bold text-warning"
+                            th:text="${unreadCount}">
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =============================== -->
+        <!-- EMPTY STATE -->
+        <!-- =============================== -->
+
+        <div th:if="${#lists.isEmpty(notifications)}">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body text-center py-5">
+
+                    <i class="fas fa-bell-slash fa-4x text-secondary mb-4"></i>
+
+                    <h4 class="fw-bold">
+                        No Notifications
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        You're all caught up. New notifications will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =============================== -->
+        <!-- NOTIFICATION LIST -->
+        <!-- =============================== -->
+
+        <div th:unless="${#lists.isEmpty(notifications)}">
+
+            <div th:each="notification : ${notifications}"
+                 class="card notification-card mb-3"
+                 th:classappend="${!notification.readStatus} ? ' notification-unread' : ''">
+
+                <div class="card-body">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-9">
+
+                            <div class="d-flex align-items-center mb-2 flex-wrap gap-2">
+								                        <!-- TYPE BADGES -->
+
+								                        <span th:if="${notification.type == 'EXAM'}"
+								                              class="badge bg-primary">
+								                            <i class="fas fa-file-alt me-1"></i>
+								                            Exam
+								                        </span>
+
+								                        <span th:if="${notification.type == 'ASSIGNMENT'}"
+								                              class="badge bg-warning text-dark">
+								                            <i class="fas fa-book me-1"></i>
+								                            Assignment
+								                        </span>
+
+								                        <span th:if="${notification.type == 'PLACEMENT'}"
+								                              class="badge bg-success">
+								                            <i class="fas fa-briefcase me-1"></i>
+								                            Placement
+								                        </span>
+
+								                        <span th:if="${notification.type == 'FEE'}"
+								                              class="badge bg-danger">
+								                            <i class="fas fa-money-bill-wave me-1"></i>
+								                            Fees
+								                        </span>
+
+								                        <span th:if="${notification.type == 'DOCUMENT'}"
+								                              class="badge bg-info">
+								                            <i class="fas fa-folder-open me-1"></i>
+								                            Document
+								                        </span>
+
+								                        <span th:if="${notification.type == 'GENERAL'}"
+								                              class="badge bg-secondary">
+								                            <i class="fas fa-bullhorn me-1"></i>
+								                            General
+								                        </span>
+
+								                        <span th:if="${!notification.readStatus}"
+								                              class="badge bg-danger">
+								                            NEW
+								                        </span>
+
+								                    </div>
+
+								                    <!-- TITLE -->
+
+								                    <h5 class="fw-bold notification-title mb-2"
+								                        th:text="${notification.title}">
+								                    </h5>
+
+								                    <!-- MESSAGE -->
+
+								                    <p class="notification-message mb-3"
+								                       th:text="${notification.message}">
+								                    </p>
+
+								                    <!-- DATE -->
+
+								                    <small class="text-muted">
+
+								                        <i class="far fa-clock me-1"></i>
+
+								                        <span th:text="${#temporals.format(notification.createdAt,'dd MMM yyyy • hh:mm a')}">
+								                        </span>
+
+								                    </small>
+
+								                </div>
+
+								                <!-- ACTIONS -->
+
+								                <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
+
+								                    <div th:if="${!notification.readStatus}">
+
+								                        <a th:href="@{'/student/notifications/read/' + ${notification.id}}"
+								                           class="btn btn-primary rounded-pill px-4">
+
+								                            <i class="fas fa-check me-1"></i>
+
+								                            Mark Read
+
+								                        </a>
+
+								                    </div>
+
+								                    <div th:if="${notification.readStatus}">
+
+								                        <span class="badge bg-success fs-6 px-3 py-2">
+
+								                            <i class="fas fa-check-circle me-1"></i>
+
+								                            Read
+
+								                        </span>
+
+								                    </div>
+
+								                </div>
+
+								            </div>
+
+								        </div>
+
+								    </div>
+
+								</div>
+								    </main>
+
+								</div>
+
+								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+								</body>
+
+								</html>

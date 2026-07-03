@@ -1,0 +1,74 @@
+<div class="spec-page container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header mb-4">
+        <h3>Specialization Management</h3>
+        <p>Manage all trainer specializations</p>
+    </div>
+
+    <!-- ALERTS -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- CREATE CARD -->
+    <div class="ui-card mb-4">
+
+        <form th:action="@{/admin/specializations/create}" method="post" class="spec-form">
+
+            <input class="form-control"
+                   name="name"
+                   placeholder="Enter Specialization Name"
+                   required>
+				   <br><br>
+
+            <button class="btn-primary-action">
+                + Add Specialization
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="ui-card">
+
+        <div class="table-responsive">
+
+            <table class="table modern-table">
+
+                <thead class="modern-thead">
+                <tr>
+                    <th>ID</th>
+                    <th>Specialization Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="s : ${specializations}">
+                    <td>#<span th:text="${s.id}"></span></td>
+                    <td class="fw-semibold" th:text="${s.name}"></td>
+                    <td>
+
+                        <form th:action="@{/admin/specializations/delete/{id}(id=${s.id})}"
+                              method="post"
+                              class="d-inline">
+
+                            <button class="btn-danger-action"
+                                    onclick="return confirm('Delete this specialization?')">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

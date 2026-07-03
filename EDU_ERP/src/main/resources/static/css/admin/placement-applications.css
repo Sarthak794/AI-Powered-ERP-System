@@ -1,0 +1,333 @@
+/* =========================
+   CARD (PRO LOOK - LIGHT)
+========================= */
+
+.pa-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.pa-card-header h3 {
+    color: #0f172a;
+    margin: 0;
+    font-size: 20px;
+}
+
+.pa-card-header p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* =========================
+   TABLE (BRIGHT THEME)
+========================= */
+
+.pa-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.pa-table thead th {
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 12px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pa-row {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+}
+
+.pa-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.pa-row td {
+    padding: 14px;
+    color: #0f172a;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   USER CELL
+========================= */
+
+.pa-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pa-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* =========================
+   STATUS PILL (BRIGHT)
+========================= */
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* dynamic colors */
+
+.status-badge.SELECTED {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.REJECTED {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-badge.SHORTLISTED {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-badge.APPLIED {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.pa-action-form {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.pa-select {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+/* =========================
+   BUTTONS (LIGHT UI)
+========================= */
+
+.btn-mini {
+    background: #22c55e;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-mini.primary {
+    background: #6366f1;
+}
+
+.btn-soft {
+    background: #f1f5f9;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: #0f172a;
+    text-decoration: none;
+    font-size: 12px;
+    border: 1px solid #e2e8f0;
+}
+/*=============================
+      Placement Dashboard
+=============================*/
+
+.placement-dashboard{
+    animation:fadeIn .4s ease;
+}
+
+.export-btn{
+    border-radius:12px;
+    padding:10px 20px;
+    font-weight:600;
+}
+
+.stats-card{
+
+    border-radius:18px;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transition:.3s;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.stats-card h6{
+
+    opacity:.9;
+    font-size:14px;
+    margin-bottom:8px;
+
+}
+
+.stats-card h2{
+
+    margin:0;
+    font-weight:700;
+
+}
+
+.stats-icon{
+
+    font-size:40px;
+    opacity:.35;
+
+}
+
+.primary{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+}
+
+.info{
+
+    background:linear-gradient(135deg,#06b6d4,#0891b2);
+
+}
+
+.warning{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+
+}
+
+.success{
+
+    background:linear-gradient(135deg,#16a34a,#15803d);
+
+}
+
+.dashboard-card{
+
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.card-header-custom{
+
+    background:linear-gradient(90deg,#2563eb,#1d4ed8);
+    color:#fff;
+    padding:18px 24px;
+
+}
+
+.card-header-custom h5{
+
+    margin:0;
+
+}
+
+.summary-card{
+
+    border-radius:16px;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+
+}
+
+.summary-card h6{
+
+    margin-bottom:10px;
+
+}
+
+.summary-card h1{
+
+    margin:0;
+    font-weight:700;
+
+}
+
+.summary-card i{
+
+    font-size:42px;
+    opacity:.30;
+
+}
+
+.success-card{
+
+    background:linear-gradient(135deg,#16a34a,#15803d);
+
+}
+
+.warning-card{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+
+}
+
+.danger-card{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:none;
+
+    }
+
+}

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+
+    <h3 class="fw-bold mb-4">Accountant Dashboard</h3>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Total Students</h6>
+                    <h3 class="fw-bold" th:text="${totalStudents}"></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Total Collected</h6>
+                    <h3 class="fw-bold text-success">
+                        ₹ <span th:text="${totalCollected}"></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Pending Amount</h6>
+                    <h3 class="fw-bold text-danger">
+                        ₹ <span th:text="${pendingAmount}"></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

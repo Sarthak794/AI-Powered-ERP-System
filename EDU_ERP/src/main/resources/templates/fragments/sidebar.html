@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="sidebar" class="sidebar p-3">
+
+    <h5 class="text-white mb-4">EDU ERP</h5>
+
+	<ul class="nav nav-pills flex-column gap-1">
+
+	    <li>
+	        <a href="/admin/dashboard"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'dashboard'} ? 'active fw-bold'">
+	            <i class="bi bi-speedometer2"></i> Dashboard
+	        </a>
+	    </li>
+
+	    <li>
+	        <a href="/admin/users"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'users'} ? 'active fw-bold'">
+	            <i class="bi bi-people"></i> Users
+	        </a>
+	    </li>
+
+	    <li>
+	        <a href="/admin/students"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'students'} ? 'active fw-bold'">
+	            <i class="bi bi-mortarboard"></i> Students
+	        </a>
+	    </li>
+
+	    <li>
+	        <a href="/admin/trainers"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'trainers'} ? 'active fw-bold'">
+	            <i class="bi bi-person-workspace"></i> Trainers
+	        </a>
+	    </li>
+
+	    <li>
+	        <a href="/admin/batches"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'batches'} ? 'active fw-bold'">
+	            <i class="bi bi-collection"></i> Batches
+	        </a>
+	    </li>
+
+	    <li>
+	        <a href="/admin/attendance"
+	           class="nav-link d-flex align-items-center gap-2"
+	           th:classappend="${activePage == 'attendance'} ? 'active fw-bold'">
+	            <i class="bi bi-calendar-check"></i> Attendance
+	        </a>
+	    </li>
+
+	</ul>
+</div>
+
+</body>
+</html>

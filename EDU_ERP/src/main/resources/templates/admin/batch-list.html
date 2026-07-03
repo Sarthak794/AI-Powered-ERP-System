@@ -1,0 +1,79 @@
+<div class="batch-master container-fluid p-4">
+
+    <div class="batch-header mb-4">
+        <h3>Batch Master</h3>
+        <p>Manage batches, courses, centers and trainers</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="batch-card mb-4">
+
+        <form th:action="@{/admin/batches/save}" method="post" class="batch-form">
+
+            <input type="text"
+                   th:field="${batch.name}"
+                   class="form-control"
+                   placeholder="Batch Name"
+                   required>
+
+            <select name="courseId" class="form-select" required>
+                <option value="">Select Course</option>
+                <option th:each="c : ${courses}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+            </select>
+
+            <select name="centerId" class="form-select" required>
+                <option value="">Select Center</option>
+                <option th:each="c : ${centers}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+            </select>
+
+            <select name="trainerId" class="form-select" required>
+                <option value="">Select Trainer</option>
+                <option th:each="t : ${trainers}"
+                        th:value="${t.id}"
+                        th:text="${t.user.fullName}">
+                </option>
+            </select>
+
+            <button class="btn-primary-action">Add Batch</button>
+
+        </form>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="batch-card">
+
+        <div class="table-responsive">
+            <table class="table batch-table">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Batch</th>
+                    <th>Course</th>
+                    <th>Center</th>
+                    <th>Trainer</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="b : ${batches}">
+                    <td th:text="${b.id}"></td>
+                    <td th:text="${b.name}"></td>
+                    <td th:text="${b.course.name}"></td>
+                    <td th:text="${b.center.name}"></td>
+                    <td th:text="${b.trainer.user.fullName}"></td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>

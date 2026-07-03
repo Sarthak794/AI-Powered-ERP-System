@@ -1,0 +1,150 @@
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">Review Submission</h3>
+            <p class="text-muted mb-0">
+                Evaluate student submission and assign marks
+            </p>
+        </div>
+
+        <a th:href="@{/trainer/assignments/submissions}"
+           class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i>
+            Back
+        </a>
+
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow-sm border-0 rounded-4">
+
+        <div class="card-header bg-white border-0 py-3">
+            <h5 class="fw-bold mb-0">Submission Details</h5>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Student -->
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold text-muted">
+                    Student
+                </label>
+
+                <div class="fw-bold fs-5"
+                     th:text="${submission.student.fullName}">
+                </div>
+
+            </div>
+
+            <!-- File -->
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold text-muted">
+                    Submitted File
+                </label>
+
+                <div class="mt-2">
+
+                    <a th:href="${submission.filePath}"
+                       target="_blank"
+                       class="btn btn-primary">
+
+                        <i class="bi bi-file-earmark-pdf me-1"></i>
+                        Open File
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Review Form -->
+            <form th:action="@{/trainer/assignments/submission/{id}/review(id=${submission.id})}"
+                  method="post">
+
+                <div class="row g-3">
+
+                    <!-- Marks -->
+                    <div class="col-md-4">
+
+                        <label class="form-label fw-semibold">
+                            Marks Awarded
+                        </label>
+
+                        <input type="number"
+                               name="marksAwarded"
+                               class="form-control"
+                               min="0"
+                               placeholder="Enter marks"
+                               required>
+
+                    </div>
+
+                    <!-- Remarks -->
+                    <div class="col-md-8">
+
+                        <label class="form-label fw-semibold">
+                            Trainer Remarks
+                        </label>
+
+                        <textarea name="trainerRemarks"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Write feedback for student">
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+                <!-- Actions -->
+                <div class="d-flex justify-content-end mt-4 gap-2">
+
+                    <a th:href="@{/trainer/assignments/submissions}"
+                       class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+
+                    <button class="btn btn-success px-4">
+
+                        <i class="bi bi-check-circle me-1"></i>
+                        Save Review
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.card{
+    border-radius:14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover{
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.form-control{
+    border-radius:8px;
+}
+
+.btn{
+    border-radius:8px;
+}
+
+</style>

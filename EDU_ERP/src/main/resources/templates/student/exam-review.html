@@ -1,0 +1,233 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+                    🎉 Exam Completed
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Congratulations! Here is your performance summary.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SCORE CARD ================= -->
+
+    <div class="card dashboard-card shadow-lg border-0 mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="row align-items-center">
+
+                <!-- Left -->
+
+                <div class="col-lg-8">
+
+                    <h3 class="fw-bold mb-3"
+                        th:text="${attempt.exam.title}">
+                    </h3>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    📝
+                                </div>
+
+                                <div class="text-muted small">
+                                    Score
+                                </div>
+
+                                <h2 class="fw-bold text-success"
+                                    th:text="${attempt.score}">
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    🎯
+                                </div>
+
+                                <div class="text-muted small">
+                                    Total Marks
+                                </div>
+
+                                <h2 class="fw-bold text-primary"
+                                    th:text="${attempt.exam.totalMarks}">
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="stat-tile">
+
+                                <div class="stat-icon">
+                                    📊
+                                </div>
+
+                                <div class="text-muted small">
+                                    Percentage
+                                </div>
+
+                                <h2 class="fw-bold text-warning"
+                                    th:text="${(attempt.score * 100) / attempt.exam.totalMarks + '%'}">
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Right -->
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="mb-3">
+
+                        <div class="display-1 fw-bold text-success"
+                             th:if="${(attempt.score * 100) / attempt.exam.totalMarks >= 40}">
+                            ✔
+                        </div>
+
+                        <div class="display-1 fw-bold text-danger"
+                             th:if="${(attempt.score * 100) / attempt.exam.totalMarks < 40}">
+                            ✖
+                        </div>
+
+                    </div>
+
+                    <span class="badge fs-5 px-4 py-3"
+
+                          th:classappend="${(attempt.score * 100) / attempt.exam.totalMarks >= 40}
+                          ? ' bg-success'
+                          : ' bg-danger'">
+
+                        <span th:text="${(attempt.score * 100) / attempt.exam.totalMarks >= 40
+                                ? 'PASS'
+                                : 'FAIL'}">
+                        </span>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= DETAILS ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">
+                Submission Details
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="info-label">
+                        Submitted On
+                    </div>
+
+                    <div class="info-value"
+                         th:text="${attempt.submittedAt}">
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="info-label">
+                        Exam Status
+                    </div>
+
+                    <div class="info-value text-success fw-semibold">
+                        Completed Successfully
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= ACTIONS ================= -->
+
+    <div class="card dashboard-card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-4">
+                Quick Actions
+            </h5>
+
+            <div class="d-flex flex-wrap gap-3">
+
+                <a href="/student/exams/history"
+                   class="btn btn-outline-primary">
+
+                    <i class="bi bi-clock-history"></i>
+
+                    Exam History
+
+                </a>
+
+                <a th:href="@{/student/exams/review/{id}(id=${attempt.exam.id})}"
+                   class="btn btn-warning text-white">
+
+                    <i class="bi bi-eye-fill"></i>
+
+                    Review Answers
+
+                </a>
+
+                <a th:href="@{/student/exams/result/{id}/pdf(id=${attempt.exam.id})}"
+                   class="btn btn-success">
+
+                    <i class="bi bi-download"></i>
+
+                    Download Scorecard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

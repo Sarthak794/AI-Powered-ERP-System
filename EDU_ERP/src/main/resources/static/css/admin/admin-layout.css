@@ -1,0 +1,99 @@
+/* ===========================
+   ADMIN LAYOUT
+=========================== */
+
+html,
+body{
+    height:100%;
+    margin:0;
+    padding:0;
+    background:#f8fafc;
+    font-family:Inter,Segoe UI,Roboto,sans-serif;
+}
+
+/* Wrapper */
+
+.admin-wrapper{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Header */
+
+.admin-header-wrapper{
+    position:sticky;
+    top:0;
+    z-index:1050;
+    background:#fff;
+    box-shadow:0 1px 12px rgba(15,23,42,.08);
+}
+
+/* Body */
+
+.admin-container{
+    display:flex;
+    flex:1;
+    min-height:0;
+}
+
+/* Sidebar */
+
+.admin-sidebar-wrapper{
+    width:260px;
+    flex-shrink:0;
+    background:#0f172a;
+}
+
+/* Main */
+
+.admin-main{
+    flex:1;
+    overflow-y:auto;
+    background:#f8fafc;
+    padding:30px;
+}
+
+/* Page */
+
+.admin-page{
+    max-width:1600px;
+    margin:auto;
+}
+
+/* Scrollbar */
+
+.admin-main::-webkit-scrollbar{
+    width:8px;
+}
+
+.admin-main::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+/* Responsive */
+
+@media (max-width:992px){
+
+    .admin-sidebar-wrapper{
+        width:80px;
+    }
+
+    .admin-main{
+        padding:20px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .admin-container{
+        flex-direction:column;
+    }
+
+    .admin-sidebar-wrapper{
+        width:100%;
+    }
+
+}

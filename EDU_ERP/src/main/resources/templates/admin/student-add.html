@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:replace="~{fragments/header :: body}"></div>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/sidebar :: body}"></div>
+
+    <div class="p-4 w-100">
+
+        <h3 class="mb-4">Add Student</h3>
+
+        <form th:action="@{/admin/students/save}"
+              th:object="${studentDto}"
+              method="post"
+              class="row g-3">
+
+            <!-- USER INFO -->
+            <div class="col-md-6">
+                <label class="form-label">Full Name</label>
+                <input type="text"
+                       th:field="*{fullName}"
+                       class="form-control"
+                       required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email"
+                       th:field="*{email}"
+                       class="form-control"
+                       required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       th:field="*{password}"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- STUDENT INFO -->
+            <div class="col-md-6">
+                <label class="form-label">Center</label>
+                <select th:field="*{centerId}" class="form-select" required>
+                    <option value="">Select Center</option>
+                    <option th:each="c : ${centers}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Batch</label>
+                <select th:field="*{batchId}" class="form-select" required>
+                    <option value="">Select Batch</option>
+                    <option th:each="b : ${batches}"
+                            th:value="${b.id}"
+                            th:text="${b.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Qualification</label>
+                <select th:field="*{qualificationId}" class="form-select" required>
+                    <option value="">Select Qualification</option>
+                    <option th:each="q : ${qualifications}"
+                            th:value="${q.id}"
+                            th:text="${q.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Specialization</label>
+                <select th:field="*{specializationId}" class="form-select" required>
+                    <option value="">Select Specialization</option>
+                    <option th:each="s : ${specializations}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary">
+                    Save Student
+                </button>
+                <a th:href="@{/admin/students}"
+                   class="btn btn-secondary ms-2">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

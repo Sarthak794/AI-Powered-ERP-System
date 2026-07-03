@@ -1,0 +1,68 @@
+<div class="container-fluid">
+
+    <h3 class="mb-4">
+        Selected Students
+    </h3>
+
+ 
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Drive</th>
+                    <th>Status</th>
+                    <th>Resume</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="s : ${students}">
+
+                    <td th:text="${s.student.fullName}">
+                    </td>
+
+                    <td th:text="${s.placementDrive.company.companyName}">
+                    </td>
+
+                    <td th:text="${s.placementDrive.driveTitle}">
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success">
+                            SELECTED
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a th:href="@{/admin/resume/download/{id}(id=${s.student.id})}"
+                           class="btn btn-primary btn-sm">
+
+                            Resume
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

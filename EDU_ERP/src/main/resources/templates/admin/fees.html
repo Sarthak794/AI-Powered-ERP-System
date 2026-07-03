@@ -1,0 +1,195 @@
+<div class="container-fluid py-4 fee-allotment-page">
+
+    <!-- Header -->
+    <div class="dashboard-header mb-4">
+        <div>
+            <h2 class="page-title">
+                <i class="fas fa-money-check-alt me-2"></i>
+                Fee Allotment
+            </h2>
+            <p class="page-subtitle">
+                Allocate and manage student fee records
+            </p>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+
+    <div th:if="${success}"
+         class="alert alert-success alert-dismissible fade show">
+        <span th:text="${success}"></span>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div th:if="${error}"
+         class="alert alert-danger alert-dismissible fade show">
+        <span th:text="${error}"></span>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Fee Form -->
+
+	<div class="dashboard-card mb-4">
+
+	    <div class="card-header-custom">
+	        <h5>
+	            <i class="fas fa-wallet me-2"></i>
+	            Allot / Update Student Fee
+	        </h5>
+	    </div>
+
+	    <div class="card-body p-4">
+
+	        <form th:action="@{/admin/fees/allot}" method="post">
+
+	            <div class="row justify-content-center">
+
+	                <div class="col-lg-8">
+
+	                    <div class="mb-4">
+
+	                        <label class="form-label fw-semibold">
+	                            Student
+	                        </label>
+
+	                        <select name="studentId"
+	                                class="form-select custom-input"
+	                                required>
+
+	                            <option disabled selected>
+	                                Select Student
+	                            </option>
+
+	                            <option th:each="s : ${students}"
+	                                    th:value="${s.id}"
+	                                    th:text="${s.fullName}">
+	                            </option>
+
+	                        </select>
+
+	                    </div>
+
+	                    <div class="mb-4">
+
+	                        <label class="form-label fw-semibold">
+	                            Total Fee Amount
+	                        </label>
+
+	                        <div class="input-group">
+
+	                            <span class="input-group-text">
+	                                ₹
+	                            </span>
+
+	                            <input type="number"
+	                                   class="form-control custom-input"
+	                                   name="totalAmount"
+	                                   placeholder="Enter Fee Amount"
+	                                   required>
+
+	                        </div>
+
+	                    </div>
+
+	                    <div class="text-end">
+
+	                        <button class="btn btn-primary custom-btn px-5">
+
+	                            <i class="fas fa-save me-2"></i>
+
+	                            Save Fee Details
+
+	                        </button>
+
+	                    </div>
+
+	                </div>
+
+	            </div>
+
+	        </form>
+
+	    </div>
+
+	</div>
+
+    <!-- Fee Table -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header-custom">
+
+            <h5>
+                <i class="fas fa-list me-2"></i>
+                Fee Records
+            </h5>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle analytics-table mb-0">
+
+                <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Total Fee</th>
+                    <th>Paid</th>
+                    <th>Pending</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="f : ${fees}">
+
+                    <td class="fw-semibold"
+                        th:text="${f.student.fullName}">
+                    </td>
+
+                    <td>
+                        <span class="badge bg-primary text-white">
+                            ₹ <span th:text="${f.totalAmount}"></span>
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success text-white">
+                            ₹ <span th:text="${f.paidAmount}"></span>
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-danger text-white">
+                            ₹ <span th:text="${f.pendingAmount}"></span>
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(fees)}">
+
+                    <td colspan="4"
+                        class="text-center text-muted py-5">
+
+                        <i class="fas fa-folder-open fa-2x mb-3"></i>
+
+                        <br>
+
+                        No Fee Records Available
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,1951 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= ERP HEADER ================= -->
+
+    <div class="erp-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="trainer-avatar">
+                        <i class="bi bi-person-workspace"></i>
+                    </div>
+
+                    <div>
+
+                        <h1 class="fw-bold mb-1">
+                            Welcome Back, Trainer 👋
+                        </h1>
+
+                        <p class="text-muted mb-0">
+                            Manage your batches, students and learning activities from one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <div class="dashboard-date">
+
+                    <i class="bi bi-calendar3 me-2"></i>
+
+                    <span th:text="${#dates.format(#dates.createNow(),'dd MMM yyyy')}">
+                        26 Jun 2026
+                    </span>
+
+                </div>
+
+
+                <span class="badge erp-badge mt-2">
+
+                    Trainer Portal
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= KPI SECTION ================= -->
+
+    <div class="row g-4 mb-5">
+
+
+        <!-- TOTAL BATCHES -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi blue">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-collection-fill"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Total Batches
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${totalBatches}">
+                    0
+                </div>
+
+
+                <div class="kpi-footer">
+                    Assigned batches
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STUDENTS -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi purple">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-people-fill"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Students
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${totalStudents}">
+                    0
+                </div>
+
+
+                <div class="kpi-footer">
+                    Active learners
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi green">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-calendar-check-fill"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Attendance
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${avgAttendance != null ? #numbers.formatDecimal(avgAttendance,1,2)+'%' : '0%'}">
+                    0%
+                </div>
+
+
+                <div class="kpi-footer">
+                    Overall average
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- ASSIGNMENTS -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi orange">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-journal-text"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Assignments
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${totalAssignments}">
+                    0
+                </div>
+
+
+                <div class="kpi-footer">
+                    Created tasks
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- SUBMISSIONS -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi cyan">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Submissions
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${totalSubmissions}">
+                    0
+                </div>
+
+
+                <div class="kpi-footer">
+                    Student uploads
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- REVIEWS -->
+
+        <div class="col-xl-2 col-md-4 col-sm-6">
+
+            <div class="erp-kpi red">
+
+
+                <div class="kpi-icon">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                </div>
+
+
+                <div class="kpi-title">
+                    Pending Reviews
+                </div>
+
+
+                <div class="kpi-value"
+                     th:text="${pendingReviews}">
+                    0
+                </div>
+
+
+                <div class="kpi-footer">
+                    Need attention
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+	<!-- ================= QUICK ACTIONS + TASKS ================= -->
+
+	<div class="row g-4 mb-5">
+
+
+	    <!-- QUICK ACTIONS -->
+
+	    <div class="col-xl-8">
+
+
+	        <div class="erp-panel">
+
+
+	            <div class="erp-panel-header">
+
+	                <div>
+	                    <h5 class="mb-1 fw-bold">
+	                        Quick Actions
+	                    </h5>
+
+	                    <p class="text-muted small mb-0">
+	                        Frequently used trainer operations
+	                    </p>
+	                </div>
+
+	            </div>
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <div class="row g-3">
+
+
+
+	                    <!-- Attendance -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/attendance}"
+	                           class="action-tile blue-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-calendar-check"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    Attendance
+	                                </h6>
+
+	                                <span>
+	                                    Mark daily attendance
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+
+	                    <!-- Students -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/students}"
+	                           class="action-tile purple-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-mortarboard-fill"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    Students
+	                                </h6>
+
+	                                <span>
+	                                    Manage learners
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+
+
+	                    <!-- Assignments -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/assignments}"
+	                           class="action-tile green-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-file-earmark-text-fill"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    Assignments
+	                                </h6>
+
+	                                <span>
+	                                    Review submissions
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+
+
+	                    <!-- Batches -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/batches}"
+	                           class="action-tile orange-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-collection-fill"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    My Batches
+	                                </h6>
+
+	                                <span>
+	                                    View batch details
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+
+
+	                    <!-- Performance -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/results}"
+	                           class="action-tile cyan-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-graph-up-arrow"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    Performance
+	                                </h6>
+
+	                                <span>
+	                                    Student progress
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+
+
+	                    <!-- Profile -->
+
+	                    <div class="col-md-4">
+
+	                        <a th:href="@{/trainer/profile}"
+	                           class="action-tile dark-action">
+
+
+	                            <div class="action-icon">
+
+	                                <i class="bi bi-person-circle"></i>
+
+	                            </div>
+
+
+	                            <div>
+
+	                                <h6>
+	                                    Profile
+	                                </h6>
+
+	                                <span>
+	                                    Account settings
+	                                </span>
+
+	                            </div>
+
+
+	                        </a>
+
+	                    </div>
+
+
+
+	                </div>
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+
+
+	    <!-- TODAY TASKS -->
+
+	    <div class="col-xl-4">
+
+
+	        <div class="erp-panel h-100">
+
+
+	            <div class="erp-panel-header">
+
+	                <h5 class="fw-bold mb-0">
+	                    Today's Tasks
+	                </h5>
+
+	            </div>
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <div class="task-item">
+
+
+	                    <div class="task-status bg-primary">
+
+	                    </div>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Attendance Update
+	                        </h6>
+
+	                        <small>
+	                            Complete today's attendance
+	                        </small>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <div class="task-item">
+
+
+	                    <div class="task-status bg-warning">
+
+	                    </div>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Assignment Review
+	                        </h6>
+
+	                        <small>
+	                            Check pending submissions
+	                        </small>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <div class="task-item">
+
+
+	                    <div class="task-status bg-success">
+
+	                    </div>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Student Feedback
+	                        </h6>
+
+	                        <small>
+	                            Update learner progress
+	                        </small>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <div class="task-item">
+
+
+	                    <div class="task-status bg-danger">
+
+	                    </div>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Performance Report
+	                        </h6>
+
+	                        <small>
+	                            Weekly report pending
+	                        </small>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+	</div>
+	<!-- ================= PERFORMANCE + ACTIVITY ================= -->
+
+	<div class="row g-4 mb-5">
+
+
+	    <!-- PERFORMANCE OVERVIEW -->
+
+	    <div class="col-xl-7">
+
+
+	        <div class="erp-panel">
+
+
+	            <div class="erp-panel-header">
+
+
+	                <div>
+
+	                    <h5 class="fw-bold mb-1">
+	                        Performance Overview
+	                    </h5>
+
+	                    <p class="text-muted small mb-0">
+	                        Current training performance summary
+	                    </p>
+
+	                </div>
+
+
+	            </div>
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <!-- Attendance Progress -->
+
+	                <div class="progress-item">
+
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+	                        <span>
+	                            Attendance Performance
+	                        </span>
+
+	                        <strong
+	                            th:text="${avgAttendance != null ? #numbers.formatDecimal(avgAttendance,1,0)+'%' : '0%'}">
+	                            0%
+	                        </strong>
+
+	                    </div>
+
+
+	                    <div class="progress">
+
+	                        <div class="progress-bar bg-success"
+	                             role="progressbar"
+	                             th:style="'width:' + (${avgAttendance != null ? avgAttendance : 0}) + '%'">
+
+	                        </div>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <!-- Assignment Progress -->
+
+	                <div class="progress-item">
+
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+
+	                        <span>
+	                            Assignment Completion
+	                        </span>
+
+
+	                        <strong>
+	                            85%
+	                        </strong>
+
+
+	                    </div>
+
+
+
+	                    <div class="progress">
+
+	                        <div class="progress-bar bg-primary"
+	                             style="width:85%">
+
+	                        </div>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <!-- Student Engagement -->
+
+	                <div class="progress-item">
+
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+
+	                        <span>
+	                            Student Engagement
+	                        </span>
+
+
+	                        <strong>
+	                            78%
+	                        </strong>
+
+
+	                    </div>
+
+
+
+	                    <div class="progress">
+
+	                        <div class="progress-bar bg-warning"
+	                             style="width:78%">
+
+	                        </div>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <!-- Reviews -->
+
+	                <div class="progress-item">
+
+
+	                    <div class="d-flex justify-content-between mb-2">
+
+
+	                        <span>
+	                            Reviews Completed
+	                        </span>
+
+
+	                        <strong>
+	                            92%
+	                        </strong>
+
+
+	                    </div>
+
+
+
+	                    <div class="progress">
+
+	                        <div class="progress-bar bg-info"
+	                             style="width:92%">
+
+	                        </div>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+
+
+
+	    <!-- TRAINER INSIGHTS -->
+
+	    <div class="col-xl-5">
+
+
+	        <div class="erp-panel h-100">
+
+
+	            <div class="erp-panel-header">
+
+
+	                <h5 class="fw-bold mb-0">
+	                    Trainer Insights
+	                </h5>
+
+
+	            </div>
+
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <div class="insight-card">
+
+
+	                    <i class="bi bi-lightning-charge-fill text-warning"></i>
+
+
+	                    <div>
+
+	                        <h6>
+	                            High Engagement
+	                        </h6>
+
+	                        <p>
+	                            Your students are actively participating.
+	                        </p>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <div class="insight-card">
+
+
+	                    <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Pending Reviews
+	                        </h6>
+
+	                        <p>
+	                            Some assignments require attention.
+	                        </p>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+
+
+	                <div class="insight-card">
+
+
+	                    <i class="bi bi-award-fill text-success"></i>
+
+
+	                    <div>
+
+	                        <h6>
+	                            Batch Performance
+	                        </h6>
+
+	                        <p>
+	                            Overall batch performance is improving.
+	                        </p>
+
+	                    </div>
+
+
+	                </div>
+
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+	</div>
+
+
+
+
+
+
+
+	<!-- ================= RECENT ACTIVITY ================= -->
+
+
+	<div class="row g-4 mb-5">
+
+
+	    <div class="col-xl-8">
+
+
+	        <div class="erp-panel">
+
+
+	            <div class="erp-panel-header">
+
+
+	                <h5 class="fw-bold mb-0">
+	                    Recent Activity
+	                </h5>
+
+
+	            </div>
+
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <div class="timeline">
+
+
+	                    <div class="timeline-item">
+
+
+	                        <div class="timeline-icon bg-success">
+
+	                            <i class="bi bi-check-circle"></i>
+
+	                        </div>
+
+
+	                        <div>
+
+	                            <h6>
+	                                Attendance Updated
+	                            </h6>
+
+	                            <p>
+	                                Today's batch attendance marked successfully.
+	                            </p>
+
+	                        </div>
+
+
+	                    </div>
+
+
+
+
+
+	                    <div class="timeline-item">
+
+
+	                        <div class="timeline-icon bg-primary">
+
+	                            <i class="bi bi-upload"></i>
+
+	                        </div>
+
+
+	                        <div>
+
+	                            <h6>
+	                                New Submission Received
+	                            </h6>
+
+	                            <p>
+	                                Students uploaded assignment responses.
+	                            </p>
+
+	                        </div>
+
+
+	                    </div>
+
+
+
+
+
+	                    <div class="timeline-item">
+
+
+	                        <div class="timeline-icon bg-warning">
+
+	                            <i class="bi bi-person-plus"></i>
+
+	                        </div>
+
+
+	                        <div>
+
+	                            <h6>
+	                                New Student Added
+	                            </h6>
+
+	                            <p>
+	                                A new learner joined your batch.
+	                            </p>
+
+	                        </div>
+
+
+	                    </div>
+
+
+
+	                </div>
+
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+
+
+	    <!-- NOTIFICATIONS -->
+
+	    <div class="col-xl-4">
+
+
+	        <div class="erp-panel h-100">
+
+
+	            <div class="erp-panel-header">
+
+
+	                <h5 class="fw-bold mb-0">
+	                    Notifications
+	                </h5>
+
+
+	            </div>
+
+
+
+	            <div class="erp-panel-body">
+
+
+	                <div class="notification-item">
+
+	                    <i class="bi bi-bell-fill text-primary"></i>
+
+	                    <span>
+	                        Admin shared a new announcement.
+	                    </span>
+
+	                </div>
+
+
+
+	                <div class="notification-item">
+
+	                    <i class="bi bi-calendar-event text-success"></i>
+
+	                    <span>
+	                        New session scheduled tomorrow.
+	                    </span>
+
+	                </div>
+
+
+
+
+	                <div class="notification-item">
+
+	                    <i class="bi bi-file-earmark-text text-warning"></i>
+
+	                    <span>
+	                        Assignment deadline approaching.
+	                    </span>
+
+	                </div>
+
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+	</div>
+	    <!-- ================= MY BATCHES ================= -->
+
+
+	    <div class="erp-panel mb-4">
+
+
+	        <div class="erp-panel-header">
+
+
+	            <div>
+
+	                <h5 class="fw-bold mb-1">
+	                    My Assigned Batches
+	                </h5>
+
+
+	                <p class="text-muted small mb-0">
+	                    Manage and monitor your active training batches
+	                </p>
+
+	            </div>
+
+
+	        </div>
+
+
+
+
+	        <div class="erp-panel-body p-0">
+
+
+	            <div class="table-responsive">
+
+
+	                <table class="table erp-table align-middle mb-0">
+
+
+	                    <thead>
+
+
+	                    <tr>
+
+	                        <th>
+	                            Batch
+	                        </th>
+
+	                        <th>
+	                            Center
+	                        </th>
+
+	                        <th>
+	                            Qualification
+	                        </th>
+
+	                        <th>
+	                            Trainer
+	                        </th>
+
+	                        <th>
+	                            Status
+	                        </th>
+
+	                        <th>
+	                            Actions
+	                        </th>
+
+	                    </tr>
+
+
+	                    </thead>
+
+
+
+	                    <tbody>
+
+
+
+	                    <tr th:each="batch : ${batches}">
+
+
+	                        <td>
+
+	                            <div class="fw-semibold"
+	                                 th:text="${batch.name}">
+	                                Java Full Stack
+	                            </div>
+
+
+	                            <small class="text-muted">
+	                                Active Training
+	                            </small>
+
+
+	                        </td>
+
+
+
+
+	                        <td th:text="${batch.center.name}">
+	                            Pune Center
+	                        </td>
+
+
+
+
+	                        <td th:text="${batch.qualification.name}">
+	                            Qualification
+	                        </td>
+
+
+
+
+	                        <td th:text="${batch.trainer.fullName}">
+	                            Trainer
+	                        </td>
+
+
+
+
+	                        <td>
+
+	                            <span class="status-active">
+
+	                                Active
+
+	                            </span>
+
+	                        </td>
+
+
+
+
+	                        <td>
+
+
+	                            <div class="d-flex gap-2 flex-wrap">
+
+
+	                                <a class="btn btn-sm btn-primary"
+	                                   th:href="@{/trainer/batches/{id}/students(id=${batch.id})}">
+
+
+	                                    <i class="bi bi-people me-1"></i>
+
+	                                    Students
+
+
+	                                </a>
+
+
+
+	                                <a class="btn btn-sm btn-success"
+	                                   th:href="@{/trainer/attendance/batch/{id}(id=${batch.id})}">
+
+
+	                                    <i class="bi bi-calendar-check me-1"></i>
+
+	                                    Attendance
+
+
+	                                </a>
+
+
+
+
+	                                <a class="btn btn-sm btn-warning text-white"
+	                                   th:href="@{/trainer/batches/{id}/performance(id=${batch.id})}">
+
+
+	                                    <i class="bi bi-bar-chart me-1"></i>
+
+	                                    Report
+
+
+	                                </a>
+
+
+
+	                            </div>
+
+
+	                        </td>
+
+
+
+	                    </tr>
+
+
+
+
+
+	                    <tr th:if="${#lists.isEmpty(batches)}">
+
+
+	                        <td colspan="6"
+	                            class="text-center py-5 text-muted">
+
+
+	                            <i class="bi bi-inbox display-5 d-block mb-3"></i>
+
+
+	                            No batches assigned yet.
+
+
+	                        </td>
+
+
+	                    </tr>
+
+
+
+	                    </tbody>
+
+
+	                </table>
+
+
+	            </div>
+
+
+	        </div>
+
+
+	    </div>
+
+
+
+
+
+	</div>
+
+
+
+
+	<!-- ================= ERP DASHBOARD STYLE ================= -->
+
+	<style>
+
+
+	/* HEADER */
+
+	.erp-header{
+
+	    background:linear-gradient(
+	        135deg,
+	        #ffffff,
+	        #f8fbff
+	    );
+
+	    padding:25px;
+
+	    border-radius:22px;
+
+	    border:1px solid #eef2f7;
+
+	}
+
+
+
+	.trainer-avatar{
+
+	    width:65px;
+
+	    height:65px;
+
+	    border-radius:20px;
+
+	    display:flex;
+
+	    align-items:center;
+
+	    justify-content:center;
+
+	    font-size:30px;
+
+	    color:white;
+
+	    background:
+	    linear-gradient(
+	        135deg,
+	        #2563eb,
+	        #7c3aed
+	    );
+
+	}
+
+
+
+	.dashboard-date{
+
+	    color:#64748b;
+
+	    font-weight:600;
+
+	}
+
+
+
+	.erp-badge{
+
+	    background:
+	    linear-gradient(
+	        135deg,
+	        #2563eb,
+	        #7c3aed
+	    );
+
+	    padding:10px 20px;
+
+	    border-radius:30px;
+
+	}
+
+
+
+
+
+	/* KPI CARDS */
+
+
+	.erp-kpi{
+
+	    color:white;
+
+	    border-radius:22px;
+
+	    padding:22px;
+
+	    position:relative;
+
+	    overflow:hidden;
+
+	    min-height:170px;
+
+	    transition:.3s;
+
+	}
+
+
+
+	.erp-kpi:hover{
+
+	    transform:translateY(-8px);
+
+	    box-shadow:
+	    0 20px 40px rgba(0,0,0,.15);
+
+	}
+
+
+
+	.erp-kpi::after{
+
+	    content:"";
+
+	    position:absolute;
+
+	    width:120px;
+
+	    height:120px;
+
+	    right:-40px;
+
+	    top:-40px;
+
+	    background:rgba(255,255,255,.15);
+
+	    border-radius:50%;
+
+	}
+
+
+
+	.blue{
+
+	background:
+	linear-gradient(135deg,#2563eb,#3b82f6);
+
+	}
+
+
+
+	.purple{
+
+	background:
+	linear-gradient(135deg,#7c3aed,#a855f7);
+
+	}
+
+
+
+	.green{
+
+	background:
+	linear-gradient(135deg,#059669,#10b981);
+
+	}
+
+
+
+	.orange{
+
+	background:
+	linear-gradient(135deg,#ea580c,#f97316);
+
+	}
+
+
+
+	.cyan{
+
+	background:
+	linear-gradient(135deg,#0891b2,#06b6d4);
+
+	}
+
+
+
+	.red{
+
+	background:
+	linear-gradient(135deg,#dc2626,#ef4444);
+
+	}
+
+
+
+	.kpi-icon{
+
+	font-size:32px;
+
+	}
+
+
+
+	.kpi-title{
+
+	margin-top:15px;
+
+	opacity:.85;
+
+	font-size:13px;
+
+	}
+
+
+
+	.kpi-value{
+
+	font-size:36px;
+
+	font-weight:800;
+
+	}
+
+
+
+	.kpi-footer{
+
+	font-size:12px;
+
+	opacity:.8;
+
+	}
+
+
+
+
+
+	/* PANELS */
+
+
+	.erp-panel{
+
+	background:white;
+
+	border-radius:22px;
+
+	border:1px solid #edf1f7;
+
+	box-shadow:
+	0 8px 25px rgba(0,0,0,.05);
+
+	overflow:hidden;
+
+	}
+
+
+
+	.erp-panel-header{
+
+	padding:20px;
+
+	border-bottom:1px solid #edf1f7;
+
+	}
+
+
+
+	.erp-panel-body{
+
+	padding:20px;
+
+	}
+
+
+
+
+
+	/* ACTIONS */
+
+
+	.action-tile{
+
+	display:flex;
+
+	align-items:center;
+
+	gap:15px;
+
+	padding:18px;
+
+	border-radius:18px;
+
+	text-decoration:none;
+
+	color:#1e293b;
+
+	background:#f8fafc;
+
+	transition:.25s;
+
+	}
+
+
+
+	.action-tile:hover{
+
+	transform:translateY(-5px);
+
+	box-shadow:
+	0 12px 25px rgba(0,0,0,.08);
+
+	}
+
+
+
+	.action-icon{
+
+	font-size:28px;
+
+	}
+
+
+
+	.action-tile span{
+
+	font-size:12px;
+
+	color:#64748b;
+
+	}
+
+
+
+	.blue-action .action-icon{
+
+	color:#2563eb;
+
+	}
+
+
+	.purple-action .action-icon{
+
+	color:#7c3aed;
+
+	}
+
+
+	.green-action .action-icon{
+
+	color:#059669;
+
+	}
+
+
+	.orange-action .action-icon{
+
+	color:#ea580c;
+
+	}
+
+
+
+
+
+	/* TASKS */
+
+
+	.task-item{
+
+	display:flex;
+
+	gap:15px;
+
+	padding:15px 0;
+
+	border-bottom:1px solid #edf1f7;
+
+	}
+
+
+
+	.task-status{
+
+	width:10px;
+
+	height:10px;
+
+	border-radius:50%;
+
+	margin-top:8px;
+
+	}
+
+
+
+
+	/* PROGRESS */
+
+
+	.progress-item{
+
+	margin-bottom:25px;
+
+	}
+
+
+
+	.progress{
+
+	height:10px;
+
+	border-radius:20px;
+
+	}
+
+
+
+
+
+	/* TIMELINE */
+
+
+	.timeline-item{
+
+	display:flex;
+
+	gap:15px;
+
+	margin-bottom:20px;
+
+	}
+
+
+
+	.timeline-icon{
+
+	width:38px;
+
+	height:38px;
+
+	border-radius:50%;
+
+	display:flex;
+
+	align-items:center;
+
+	justify-content:center;
+
+	color:white;
+
+	}
+
+
+
+
+	/* TABLE */
+
+
+	.erp-table thead th{
+
+	background:#f8fafc;
+
+	color:#64748b;
+
+	font-size:13px;
+
+	}
+
+
+
+	.erp-table tbody tr:hover{
+
+	background:#f8fbff;
+
+	}
+
+
+
+	.status-active{
+
+	background:#dcfce7;
+
+	color:#15803d;
+
+	padding:6px 14px;
+
+	border-radius:20px;
+
+	font-size:12px;
+
+	font-weight:600;
+
+	}
+
+
+
+
+
+	.notification-item{
+
+	display:flex;
+
+	gap:12px;
+
+	padding:14px;
+
+	background:#f8fafc;
+
+	border-radius:14px;
+
+	margin-bottom:12px;
+
+	}
+
+
+
+	</style>

@@ -1,0 +1,767 @@
+/* =========================================================
+                STUDENT PROFILE V2
+========================================================= */
+
+/* ==========================
+      PROFILE BANNER
+========================== */
+
+.profile-banner-v2{
+
+    position:relative;
+    overflow:hidden;
+
+    background:linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5,
+            #7c3aed);
+
+    border-radius:30px;
+
+    padding:45px;
+
+    color:white;
+
+    box-shadow:
+            0 20px 50px rgba(37,99,235,.18);
+
+}
+
+/* Floating Circles */
+
+.profile-banner-v2::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    right:-120px;
+    top:-120px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.profile-banner-v2::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    left:-80px;
+    bottom:-100px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+}
+
+/* ==========================
+      PROFILE IMAGE
+========================== */
+
+.profile-avatar-v2{
+
+    width:170px;
+
+    height:170px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:6px solid rgba(255,255,255,.95);
+
+    box-shadow:
+            0 15px 35px rgba(0,0,0,.25);
+
+    transition:.4s;
+
+    background:white;
+
+}
+
+.profile-avatar-v2:hover{
+
+    transform:scale(1.06);
+
+}
+
+/* ==========================
+      PROFILE CHIPS
+========================== */
+
+.profile-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+.profile-chip:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,.18);
+
+}
+
+.profile-chip i{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.18);
+
+    font-size:18px;
+
+}
+
+/* ==========================
+      GLASS CARD
+========================== */
+
+.glass-card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(16px);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+.glass-card .progress{
+
+    height:10px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.25);
+
+}
+
+.glass-card .progress-bar{
+
+    border-radius:999px;
+
+}
+
+/* ==========================
+      BADGE
+========================== */
+
+.badge{
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+      BUTTON
+========================== */
+
+.profile-banner-v2 .btn{
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.profile-banner-v2 .btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+            0 12px 25px rgba(0,0,0,.18);
+
+}
+
+/* ==========================
+      ANIMATION
+========================== */
+
+@keyframes profileFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.profile-banner-v2{
+
+    animation:profileFade .8s ease;
+
+}
+
+/* ==========================
+      MOBILE
+========================== */
+
+@media(max-width:992px){
+
+.profile-banner-v2{
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.profile-avatar-v2{
+
+    width:140px;
+
+    height:140px;
+
+    margin-bottom:20px;
+
+}
+
+.glass-card{
+
+    margin-top:25px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.profile-chip{
+
+    padding:12px;
+
+}
+
+.profile-chip i{
+
+    width:36px;
+
+    height:36px;
+
+}
+
+.profile-banner-v2{
+
+    border-radius:22px;
+
+}
+
+}
+/* =========================================================
+                    PROFILE KPI CARDS
+========================================================= */
+
+.profile-stat-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.06);
+
+    transition:.35s;
+
+    height:100%;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.profile-stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.profile-stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:110px;
+
+    height:110px;
+
+    right:-35px;
+
+    bottom:-35px;
+
+    border-radius:50%;
+
+    opacity:.08;
+
+}
+
+.stat-primary::after{
+
+    background:#2563eb;
+
+}
+
+.stat-success::after{
+
+    background:#10b981;
+
+}
+
+.stat-danger::after{
+
+    background:#ef4444;
+
+}
+
+.stat-warning::after{
+
+    background:#f59e0b;
+
+}
+
+.profile-stat-card .stat-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    color:white;
+
+}
+
+.stat-primary .stat-icon{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+.stat-success .stat-icon{
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+}
+
+.stat-danger .stat-icon{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+.stat-warning .stat-icon{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+
+}
+
+.stat-content small{
+
+    color:#94a3b8;
+
+    font-weight:600;
+
+}
+
+.stat-content h2{
+
+    margin:6px 0;
+
+    font-weight:700;
+
+}
+
+.stat-content h5{
+
+    margin:6px 0;
+
+}
+/* =========================================================
+                SECTION HEADER
+========================================================= */
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 25px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+/* =========================================================
+                    INFO CARD
+========================================================= */
+
+.info-card-v2{
+
+    border:none;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
+
+}
+
+/* =========================================================
+                    INFO BOX
+========================================================= */
+
+.info-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#f8fafc;
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.info-box:hover{
+
+    background:#eef4ff;
+
+    transform:translateY(-4px);
+
+}
+
+.info-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+.info-box small{
+
+    color:#94a3b8;
+
+    font-weight:600;
+
+}
+
+.info-box h6{
+
+    margin-top:5px;
+
+    margin-bottom:0;
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+/* =====================================================
+                ACADEMIC SECTION
+===================================================== */
+
+.academic-box{
+
+    background:#f8fafc;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.academic-box:hover{
+
+    transform:translateY(-4px);
+
+    background:#eef4ff;
+
+}
+
+.academic-box small{
+
+    color:#94a3b8;
+
+    font-weight:600;
+
+}
+
+.academic-box h6{
+
+    margin-top:8px;
+
+    margin-bottom:0;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+                TRAINER CARD
+===================================================== */
+
+.trainer-card{
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+    color:white;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    height:100%;
+
+}
+
+.trainer-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:40px;
+
+}
+
+.trainer-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    text-align:left;
+
+}
+
+.trainer-item i{
+
+    font-size:18px;
+
+}
+
+.trainer-card hr{
+
+    border-color:rgba(255,255,255,.2);
+
+}
+/* =====================================================
+                RESUME CARD
+===================================================== */
+
+.resume-card-v2{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
+
+    height:100%;
+
+}
+
+.resume-preview{
+
+    width:120px;
+
+    height:120px;
+
+    margin:auto;
+
+    border-radius:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:60px;
+
+}
+
+/* =====================================================
+                PLACEMENT CARD
+===================================================== */
+
+.placement-card-v2{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:white;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    height:100%;
+
+}
+
+.placement-score{
+
+    width:170px;
+
+    height:170px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.placement-score h1{
+
+    font-size:3rem;
+
+    font-weight:700;
+
+}
+
+.placement-card-v2 .progress{
+
+    height:12px;
+
+    background:rgba(255,255,255,.2);
+
+}
+
+.placement-card-v2 .progress-bar{
+
+    border-radius:999px;
+
+}

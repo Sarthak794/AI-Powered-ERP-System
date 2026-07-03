@@ -1,0 +1,130 @@
+/* =====================================
+        EXAM ANALYTICS
+======================================*/
+
+.exam-analytics-page{
+    animation:fadeIn .4s ease;
+}
+
+.page-title{
+    font-size:30px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+.page-subtitle{
+    color:#64748b;
+    margin-top:6px;
+}
+
+.dashboard-card{
+
+    background:rgba(255,255,255,.95);
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    overflow:hidden;
+    border:none;
+
+}
+
+.card-header-custom{
+
+    padding:18px 24px;
+    border-bottom:1px solid #edf2f7;
+    background:linear-gradient(90deg,#2563eb,#1d4ed8);
+    color:#fff;
+
+}
+
+.card-header-custom h5{
+
+    margin:0;
+    font-weight:600;
+
+}
+
+/* TABLE */
+
+.analytics-table thead{
+
+    background:#f8fafc;
+
+}
+
+.analytics-table th{
+
+    color:#334155;
+    font-weight:700;
+    border:none;
+    padding:16px;
+
+}
+
+.analytics-table td{
+
+    padding:16px;
+    border-top:1px solid #eef2f7;
+    vertical-align:middle;
+
+}
+
+.analytics-table tbody tr{
+
+    transition:.3s;
+
+}
+
+.analytics-table tbody tr:hover{
+
+    background:#f8fbff;
+    transform:scale(1.003);
+
+}
+
+/* BADGES */
+
+.badge{
+
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+
+}
+
+.bg-success{
+
+    background:#16a34a!important;
+
+}
+
+.bg-danger{
+
+    background:#ef4444!important;
+
+}
+
+/* Chart */
+
+#examChart{
+
+    width:100%!important;
+    height:100%!important;
+
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
+}

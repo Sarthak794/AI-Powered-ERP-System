@@ -1,0 +1,543 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+        <div>
+
+            <h2 class="fw-bold mb-1">
+                <i class="bi bi-calendar2-check me-2"></i>
+                Attendance Management
+            </h2>
+
+            <p class="text-muted mb-0">
+                Mark or update attendance for any previous date.
+            </p>
+
+        </div>
+
+        <span class="badge bg-primary fs-6 px-3 py-2">
+
+            Batch ID :
+            <span th:text="${batchId}"></span>
+
+        </span>
+
+    </div>
+
+    <form th:action="@{/trainer/attendance/mark}" method="post">
+
+        <input type="hidden"
+               name="batchId"
+               th:value="${batchId}">
+
+        <!-- ================= DATE & STATUS ================= -->
+
+        <div class="row mb-4">
+
+            <div class="col-lg-4">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body">
+
+                        <label class="form-label fw-semibold">
+
+                            Attendance Date
+
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                name="date"
+                                id="attendanceDate"
+                                th:value="${date}"
+                                th:max="${T(java.time.LocalDate).now()}">
+
+                        <small class="text-muted">
+
+                            Future dates are not allowed.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-8">
+
+                <div class="card shadow-sm border-0 h-100">
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <h6 class="text-muted">
+
+                                    Attendance Status
+
+                                </h6>
+
+                                <h5>
+
+                                    <span
+                                            th:if="${alreadyMarked}"
+                                            class="badge bg-success">
+
+                                        <i class="bi bi-check-circle-fill"></i>
+
+                                        Already Submitted
+
+                                    </span>
+
+                                    <span
+                                            th:unless="${alreadyMarked}"
+                                            class="badge bg-warning text-dark">
+
+                                        <i class="bi bi-exclamation-circle-fill"></i>
+
+                                        Not Submitted
+
+                                    </span>
+
+                                </h5>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h6 class="text-muted">
+
+                                    Present
+
+                                </h6>
+
+								<h3
+								id="presentCount"
+								class="text-success fw-bold"
+                                    th:text="${summary.present ?: 0}">
+
+                                    0
+
+                                </h3>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h6 class="text-muted">
+
+                                    Absent
+
+                                </h6>
+
+                                <h3
+								id="absentCount"
+								class="text-danger fw-bold"
+                                    th:text="${summary.absent ?: 0}">
+
+                                    0
+
+                                </h3>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= TOOLBAR ================= -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <div class="row g-3 align-items-center">
+
+                    <div class="col-md-5">
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="bi bi-search"></i>
+
+                            </span>
+
+                            <input
+                                    id="studentSearch"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Search student...">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <button
+                                type="button"
+                                id="selectAllBtn"
+                                class="btn btn-outline-success w-100">
+
+                            <i class="bi bi-check2-square"></i>
+
+                            Mark All Present
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-4 text-end">
+
+                        <button
+                                class="btn btn-primary px-4"
+                                id="submitBtn">
+
+                            <i class="bi bi-save me-1"></i>
+
+                            <span
+                                    th:text="${alreadyMarked}
+                                    ? 'Update Attendance'
+                                    : 'Save Attendance'">
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+		<!-- ================= STUDENT TABLE ================= -->
+
+		<div class="card shadow-sm border-0">
+
+		    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+
+		        <h5 class="mb-0 fw-bold">
+		            <i class="bi bi-people-fill me-2"></i>
+		            Student Attendance
+		        </h5>
+
+		        <span class="badge bg-info text-dark">
+
+		            Total Students :
+		            <span th:text="${#lists.size(students)}">0</span>
+
+		        </span>
+
+		    </div>
+
+		    <div class="card-body p-0">
+
+		        <div class="table-responsive">
+
+		            <table class="table table-hover align-middle mb-0">
+
+		                <thead class="table-light">
+
+		                <tr>
+
+		                    <th width="80">
+		                        Present
+		                    </th>
+
+		                    <th width="70">
+		                        #
+		                    </th>
+
+		                    <th>
+		                        Student Name
+		                    </th>
+
+		                    <th width="180">
+		                        Roll Number
+		                    </th>
+
+		                    <th width="120">
+		                        Status
+		                    </th>
+
+		                </tr>
+
+		                </thead>
+
+		                <tbody>
+
+		                <tr th:each="s, stat : ${students}">
+
+		                    <!-- Attendance Checkbox -->
+		                    <td>
+
+		                        <div class="form-check form-switch">
+
+		                            <input
+		                                    class="form-check-input attendanceCheck"
+		                                    type="checkbox"
+		                                    name="presentStudentIds"
+		                                    th:value="${s.id}"
+
+		                                    th:checked="${attendanceMap != null
+		                                    and attendanceMap.containsKey(s.id)
+		                                    and attendanceMap[s.id]}">
+
+		                        </div>
+
+		                    </td>
+
+		                    <!-- Serial Number -->
+		                    <td>
+
+		                        <span class="fw-semibold"
+		                              th:text="${stat.count}">
+		                            1
+		                        </span>
+
+		                    </td>
+
+		                    <!-- Student Name -->
+		                    <td>
+
+		                        <div class="d-flex align-items-center">
+
+		                            <div
+		                                    class="rounded-circle bg-primary text-white
+		                                           d-flex justify-content-center align-items-center me-3"
+
+		                                    style="width:40px;height:40px;">
+
+		                                <i class="bi bi-person-fill"></i>
+
+		                            </div>
+
+		                            <div>
+
+		                                <div class="fw-semibold"
+		                                     th:text="${s.fullName}">
+		                                </div>
+
+		                                <small class="text-muted">
+
+		                                    Student ID :
+		                                    <span th:text="${s.id}"></span>
+
+		                                </small>
+
+		                            </div>
+
+		                        </div>
+
+		                    </td>
+
+		                    <!-- Roll Number -->
+		                    <td>
+
+		                        <span class="badge bg-light text-dark border"
+		                              th:text="${s.rollNumber}">
+		                        </span>
+
+		                    </td>
+
+		                    <!-- Live Status -->
+		                    <td>
+
+		                        <span
+		                                class="badge attendanceStatus"
+
+		                                th:classappend="${attendanceMap != null
+		                                and attendanceMap.containsKey(s.id)
+		                                and attendanceMap[s.id]}
+		                                ? ' bg-success'
+		                                : ' bg-danger'">
+
+		                            <span
+		                                    th:text="${attendanceMap != null
+		                                    and attendanceMap.containsKey(s.id)
+		                                    and attendanceMap[s.id]}
+		                                    ? 'Present'
+		                                    : 'Absent'">
+		                            </span>
+
+		                        </span>
+
+		                    </td>
+
+		                </tr>
+
+		                </tbody>
+
+		            </table>
+
+		        </div>
+
+		    </div>
+
+		</div>
+		<script>
+
+		document.addEventListener("DOMContentLoaded", function () {
+
+		    const attendanceChecks = document.querySelectorAll(".attendanceCheck");
+		    const searchBox = document.getElementById("studentSearch");
+		    const selectAllBtn = document.getElementById("selectAllBtn");
+		    const submitBtn = document.getElementById("submitBtn");
+
+		    const totalCount = document.getElementById("totalCount");
+		    const presentCount = document.getElementById("presentCount");
+		    const absentCount = document.getElementById("absentCount");
+
+		    // ===============================
+		    // Update Counts + Status Badge
+		    // ===============================
+
+		    function updateCounts() {
+
+		        const total = attendanceChecks.length;
+		        let present = 0;
+
+		        attendanceChecks.forEach(check => {
+
+		            const badge = check.closest("tr")
+		                    .querySelector(".attendanceStatus");
+
+		            if (check.checked) {
+
+		                present++;
+
+		                badge.classList.remove("bg-danger");
+		                badge.classList.add("bg-success");
+		                badge.innerText = "Present";
+
+		            } else {
+
+		                badge.classList.remove("bg-success");
+		                badge.classList.add("bg-danger");
+		                badge.innerText = "Absent";
+
+		            }
+
+		        });
+
+		        totalCount.innerText = total;
+		        presentCount.innerText = present;
+		        absentCount.innerText = total - present;
+		    }
+
+		    // Initial Count
+		    updateCounts();
+
+		    // ===============================
+		    // Checkbox Change
+		    // ===============================
+
+		    attendanceChecks.forEach(check => {
+
+		        check.addEventListener("change", updateCounts);
+
+		    });
+
+		    // ===============================
+		    // Search Student
+		    // ===============================
+
+		    searchBox.addEventListener("keyup", function () {
+
+		        const keyword = this.value.toLowerCase();
+
+		        document.querySelectorAll("tbody tr").forEach(row => {
+
+		            row.style.display =
+		                row.innerText.toLowerCase().includes(keyword)
+		                    ? ""
+		                    : "none";
+
+		        });
+
+		    });
+
+		    // ===============================
+		    // Mark All / Unmark All
+		    // ===============================
+
+
+			let allSelected = false;
+
+			selectAllBtn.addEventListener("click", function (e) {
+
+			    e.preventDefault();
+
+			    allSelected = !allSelected;
+
+			    attendanceChecks.forEach(function (cb) {
+
+			        cb.checked = allSelected;
+
+			    });
+
+			    this.innerHTML = allSelected
+
+			        ? '<i class="bi bi-x-circle"></i> Unmark All'
+
+			        : '<i class="bi bi-check2-square"></i> Mark All Present';
+
+			    updateCounts();
+
+			});
+		    // ===============================
+		    // Warn before updating attendance
+		    // ===============================
+
+		    const alreadyMarked =
+		        document.body.innerHTML.includes("Already Submitted");
+
+		    submitBtn.closest("form").addEventListener("submit", function (e) {
+
+		        if (alreadyMarked) {
+
+		            if (!confirm("Attendance already exists for this date.\n\nDo you want to update it?")) {
+
+		                e.preventDefault();
+
+		                submitBtn.disabled = false;
+
+		                submitBtn.innerHTML =
+		                    '<i class="bi bi-save me-1"></i> Update Attendance';
+
+		            }
+
+		        }
+
+		    });
+
+		});
+		const attendanceDate = document.getElementById("attendanceDate");
+
+		attendanceDate.addEventListener("change", function () {
+
+		    const batchId =
+		        document.querySelector("input[name='batchId']").value;
+
+		    window.location.href =
+		        "/trainer/attendance/batch/"
+		        + batchId
+		        + "?date="
+		        + this.value;
+
+		});
+		</script>	

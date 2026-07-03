@@ -1,0 +1,404 @@
+<div class="container-fluid py-4">
+
+    <!-- ======================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ======================================== -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h2 class="fw-bold mb-2">
+
+                    <i class="bi bi-person-gear me-2"></i>
+
+                    Edit Profile
+
+                </h2>
+
+                <p class="text-muted mb-0">
+
+                    Keep your personal information updated for placements,
+                    academics and institute communication.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <span class="badge bg-primary fs-6 px-4 py-3">
+
+                    Student Profile
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- ======================================== -->
+        <!-- EDIT FORM -->
+        <!-- ======================================== -->
+
+        <div class="col-lg-8">
+
+            <div class="card dashboard-card">
+
+                <div class="card-header bg-white border-0 py-3">
+
+                    <h5 class="fw-bold mb-0">
+
+                        Personal Information
+
+                    </h5>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form th:action="@{/student/profile/update}"
+                          method="post"
+                          enctype="multipart/form-data">
+
+                        <div class="row g-4">
+
+                            <!-- Name -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Full Name
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control bg-light"
+                                       th:value="${student.fullName}"
+                                       readonly>
+
+                            </div>
+
+                            <!-- Roll -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Roll Number
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control bg-light"
+                                       th:value="${student.rollNumber}"
+                                       readonly>
+
+                            </div>
+
+                            <!-- Phone -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Phone Number
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="phone"
+                                       pattern="[0-9]{10}"
+                                       maxlength="10"
+                                       th:value="${student.phone}">
+
+                            </div>
+
+                            <!-- Email -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Email Address
+
+                                </label>
+
+                                <input type="email"
+                                       class="form-control bg-light"
+                                       th:value="${student.email}"
+                                       readonly>
+
+                            </div>
+
+                            <!-- DOB -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Date of Birth
+
+                                </label>
+
+                                <input type="date"
+                                       class="form-control"
+                                       name="dob"
+                                       th:value="${student.dob}">
+
+                            </div>
+
+                            <!-- Gender -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Gender
+
+                                </label>
+
+                                <select class="form-select"
+                                        name="gender">
+
+                                    <option value="Male"
+                                            th:selected="${student.gender=='Male'}">
+
+                                        Male
+
+                                    </option>
+
+                                    <option value="Female"
+                                            th:selected="${student.gender=='Female'}">
+
+                                        Female
+
+                                    </option>
+
+                                    <option value="Other"
+                                            th:selected="${student.gender=='Other'}">
+
+                                        Other
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Address -->
+
+                            <div class="col-12">
+
+                                <label class="form-label fw-semibold">
+
+                                    Address
+
+                                </label>
+
+                                <textarea class="form-control"
+                                          rows="4"
+                                          name="address"
+                                          th:text="${student.address}">
+                                </textarea>
+
+                            </div>
+
+                            <!-- Qualification -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Qualification
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control bg-light"
+                                       th:value="${student.qualification?.name}"
+                                       readonly>
+
+                            </div>
+
+                            <!-- Specialization -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Specialization
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control bg-light"
+                                       th:value="${student.specialization?.name}"
+                                       readonly>
+
+                            </div>
+
+                            <!-- Upload -->
+
+                            <div class="col-12">
+
+                                <label class="form-label fw-semibold">
+
+                                    Upload Profile Photo
+
+                                </label>
+
+                                <input type="file"
+                                       class="form-control"
+                                       name="photo"
+                                       accept="image/*">
+
+                                <small class="text-muted">
+
+                                    JPG, PNG files only.
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex gap-3">
+
+                            <button class="btn btn-primary px-5">
+
+                                <i class="bi bi-check-circle me-2"></i>
+
+                                Save Changes
+
+                            </button>
+
+                            <a th:href="@{/student/profile}"
+                               class="btn btn-outline-secondary px-4">
+
+                                Cancel
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ======================================== -->
+        <!-- PROFILE PREVIEW -->
+        <!-- ======================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="card dashboard-card sticky-top">
+
+                <div class="card-body text-center p-4">
+
+                    <img th:if="${student.profilePhoto != null}"
+                         th:src="@{'/uploads/profile/' + ${student.profilePhoto}}"
+                         class="rounded-circle border border-4 border-white shadow mb-3"
+                         style="width:150px;height:150px;object-fit:cover;">
+
+                    <img th:if="${student.profilePhoto == null}"
+                         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                         class="rounded-circle border border-4 border-white shadow mb-3"
+                         style="width:150px;height:150px;object-fit:cover;">
+
+                    <h4 class="fw-bold"
+                        th:text="${student.fullName}">
+                    </h4>
+
+                    <p class="text-muted mb-1"
+                       th:text="${student.rollNumber}">
+                    </p>
+
+                    <span class="badge bg-primary px-3 py-2">
+
+                        Student
+
+                    </span>
+
+                    <hr>
+
+                    <div class="text-start">
+
+                        <div class="mb-3">
+
+                            <small class="text-muted">
+
+                                Qualification
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${student.qualification?.name}">
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <small class="text-muted">
+
+                                Specialization
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${student.specialization?.name}">
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+
+                                Email
+
+                            </small>
+
+                            <div class="fw-semibold"
+                                 th:text="${student.email}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="alert alert-info mb-0">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        Complete and update your profile regularly to improve
+                        placement visibility.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

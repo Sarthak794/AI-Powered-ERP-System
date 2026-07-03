@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::section})}">
+
+<section>
+
+    <div class="card shadow-sm col-md-6 mx-auto">
+        <div class="card-header fw-semibold">
+            Trainer Details
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/admin/trainers/save}"
+                  th:object="${trainer}"
+                  method="post">
+
+                <div class="mb-3">
+                    <label>Full Name</label>
+                    <input class="form-control"
+                           th:field="*{fullName}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input class="form-control"
+                           th:field="*{email}" type="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Phone</label>
+                    <input class="form-control"
+                           th:field="*{phone}">
+                </div>
+
+                <div class="mb-3">
+                    <label>Subject</label>
+                    <input class="form-control"
+                           th:field="*{subject}">
+                </div>
+
+                <div class="mb-3">
+                    <label>Salary</label>
+                    <input class="form-control"
+                           th:field="*{salary}" type="number">
+                </div>
+
+                <button class="btn btn-success">
+                    Save Trainer
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+</section>
+</html>

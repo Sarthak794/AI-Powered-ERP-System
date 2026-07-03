@@ -1,0 +1,104 @@
+<div class="container-fluid">
+
+    <h3 class="fw-bold mb-4">Trainer Salary Payment</h3>
+
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- Pay Salary -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+			<form th:action="@{/accountant/salary/pay}" method="post" class="row g-3">
+
+			    <div class="col-md-4">
+			        <select id="trainerSelect"
+			                name="trainerId"
+			                class="form-select"
+			                required
+			                onchange="setSalary(this)">
+			            <option disabled selected>Select Trainer</option>
+
+			            <option th:each="s : ${salaries}"
+			                    th:value="${s.trainer.id}"
+			                    th:data-salary="${s.monthlyAmount}"
+			                    th:text="${s.trainer.fullName}">
+			            </option>
+			        </select>
+			    </div>
+
+			    <div class="col-md-3">
+			        <input type="number"
+			               id="salaryAmount"
+			               name="amount"
+			               class="form-control"
+			               placeholder="Salary Amount"
+			               required>
+			        <small class="text-muted">
+			            Editable (bonus / deduction)
+			        </small>
+			    </div>
+
+			    <div class="col-md-3">
+			        <input type="month"
+			               name="month"
+			               class="form-control"
+			               required>
+			    </div>
+
+			    <div class="col-md-2">
+			        <button class="btn btn-success w-100">
+			            Pay Salary
+			        </button>
+			    </div>
+
+			</form>
+        </div>
+    </div>
+
+    <!-- Payment History -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>Trainer</th>
+                    <th>Amount</th>
+                    <th>Month</th>
+                    <th>Date</th>
+                    <th>Accountant</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="p : ${payments}">
+                    <td th:text="${p.trainer.fullName}"></td>
+                    <td>₹ <span th:text="${p.amount}"></span></td>
+                    <td th:text="${p.month}"></td>
+                    <td th:text="${p.paymentDate}"></td>
+                    <td th:text="${p.accountant.username}"></td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(payments)}">
+                    <td colspan="5"
+                        class="text-center text-muted py-4">
+                        No salary payments made yet
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function setSalary(select) {
+    const salary = select.options[select.selectedIndex]
+        .getAttribute("data-salary");
+    document.getElementById("salaryAmount").value = salary;
+}
+</script>
+

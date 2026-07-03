@@ -1,0 +1,362 @@
+<form id="examForm"
+      th:action="@{/student/exams/submit}"
+      method="post">
+
+    <input type="hidden" name="examId" th:value="${exam.id}" />
+
+    <!-- Saved Answers -->
+    <div id="savedAnswers" style="display:none">
+        <span th:each="s : ${savedAnswers}"
+              th:data-question="${s.question.id}"
+              th:data-option="${s.selectedOption.id}">
+        </span>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <div class="erp-banner mb-4">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-2" th:text="${exam.title}"></h2>
+                <p class="mb-0 opacity-75">Read every question carefully before submitting.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="d-flex justify-content-lg-end gap-3 flex-wrap">
+
+                    <div class="exam-status">
+                        <small>Draft</small>
+                        <h6 id="saveStatus" class="mb-0 text-success">Saved</h6>
+                    </div>
+
+                    <div class="exam-status timer-box">
+                        <small>Time Left</small>
+                        <h5 class="mb-0">
+                            <i class="bi bi-clock-history me-2"></i>
+                            <span id="timer"></span>
+                        </h5>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= MAIN ================= -->
+    <div class="row">
+
+        <!-- LEFT: PALETTE -->
+        <div class="col-md-3">
+
+            <div class="card palette-card sticky-top">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-grid-3x3-gap-fill me-2"></i>
+                        Question Palette
+                    </h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="palette-grid">
+
+                        <button type="button"
+                                th:each="q,stat : ${exam.questions}"
+                                class="question-nav"
+                                th:data-index="${stat.index}">
+                            <span th:text="${stat.count}"></span>
+                        </button>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="palette-legend">
+                        <div><span class="legend-box bg-success"></span> Answered</div>
+                        <div><span class="legend-box bg-warning"></span> Current</div>
+                        <div><span class="legend-box bg-secondary"></span> Not Answered</div>
+                        <div><span class="legend-box bg-purple"></span> Review</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: QUESTIONS -->
+        <div class="col-md-9">
+
+            <div th:each="q,stat : ${exam.questions}"
+                 class="question-card card shadow-sm"
+                 th:data-index="${stat.index}"
+                 style="display:none;">
+
+                <div class="card-body p-4">
+
+                    <!-- progress -->
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="badge bg-primary">
+                            Question <span th:text="${stat.count}"></span> /
+                            <span th:text="${#lists.size(exam.questions)}"></span>
+                        </span>
+                    </div>
+
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-primary"
+                             th:style="'width:' + (${stat.count}*100/${#lists.size(exam.questions)}) + '%'">
+                        </div>
+                    </div>
+
+                    <!-- question -->
+                    <h4 class="fw-bold mb-3" th:text="${q.text}"></h4>
+
+                    <div th:if="${q.imagePath!=null}" class="text-center mb-3">
+                        <img th:src="${q.imagePath}" class="question-image">
+                    </div>
+
+                    <!-- options -->
+                    <div class="options-list">
+
+                        <label th:each="o : ${q.options}" class="option-card">
+
+                            <input class="form-check-input answer-radio"
+                                   type="radio"
+                                   th:name="'answers[' + q.id + ']'"
+                                   th:value="${o.id}"
+                                   th:data-question-id="${q.id}">
+
+                            <span th:text="${o.text}"></span>
+
+                        </label>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- controls -->
+                    <div class="d-flex justify-content-between">
+
+                        <button type="button" class="btn btn-outline-secondary prevBtn">
+                            <i class="bi bi-arrow-left"></i> Previous
+                        </button>
+
+                        <div>
+                            <button type="button"
+                                    class="btn btn-warning reviewBtn"
+                                    th:data-question-id="${q.id}">
+                                <i class="bi bi-bookmark-star"></i> Review
+                            </button>
+
+                            <button type="button" class="btn btn-primary nextBtn">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- submit -->
+    <div class="text-end mt-4 mb-5">
+        <button type="submit" class="btn btn-success btn-lg">
+            Submit Exam
+        </button>
+    </div>
+
+</form>
+
+<!-- ================= SCRIPT ================= -->
+<script th:inline="javascript">
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ================= VARIABLES ================= */
+    const form = document.getElementById("examForm");
+    const examId = document.querySelector('input[name="examId"]').value;
+
+    const timerElement = document.getElementById("timer");
+    const saveStatus = document.getElementById("saveStatus");
+
+    const questionCards = document.querySelectorAll(".question-card");
+    const navButtons = document.querySelectorAll(".question-nav");
+    const answerRadios = document.querySelectorAll(".answer-radio");
+
+    const answeredQuestions = new Set();
+
+    let currentQuestion = 0;
+    let totalSeconds = [[${exam.durationMinutes}]] * 60;
+
+    /* ================= TIMER ================= */
+    function updateTimer() {
+        const m = Math.floor(totalSeconds / 60);
+        const s = totalSeconds % 60;
+
+        timerElement.innerText = `${m}:${s < 10 ? "0" : ""}${s}`;
+
+        if (totalSeconds <= 0) {
+            alert("Time Over. Exam submitted.");
+            form.submit();
+            return;
+        }
+
+        totalSeconds--;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    /* ================= SECURITY ================= */
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    document.addEventListener("keydown", e => {
+        const blocked = ["u","c","v","x","s","p"];
+        if (e.key === "F12" || (e.ctrlKey && blocked.includes(e.key.toLowerCase()))) {
+            e.preventDefault();
+        }
+    });
+
+    /* ================= SHOW QUESTION ================= */
+    function showQuestion(index) {
+        questionCards.forEach(c => c.style.display = "none");
+        questionCards[index].style.display = "block";
+        currentQuestion = index;
+        updatePalette();
+    }
+
+    /* ================= PALETTE ================= */
+    function updatePalette() {
+
+        navButtons.forEach((btn, index) => {
+
+            const card = questionCards[index];
+            const radio = card.querySelector(".answer-radio");
+            const qid = radio.dataset.questionId;
+
+            btn.classList.remove("active");
+
+            if (index === currentQuestion) {
+                btn.style.background = "#facc15";
+                btn.style.color = "#111";
+            }
+            else if (answeredQuestions.has(qid)) {
+                btn.style.background = "#22c55e";
+                btn.style.color = "#fff";
+            }
+            else {
+                btn.style.background = "#e2e8f0";
+                btn.style.color = "#334155";
+            }
+        });
+    }
+
+    /* ================= NAVIGATION ================= */
+    navButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            showQuestion(parseInt(btn.dataset.index));
+        });
+    });
+
+    document.querySelectorAll(".nextBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentQuestion < questionCards.length - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        });
+    });
+
+    document.querySelectorAll(".prevBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        });
+    });
+
+    /* ================= SAVE + ANSWER ================= */
+    answerRadios.forEach(radio => {
+
+        radio.addEventListener("change", function () {
+
+            const qid = this.dataset.questionId;
+            const optionId = this.value;
+
+            answeredQuestions.add(qid);
+            updatePalette();
+
+            saveStatus.innerText = "Saving...";
+
+            fetch("/student/exams/save-answer", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: `examId=${examId}&questionId=${qid}&optionId=${optionId}`
+            })
+            .then(r => r.text())
+            .then(() => saveStatus.innerText = "Draft Saved")
+            .catch(() => saveStatus.innerText = "Save Failed");
+
+        });
+
+        /* UI highlight */
+        radio.addEventListener("change", function () {
+
+            document.querySelectorAll(`input[name="${this.name}"]`)
+                .forEach(r => {
+                    r.closest(".option-card").style.border = "2px solid #e2e8f0";
+                    r.closest(".option-card").style.background = "white";
+                });
+
+            this.closest(".option-card").style.border = "2px solid #2563eb";
+            this.closest(".option-card").style.background = "#eff6ff";
+        });
+
+    });
+
+    /* ================= REVIEW ================= */
+    document.querySelectorAll(".reviewBtn").forEach(btn => {
+
+        btn.addEventListener("click", function () {
+
+            const qid = this.dataset.questionId;
+
+            fetch("/student/exams/mark-review", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: `examId=${examId}&questionId=${qid}&review=true`
+            });
+
+            const card = this.closest(".question-card");
+            const index = card.dataset.index;
+
+            const palette = document.querySelector(
+                `.question-nav[data-index="${index}"]`
+            );
+
+            palette.style.background = "#7c3aed";
+            palette.style.color = "white";
+        });
+
+    });
+
+    /* ================= RESTORE SAVED ================= */
+    document.querySelectorAll("#savedAnswers span").forEach(s => {
+
+        const qid = s.dataset.question;
+        const oid = s.dataset.option;
+
+        const radio = document.querySelector(
+            `input[data-question-id="${qid}"][value="${oid}"]`
+        );
+
+        if (radio) {
+            radio.checked = true;
+            answeredQuestions.add(qid);
+        }
+    });
+
+    /* ================= INIT ================= */
+    showQuestion(0);
+
+});
+</script>

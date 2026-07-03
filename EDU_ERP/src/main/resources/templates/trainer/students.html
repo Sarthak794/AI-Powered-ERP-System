@@ -1,0 +1,888 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="student-banner mb-4">
+
+        <div>
+
+            <h2 class="fw-bold mb-2">
+                <i class="bi bi-people-fill me-2"></i>
+                Batch Students
+            </h2>
+
+            <p class="mb-0">
+                Manage students enrolled in this batch
+            </p>
+
+        </div>
+
+        <div class="student-count">
+
+            <h3 th:text="${#lists.size(students)}">0</h3>
+
+            <span>Students</span>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SEARCH BAR ================= -->
+
+    <div class="student-toolbar mb-4">
+
+        <div class="search-box">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                    type="text"
+                    id="studentSearch"
+                    class="form-control"
+                    placeholder="Search by name or roll number...">
+
+        </div>
+
+    </div>
+
+    <!-- ================= STUDENT GRID ================= -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-6 col-xl-4"
+             th:each="s : ${students}">
+
+            <div class="student-card">
+
+                <!-- TOP -->
+
+                <div class="student-top">
+
+                    <div class="student-avatar">
+
+                        <span th:text="${#strings.substring(s.name,0,1)}">
+                            S
+                        </span>
+
+                    </div>
+
+                    <div class="flex-grow-1">
+
+                        <h5 class="mb-1 fw-bold"
+                            th:text="${s.name}">
+                            Student Name
+                        </h5>
+
+                        <small class="text-muted">
+
+                            Roll No :
+
+                            <span th:text="${s.rollNumber}">
+                                F22212001
+                            </span>
+
+                        </small>
+
+                    </div>
+
+                    <span class="status-badge">
+
+                        Active
+
+                    </span>
+
+                </div>
+
+                <!-- INFO -->
+
+                <div class="student-info">
+
+                    <div>
+
+                        <i class="bi bi-envelope-fill"></i>
+
+                        <span th:text="${s.email}">
+                            abc@gmail.com
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <i class="bi bi-telephone-fill"></i>
+
+                        <span th:text="${s.phone}">
+                            9876543210
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- STATS -->
+
+                <div class="student-stats">
+
+                    <div>
+
+                        <small>Attendance</small>
+
+                        <h6>
+
+                            <span class="badge bg-success">
+
+                                N/A
+
+                            </span>
+
+                        </h6>
+
+                    </div>
+
+                    <div>
+
+                        <small>Exam Score</small>
+
+                        <h6>
+
+                            <span class="badge bg-primary">
+
+                                N/A
+
+                            </span>
+
+                        </h6>
+
+                    </div>
+
+                </div>
+
+                <!-- ACTIONS -->
+
+                <div class="student-actions">
+
+                    <button class="btn btn-light">
+
+                        <i class="bi bi-person"></i>
+
+                        Profile
+
+                    </button>
+
+                    <button class="btn btn-primary">
+
+                        <i class="bi bi-bar-chart-fill"></i>
+
+                        Performance
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- EMPTY -->
+
+        <div class="col-12"
+             th:if="${#lists.isEmpty(students)}">
+
+            <div class="empty-card">
+
+                <i class="bi bi-people display-2"></i>
+
+                <h4>No Students Found</h4>
+
+                <p>
+
+                    This batch currently has no enrolled students.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+	/*=====================================================
+	                PAGE
+	=====================================================*/
+
+	body{
+	    background:#f4f7fc;
+	}
+
+	/*=====================================================
+	                BANNER
+	=====================================================*/
+
+	.student-banner{
+
+	    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+	    color:#fff;
+
+	    border-radius:24px;
+
+	    padding:30px;
+
+	    display:flex;
+
+	    justify-content:space-between;
+
+	    align-items:center;
+
+	    box-shadow:0 15px 35px rgba(37,99,235,.25);
+
+	}
+
+	.student-banner h2{
+
+	    font-weight:700;
+
+	}
+
+	.student-banner p{
+
+	    opacity:.9;
+
+	}
+
+	.student-count{
+
+	    width:120px;
+
+	    height:120px;
+
+	    background:rgba(255,255,255,.15);
+
+	    border-radius:50%;
+
+	    display:flex;
+
+	    flex-direction:column;
+
+	    justify-content:center;
+
+	    align-items:center;
+
+	    backdrop-filter:blur(10px);
+
+	}
+
+	.student-count h3{
+
+	    font-size:34px;
+
+	    margin:0;
+
+	    font-weight:700;
+
+	}
+
+	.student-count span{
+
+	    font-size:14px;
+
+	}
+
+	/*=====================================================
+	                SEARCH
+	=====================================================*/
+
+	.student-toolbar{
+
+	    display:flex;
+
+	    justify-content:flex-end;
+
+	}
+
+	.search-box{
+
+	    width:350px;
+
+	    position:relative;
+
+	}
+
+	.search-box i{
+
+	    position:absolute;
+
+	    left:18px;
+
+	    top:50%;
+
+	    transform:translateY(-50%);
+
+	    color:#94a3b8;
+
+	}
+
+	.search-box input{
+
+	    padding-left:45px;
+
+	    border-radius:50px;
+
+	    border:none;
+
+	    height:48px;
+
+	    box-shadow:0 8px 18px rgba(0,0,0,.06);
+
+	}
+
+	.search-box input:focus{
+
+	    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+
+	}
+
+	/*=====================================================
+	                STUDENT CARD
+	=====================================================*/
+
+	.student-card{
+
+	    background:#fff;
+
+	    border-radius:22px;
+
+	    padding:25px;
+
+	    border:1px solid #edf2f7;
+
+	    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+	    transition:.35s;
+
+	    height:100%;
+
+	}
+
+	.student-card:hover{
+
+	    transform:translateY(-8px);
+
+	    box-shadow:0 22px 40px rgba(37,99,235,.15);
+
+	}
+
+	/*=====================================================
+	                TOP
+	=====================================================*/
+
+	.student-top{
+
+	    display:flex;
+
+	    align-items:center;
+
+	    gap:18px;
+
+	    margin-bottom:22px;
+
+	}
+
+	.student-avatar{
+
+	    width:70px;
+
+	    height:70px;
+
+	    border-radius:50%;
+
+	    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+	    color:#fff;
+
+	    display:flex;
+
+	    justify-content:center;
+
+	    align-items:center;
+
+	    font-size:26px;
+
+	    font-weight:700;
+
+	    flex-shrink:0;
+
+	}
+
+	.status-badge{
+
+	    background:#dcfce7;
+
+	    color:#15803d;
+
+	    padding:7px 15px;
+
+	    border-radius:30px;
+
+	    font-size:12px;
+
+	    font-weight:600;
+
+	}
+
+	/*=====================================================
+	                INFO
+	=====================================================*/
+
+	.student-info{
+
+	    border-top:1px solid #edf2f7;
+
+	    border-bottom:1px solid #edf2f7;
+
+	    padding:18px 0;
+
+	}
+
+	.student-info div{
+
+	    display:flex;
+
+	    align-items:center;
+
+	    gap:12px;
+
+	    margin:10px 0;
+
+	    color:#475569;
+
+	}
+
+	.student-info i{
+
+	    color:#2563eb;
+
+	}
+
+	/*=====================================================
+	                STATS
+	=====================================================*/
+
+	.student-stats{
+
+	    display:flex;
+
+	    justify-content:space-between;
+
+	    margin-top:20px;
+
+	    margin-bottom:20px;
+
+	}
+
+	.student-stats small{
+
+	    color:#94a3b8;
+
+	    text-transform:uppercase;
+
+	    letter-spacing:1px;
+
+	    font-size:11px;
+
+	}
+
+	.student-stats h6{
+
+	    margin-top:8px;
+
+	}
+
+	/*=====================================================
+	                BUTTONS
+	=====================================================*/
+
+	.student-actions{
+
+	    display:flex;
+
+	    gap:10px;
+
+	}
+
+	.student-actions .btn{
+
+	    flex:1;
+
+	    border-radius:12px;
+
+	    font-weight:600;
+
+	    padding:10px;
+
+	}
+
+	.student-actions .btn-light{
+
+	    background:#f8fafc;
+
+	    border:none;
+
+	}
+
+	.student-actions .btn-primary{
+
+	    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+	    border:none;
+
+	}
+
+	/*=====================================================
+	                EMPTY
+	=====================================================*/
+
+	.empty-card{
+
+	    background:#fff;
+
+	    border-radius:24px;
+
+	    padding:80px;
+
+	    text-align:center;
+
+	    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+	}
+
+	.empty-card i{
+
+	    color:#cbd5e1;
+
+	}
+
+	/*=====================================================
+	                HOVER EFFECTS
+	=====================================================*/
+
+	.student-avatar{
+
+	    transition:.35s;
+
+	}
+
+	.student-card:hover .student-avatar{
+
+	    transform:rotate(8deg) scale(1.08);
+
+	}
+
+	.student-info div{
+
+	    transition:.25s;
+
+	}
+
+	.student-info div:hover{
+
+	    transform:translateX(6px);
+
+	}
+
+	/*=====================================================
+	                MOBILE
+	=====================================================*/
+
+	@media(max-width:992px){
+
+	.student-banner{
+
+	flex-direction:column;
+
+	text-align:center;
+
+	gap:25px;
+
+	}
+
+	.search-box{
+
+	width:100%;
+
+	}
+
+	}
+
+	@media(max-width:768px){
+
+	.student-card{
+
+	padding:20px;
+
+	}
+
+	.student-top{
+
+	flex-direction:column;
+
+	text-align:center;
+
+	}
+
+	.student-stats{
+
+	flex-direction:column;
+
+	gap:15px;
+
+	}
+
+	.student-actions{
+
+	flex-direction:column;
+
+	}
+
+	.student-count{
+
+	width:100px;
+
+	height:100px;
+
+	}
+
+	}
+	/*==========================
+	        CARD EFFECT
+	===========================*/
+
+	.student-card{
+
+	    position:relative;
+
+	    overflow:hidden;
+
+	}
+
+	.student-card::before{
+
+	    content:"";
+
+	    position:absolute;
+
+	    width:250px;
+
+	    height:250px;
+
+	    right:-130px;
+
+	    top:-130px;
+
+	    border-radius:50%;
+
+	    background:rgba(37,99,235,.05);
+
+	    transition:.4s;
+
+	}
+
+	.student-card:hover::before{
+
+	    transform:scale(1.3);
+
+	}
+
+	/*==========================
+	        ICON ANIMATION
+	===========================*/
+
+	.student-avatar{
+
+	    transition:.35s;
+
+	}
+
+	.student-card:hover .student-avatar{
+
+	    transform:scale(1.1) rotate(-8deg);
+
+	}
+
+	/*==========================
+	        BADGES
+	===========================*/
+
+	.badge{
+
+	    border-radius:50px;
+
+	    padding:8px 14px;
+
+	    font-weight:600;
+
+	}
+
+	.bg-success{
+
+	    background:linear-gradient(135deg,#22c55e,#16a34a)!important;
+
+	}
+
+	.bg-primary{
+
+	    background:linear-gradient(135deg,#2563eb,#4f46e5)!important;
+
+	}
+
+	.bg-warning{
+
+	    background:linear-gradient(135deg,#f59e0b,#ea580c)!important;
+
+	}
+
+	.bg-danger{
+
+	    background:linear-gradient(135deg,#ef4444,#dc2626)!important;
+
+	}
+
+	/*==========================
+	        ACTION BUTTONS
+	===========================*/
+
+	.student-actions .btn{
+
+	    transition:.3s;
+
+	}
+
+	.student-actions .btn:hover{
+
+	    transform:translateY(-3px);
+
+	}
+
+	.student-actions .btn-primary{
+
+	    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
+	}
+
+	/*==========================
+	        INFO
+	===========================*/
+
+	.student-info div{
+
+	    padding:10px;
+
+	    border-radius:12px;
+
+	}
+
+	.student-info div:hover{
+
+	    background:#f8fafc;
+
+	}
+
+	/*==========================
+	        CARD TITLE
+	===========================*/
+
+	.student-top h5{
+
+	    transition:.3s;
+
+	}
+
+	.student-card:hover h5{
+
+	    color:#2563eb;
+
+	}
+
+	/*==========================
+	        FADE ANIMATION
+	===========================*/
+
+	.student-card{
+
+	    animation:fadeUp .5s ease;
+
+	}
+
+	@keyframes fadeUp{
+
+	    from{
+
+	        opacity:0;
+
+	        transform:translateY(25px);
+
+	    }
+
+	    to{
+
+	        opacity:1;
+
+	        transform:translateY(0);
+
+	    }
+
+	}
+
+	/*==========================
+	        NICE SCROLLBAR
+	===========================*/
+
+	::-webkit-scrollbar{
+
+	    width:8px;
+
+	}
+
+	::-webkit-scrollbar-thumb{
+
+	    background:#cbd5e1;
+
+	    border-radius:20px;
+
+	}
+
+	::-webkit-scrollbar-thumb:hover{
+
+	    background:#94a3b8;
+
+	}
+</style>
+<script>
+
+document.getElementById("studentSearch").addEventListener("keyup", function () {
+
+    let value = this.value.toLowerCase();
+
+    let cards = document.querySelectorAll(".student-card");
+
+    cards.forEach(card => {
+
+        let text = card.innerText.toLowerCase();
+
+        if(text.indexOf(value) > -1){
+
+            card.parentElement.style.display="block";
+
+        }else{
+
+            card.parentElement.style.display="none";
+
+        }
+
+    });
+
+});
+
+</script>

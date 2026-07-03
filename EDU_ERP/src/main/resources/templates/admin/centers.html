@@ -1,0 +1,73 @@
+<div class="center-page container-fluid mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header mb-4">
+        <h3>Center Management</h3>
+        <p>Manage all training centers</p>
+    </div>
+
+    <!-- ALERTS -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- CREATE CARD -->
+    <div class="ui-card mb-4">
+
+        <form th:action="@{/admin/centers/create}" method="post" class="center-form">
+
+            <input class="form-control"
+                   name="name"
+                   placeholder="Enter Center Name"
+                   required>
+
+            <button class="btn-primary-action">
+                + Add Center
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="ui-card">
+
+        <div class="table-responsive">
+
+            <table class="table modern-table">
+
+                <thead class="modern-thead text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Center Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="c : ${centers}">
+                    <td>#<span th:text="${c.id}"></span></td>
+                    <td class="fw-semibold" th:text="${c.name}"></td>
+                    <td>
+
+                        <form th:action="@{/admin/centers/delete/{id}(id=${c.id})}"
+                              method="post"
+                              class="d-inline">
+
+                            <button class="btn-danger-action"
+                                    onclick="return confirm('Are you sure you want to delete this center?')">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

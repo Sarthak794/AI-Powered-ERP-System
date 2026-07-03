@@ -1,0 +1,726 @@
+/* =====================================================
+   ERP CARDS
+===================================================== */
+
+.erp-card{
+
+    background:#fff;
+
+    border:none;
+
+    border-radius:24px;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
+
+    overflow:hidden;
+
+}
+
+.erp-card-header{
+
+    padding:22px 25px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.erp-card-body{
+
+    padding:25px;
+
+}
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.erp-section{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.erp-section h4{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.erp-section small{
+
+    color:#94a3b8;
+
+}
+/* =====================================================
+   STAT CARD
+===================================================== */
+
+.erp-stat{
+
+    border-radius:20px;
+
+    padding:25px;
+
+    background:#fff;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.erp-stat:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.erp-stat-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+}
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.erp-info{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    background:#f8fafc;
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.erp-info:hover{
+
+    background:#eef4ff;
+
+}
+/* =====================================================
+   TABLES
+===================================================== */
+
+.erp-table{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.erp-table thead{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.erp-table th{
+
+    padding:16px;
+
+}
+
+.erp-table td{
+
+    padding:16px;
+
+}
+.erp-badge-success{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+}
+
+.erp-badge-danger{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+}
+
+.erp-badge-warning{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+}
+.erp-btn{
+
+    border-radius:14px;
+
+    padding:10px 22px;
+
+    font-weight:600;
+
+}
+
+.bg-soft-primary{
+background:#e0ebff;
+color:#2563eb;
+}
+
+.bg-soft-success{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.bg-soft-danger{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.bg-soft-warning{
+background:#fef3c7;
+color:#d97706;
+}
+
+.attendance-banner{
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#4f46e5
+);
+
+color:white;
+
+padding:30px;
+
+border-radius:24px;
+
+box-shadow:0 10px 30px rgba(37,99,235,.18);
+
+}
+/* ==========================================
+        ASSIGNMENT BANNER
+========================================== */
+
+.assignment-banner{
+
+    background:linear-gradient(
+    135deg,
+    #7c3aed,
+    #2563eb
+    );
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    box-shadow:0 12px 30px rgba(37,99,235,.15);
+
+}
+.bg-soft-danger{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+/* ==========================================
+        ASSIGNMENT TABLE
+========================================== */
+
+.assignment-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:14px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+.due-badge{
+
+    background:#f8fafc;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+}
+
+.status-pill{
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.pending-pill{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+.progress-lg{
+
+    height:14px;
+
+    border-radius:999px;
+
+    background:#e2e8f0;
+
+}
+
+.progress-lg .progress-bar{
+
+    border-radius:999px;
+
+}
+/* ==========================================
+        ASSIGNMENT CARD
+========================================== */
+
+.assignment-card{
+
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+
+    box-shadow:
+    0 4px 20px rgba(15,23,42,.06);
+
+    transition:.3s;
+}
+
+.assignment-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 10px 30px rgba(15,23,42,.12);
+}
+
+.assignment-meta{
+
+    color:#64748b;
+
+    font-size:14px;
+}
+
+.assignment-icon{
+
+    width:56px;
+    height:56px;
+
+    border-radius:16px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+}
+
+.pending-pill{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+/* ==========================================
+            EXAM PAGE
+========================================== */
+
+.exam-card{
+
+    border:none;
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 6px 22px rgba(15,23,42,.08);
+
+    transition:.35s;
+}
+
+.exam-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 16px 40px rgba(15,23,42,.15);
+
+}
+
+.exam-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+}
+
+.exam-info{
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+}
+/* ==========================================
+            EXAM ATTEMPT HEADER
+========================================== */
+
+.exam-status{
+
+    background:#fff;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    min-width:140px;
+
+    box-shadow:0 6px 18px rgba(15,23,42,.08);
+
+}
+
+.exam-status small{
+
+    color:#64748b;
+
+}
+
+.timer-box{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+    color:white;
+
+}
+
+.timer-box small{
+
+    color:white;
+
+    opacity:.8;
+
+}
+/* ==========================================
+            QUESTION PALETTE
+========================================== */
+
+.palette-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    top:90px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
+
+}
+
+.palette-card .card-header{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:white;
+
+    border:none;
+
+    padding:18px;
+
+}
+
+.palette-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:12px;
+
+}
+
+.question-nav{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    border:none;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.question-nav:hover{
+
+    transform:scale(1.08);
+
+}
+
+.palette-legend{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    font-size:14px;
+
+}
+
+.legend-box{
+
+    display:inline-block;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:6px;
+
+    margin-right:8px;
+
+}
+
+.bg-purple{
+
+    background:#7c3aed;
+
+}
+/*=========================================
+            QUESTION CARD
+==========================================*/
+
+.question-card{
+
+    border:none;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.08);
+
+}
+
+.question-title{
+
+    font-size:20px;
+
+    line-height:1.7;
+
+}
+
+.exam-progress{
+
+    height:10px;
+
+    border-radius:999px;
+
+}
+
+.question-image{
+
+    max-height:350px;
+
+    max-width:100%;
+
+    border-radius:18px;
+
+    border:1px solid #e2e8f0;
+
+}
+
+.options-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.option-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border:2px solid #e2e8f0;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.option-card:hover{
+
+    border-color:#2563eb;
+
+    background:#eff6ff;
+
+}
+
+.option-card input{
+
+    transform:scale(1.25);
+
+}
+.glass-header {
+    background: #ffffff;
+    border: 1px solid #eef0f3;
+}
+
+.upload-zone {
+    background: #f8f9ff;
+    border: 2px dashed #0d6efd;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.upload-zone:hover {
+    background: #eef3ff;
+    transform: scale(1.01);
+}
+
+.resume-preview {
+    background: #fff;
+}
+
+.saas-card {
+    background: #ffffff;
+    border: 1px solid #eef0f3;
+    transition: 0.2s ease;
+}
+
+.saas-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.ai-card {
+    background: #ffffff;
+    border: 1px solid #eef0f3;
+    transition: 0.2s ease;
+}
+
+.ai-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+}

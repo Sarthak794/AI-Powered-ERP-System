@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="body" class="admin-header">
+
+    <!-- Left -->
+
+    <div class="header-left">
+
+        <div>
+            <h4 class="page-title mb-0">Admin Dashboard</h4>
+            <small class="page-subtitle">
+                Welcome back! Manage your ERP efficiently.
+            </small>
+        </div>
+
+    </div>
+
+    <!-- Right -->
+
+    <div class="header-right">
+
+        <!-- Search -->
+
+        <div class="header-search">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search anything...">
+
+        </div>
+
+        <!-- Notifications -->
+
+        <button class="header-icon-btn">
+
+            <i class="bi bi-bell"></i>
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+        <!-- Messages -->
+
+        <button class="header-icon-btn">
+
+            <i class="bi bi-envelope"></i>
+
+        </button>
+
+        <!-- Profile -->
+
+        <div class="dropdown">
+
+            <button
+                    class="profile-btn dropdown-toggle"
+                    data-bs-toggle="dropdown">
+
+                <div class="profile-avatar">
+
+                    <i class="bi bi-person-fill"></i>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <strong th:text="${#authentication.name}">
+                        Admin
+                    </strong>
+
+                    <small>Administrator</small>
+
+                </div>
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4">
+
+                <li>
+
+                    <a class="dropdown-item" href="#">
+
+                        <i class="bi bi-person-circle me-2"></i>
+
+                        My Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item" href="#">
+
+                        <i class="bi bi-gear me-2"></i>
+
+                        Settings
+
+                    </a>
+
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+
+                    <a class="dropdown-item text-danger"
+                       th:href="@{/logout}">
+
+                        <i class="bi bi-box-arrow-right me-2"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</header>
+
+</body>
+</html>

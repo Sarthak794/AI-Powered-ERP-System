@@ -1,0 +1,818 @@
+.user-management-page{
+    padding:30px;
+    background:#f5f8fc;
+    min-height:100vh;
+}
+
+/* Header */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.page-header h2{
+    font-size:30px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:4px;
+}
+
+.page-header p{
+    color:#64748b;
+    margin:0;
+}
+
+/* Glass Card */
+
+.glass-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    border:1px solid #e8edf4;
+
+    box-shadow:0 10px 35px rgba(15,23,42,.07);
+
+    transition:.3s;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 40px rgba(15,23,42,.12);
+
+}
+
+.card-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+    color:#0f172a;
+
+}
+
+.card-title i{
+
+    color:#2563eb;
+
+    margin-right:8px;
+
+}
+
+/* Inputs */
+
+.custom-input{
+
+    border-radius:12px;
+
+    border:1px solid #dbe4ef;
+
+    height:48px;
+
+    box-shadow:none;
+
+}
+
+.custom-input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+
+}
+
+/* Button */
+
+.custom-btn{
+
+    height:48px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    border:none;
+
+}
+
+.custom-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Table */
+
+.table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.table-header h5{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.table-header span{
+
+    color:#64748b;
+
+}
+
+.custom-table{
+
+    margin-bottom:0;
+
+}
+
+.custom-table thead{
+
+    background:#eff6ff;
+
+}
+
+.custom-table thead th{
+
+    border:none;
+
+    color:#475569;
+
+    font-weight:700;
+
+    padding:18px;
+
+}
+
+.custom-table tbody td{
+
+    padding:18px;
+
+    vertical-align:middle;
+
+    border-top:1px solid #eef2f7;
+
+}
+
+.custom-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.custom-table tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+/* User */
+
+.user-cell{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    font-size:18px;
+
+}
+
+.username{
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+/* Role */
+
+.role-badge{
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/* Status */
+
+.status{
+
+    font-weight:700;
+
+}
+
+.enabled{
+
+    color:#16a34a;
+
+}
+
+.disabled{
+
+    color:#dc2626;
+
+}
+
+/* Buttons */
+
+.action-btn{
+
+    width:100%;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.enable-btn{
+
+    background:#16a34a;
+
+    color:#fff;
+
+    border:none;
+
+}
+
+.enable-btn:hover{
+
+    background:#15803d;
+
+    color:#fff;
+
+}
+
+.disable-btn{
+
+    background:#dc2626;
+
+    color:#fff;
+
+    border:none;
+
+}
+
+.disable-btn:hover{
+
+    background:#b91c1c;
+
+    color:#fff;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .glass-card{
+
+        padding:20px;
+
+    }
+
+    .page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+}
+/* ===========================================================
+   USER MANAGEMENT
+=========================================================== */
+
+.user-management-page{
+    flex:1;
+    padding:30px;
+    background:#f6f8fc;
+    min-height:100vh;
+}
+
+/* ===========================================================
+   PAGE HEADER
+=========================================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h2{
+    margin:0;
+    font-size:32px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+.page-header p{
+    margin-top:6px;
+    color:#64748b;
+    font-size:15px;
+}
+
+/* ===========================================================
+   GLASS CARD
+=========================================================== */
+
+.glass-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #e8edf4;
+
+    padding:28px;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+
+    transition:.3s ease;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 40px rgba(15,23,42,.10);
+
+}
+
+/* ===========================================================
+   CARD TITLE
+=========================================================== */
+
+.card-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:24px;
+
+}
+
+.card-title i{
+
+    color:#2563eb;
+
+    font-size:24px;
+
+}
+
+/* ===========================================================
+   FORM
+=========================================================== */
+
+.form-label{
+
+    font-weight:600;
+
+    color:#334155;
+
+    margin-bottom:8px;
+
+}
+
+.custom-input{
+
+    height:50px;
+
+    border-radius:12px;
+
+    border:1px solid #dbe4ef;
+
+    transition:.25s;
+
+    box-shadow:none;
+
+    font-size:15px;
+
+}
+
+.custom-input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+
+}
+
+.role-select{
+
+    min-height:130px;
+
+    padding:12px;
+
+}
+
+.role-select option{
+
+    padding:8px;
+
+}
+
+/* ===========================================================
+   BUTTON
+=========================================================== */
+
+.custom-btn{
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.custom-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
+}
+
+.custom-btn i{
+
+    font-size:18px;
+
+}
+
+/* ===========================================================
+   ALERT
+=========================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:14px;
+
+}
+
+/* ===========================================================
+   TABLE HEADER
+=========================================================== */
+
+.table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.table-header h5{
+
+    margin:0;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.table-header span{
+
+    color:#64748b;
+
+}
+
+/* ===========================================================
+   TABLE
+=========================================================== */
+
+.custom-table{
+    margin-bottom:0;
+}
+
+.custom-table thead{
+    background:#eff6ff;
+}
+
+.custom-table thead th{
+    border:none;
+    padding:18px;
+    font-size:14px;
+    font-weight:700;
+    color:#475569;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.custom-table tbody td{
+    padding:18px;
+    vertical-align:middle;
+    border-top:1px solid #edf2f7;
+}
+
+.custom-table tbody tr{
+    transition:all .25s ease;
+}
+
+.custom-table tbody tr:hover{
+    background:#f8fbff;
+    transform:scale(1.002);
+}
+
+/* ===========================================================
+   USER CELL
+=========================================================== */
+
+.user-cell{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    flex-shrink:0;
+    box-shadow:0 6px 14px rgba(37,99,235,.25);
+}
+
+.username{
+    font-size:15px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:2px;
+}
+
+.email-text{
+    color:#475569;
+    font-size:14px;
+    word-break:break-word;
+}
+
+/* ===========================================================
+   ROLE BADGES
+=========================================================== */
+
+.role-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.role-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 14px;
+    border-radius:30px;
+    background:#eef4ff;
+    color:#2563eb;
+    font-size:13px;
+    font-weight:700;
+    border:1px solid #dbeafe;
+    transition:.25s;
+}
+
+.role-badge:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+/* ===========================================================
+   EMPTY STATE
+=========================================================== */
+
+.empty-state{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.empty-state i{
+    font-size:60px;
+    color:#cbd5e1;
+    margin-bottom:18px;
+}
+
+.empty-state h5{
+    color:#334155;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.empty-state p{
+    color:#64748b;
+    margin:0;
+}
+
+/* ===========================================================
+   SCROLLBAR
+=========================================================== */
+
+.table-responsive::-webkit-scrollbar{
+    height:8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:10px;
+}
+
+.table-responsive::-webkit-scrollbar-track{
+    background:#f8fafc;
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media (max-width:992px){
+
+    .user-management-page{
+        padding:20px;
+    }
+
+    .page-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .glass-card{
+        padding:22px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .page-header h2{
+        font-size:26px;
+    }
+
+    .custom-table thead{
+        display:none;
+    }
+
+    .custom-table,
+    .custom-table tbody,
+    .custom-table tr,
+    .custom-table td{
+        display:block;
+        width:100%;
+    }
+
+    .custom-table tr{
+        margin-bottom:18px;
+        border:1px solid #e5e7eb;
+        border-radius:14px;
+        overflow:hidden;
+        background:#fff;
+        box-shadow:0 4px 12px rgba(0,0,0,.05);
+    }
+
+    .custom-table td{
+        border:none;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:14px 18px;
+    }
+
+    .custom-table td::before{
+        font-weight:700;
+        color:#64748b;
+    }
+
+    .custom-table td:nth-child(1)::before{
+        content:"ID";
+    }
+
+    .custom-table td:nth-child(2)::before{
+        content:"User";
+    }
+
+    .custom-table td:nth-child(3)::before{
+        content:"Email";
+    }
+
+    .custom-table td:nth-child(4)::before{
+        content:"Roles";
+    }
+
+    .role-container{
+        justify-content:flex-end;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .glass-card{
+        padding:18px;
+    }
+
+    .avatar{
+        width:42px;
+        height:42px;
+        font-size:16px;
+    }
+
+    .username{
+        font-size:14px;
+    }
+
+    .custom-btn{
+        margin-top:10px;
+    }
+
+}

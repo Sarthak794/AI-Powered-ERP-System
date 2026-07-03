@@ -1,0 +1,224 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">My Salary History</h3>
+            <p class="text-muted mb-0">
+                Monthly salary payments and transaction records
+            </p>
+        </div>
+
+        <span class="badge bg-gradient-success px-3 py-2">
+            Paid
+        </span>
+
+    </div>
+
+
+    <!-- ================= SUMMARY CARD ================= -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="erp-kpi green text-center">
+
+                <div class="kpi-icon">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+
+                <div class="kpi-title">Total Paid</div>
+
+                <div class="kpi-value">
+                    ₹ <span th:text="${totalPaid}">0</span>
+                </div>
+
+                <div class="kpi-footer">
+                    Lifetime earnings
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TABLE PANEL ================= -->
+    <div class="erp-panel">
+
+        <div class="erp-panel-header">
+            <h5 class="fw-bold mb-0">
+                Salary Records
+            </h5>
+        </div>
+
+
+        <div class="erp-panel-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table erp-table align-middle mb-0">
+
+                    <thead>
+
+                    <tr>
+                        <th>Month</th>
+                        <th>Amount</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr th:each="p : ${payments}">
+
+                        <!-- MONTH -->
+                        <td class="fw-semibold"
+                            th:text="${p.month}">
+                        </td>
+
+
+                        <!-- AMOUNT -->
+                        <td class="fw-bold text-success">
+                            ₹ <span th:text="${p.amount}"></span>
+                        </td>
+
+
+                        <!-- DATE -->
+                        <td th:text="${p.paymentDate}"></td>
+
+
+                        <!-- STATUS -->
+                        <td>
+                            <span class="badge bg-success">
+                                Paid
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- EMPTY STATE -->
+                    <tr th:if="${#lists.isEmpty(payments)}">
+
+                        <td colspan="4" class="text-center py-5">
+
+                            <i class="bi bi-wallet2 display-5 text-muted"></i>
+
+                            <h5 class="mt-3">No Salary Records</h5>
+
+                            <p class="text-muted mb-0">
+                                Salary will appear here once processed.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STYLE ================= -->
+<style>
+
+.erp-panel{
+    background:#fff;
+    border-radius:18px;
+    border:1px solid #edf1f7;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    overflow:hidden;
+}
+
+.erp-panel-header{
+    padding:18px 22px;
+    border-bottom:1px solid #edf1f7;
+    background:linear-gradient(135deg,#fff,#f8fbff);
+}
+
+.erp-panel-body{
+    padding:0;
+}
+
+.erp-table thead th{
+    font-size:13px;
+    color:#64748b;
+    background:#f8fafc;
+    font-weight:600;
+}
+
+.erp-table tbody tr:hover{
+    background:#f8fbff;
+}
+
+.erp-kpi{
+    color:white;
+    border-radius:22px;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    min-height:160px;
+    transition:.3s;
+}
+
+.erp-kpi:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.erp-kpi::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    right:-40px;
+    top:-40px;
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+}
+
+.kpi-icon{
+    font-size:34px;
+}
+
+.kpi-title{
+    font-size:13px;
+    opacity:.85;
+    margin-top:10px;
+}
+
+.kpi-value{
+    font-size:32px;
+    font-weight:800;
+}
+
+.kpi-footer{
+    font-size:12px;
+    opacity:.8;
+}
+
+/* COLORS */
+.green{
+    background:linear-gradient(135deg,#059669,#10b981);
+}
+
+.bg-gradient-success{
+    background:linear-gradient(135deg,#059669,#10b981);
+    color:white;
+}
+
+</style>

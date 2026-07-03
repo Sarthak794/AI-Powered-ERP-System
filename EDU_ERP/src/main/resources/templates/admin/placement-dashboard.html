@@ -1,0 +1,193 @@
+<div class="container-fluid py-4 placement-dashboard">
+
+    <!-- ================= Header ================= -->
+
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="page-title">
+                <i class="fas fa-chart-line me-2"></i>
+                Placement Analytics
+            </h2>
+
+            <p class="page-subtitle">
+                Placement performance overview and recruitment insights
+            </p>
+
+        </div>
+
+        <a href="/admin/export/selected-students"
+           class="btn btn-success export-btn">
+
+            <i class="fas fa-file-excel me-2"></i>
+
+            Export Excel
+
+        </a>
+
+    </div>
+
+    <!-- ================= KPI Cards ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card primary">
+
+                <div>
+
+                    <h6>Total Companies</h6>
+
+                    <h2 th:text="${totalCompanies}"></h2>
+
+                </div>
+
+                <i class="fas fa-building stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card info">
+
+                <div>
+
+                    <h6>Total Drives</h6>
+
+                    <h2 th:text="${totalDrives}"></h2>
+
+                </div>
+
+                <i class="fas fa-briefcase stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card warning">
+
+                <div>
+
+                    <h6>Applications</h6>
+
+                    <h2 th:text="${totalApplications}"></h2>
+
+                </div>
+
+                <i class="fas fa-user-check stats-icon"></i>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card success">
+
+                <div>
+
+                    <h6>Placement Rate</h6>
+
+                    <h2>
+
+                        <span th:text="${placementRate}"></span>%
+
+                    </h2>
+
+                </div>
+
+                <i class="fas fa-chart-pie stats-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Status Cards ================= -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header-custom">
+
+            <h5>
+
+                <i class="fas fa-chart-bar me-2"></i>
+
+                Placement Status Summary
+
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="summary-card success-card">
+
+                        <div>
+
+                            <h6>Selected</h6>
+
+                            <h1 th:text="${selectedCount}"></h1>
+
+                        </div>
+
+                        <i class="fas fa-check-circle"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="summary-card warning-card">
+
+                        <div>
+
+                            <h6>Shortlisted</h6>
+
+                            <h1 th:text="${shortlistedCount}"></h1>
+
+                        </div>
+
+                        <i class="fas fa-user-clock"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="summary-card danger-card">
+
+                        <div>
+
+                            <h6>Rejected</h6>
+
+                            <h1 th:text="${rejectedCount}"></h1>
+
+                        </div>
+
+                        <i class="fas fa-times-circle"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

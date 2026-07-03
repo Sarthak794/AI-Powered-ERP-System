@@ -1,0 +1,120 @@
+<div th:fragment="body"
+     class="trainer-header d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
+
+    <!-- LEFT: Page Title -->
+    <div class="d-flex flex-column">
+
+        <h5 class="fw-bold mb-0" th:text="${pageTitle} ?: 'Trainer Dashboard'">
+            Trainer
+        </h5>
+
+        <small class="text-muted" th:text="${pageSubtitle}">
+            LMS Control Center
+        </small>
+
+    </div>
+
+    <!-- RIGHT: Actions -->
+    <div class="d-flex align-items-center gap-3">
+
+        <!-- Search -->
+        <div class="position-relative d-none d-md-block">
+
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+
+            <input type="text"
+                   class="form-control ps-5 trainer-search"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Notifications -->
+        <button class="btn btn-light position-relative">
+
+            <i class="bi bi-bell fs-5"></i>
+
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+            </span>
+
+        </button>
+
+        <!-- Profile -->
+        <div class="dropdown">
+
+            <a class="d-flex align-items-center text-decoration-none dropdown-toggle"
+               href="#"
+               data-bs-toggle="dropdown">
+
+                <div class="avatar me-2">
+                    <i class="bi bi-person-circle fs-3 text-primary"></i>
+                </div>
+
+                <div class="d-none d-md-block text-start">
+                    <div class="fw-semibold" th:text="${trainer != null ? trainer.fullName : 'Trainer'}">
+                        Trainer Name
+                    </div>
+                    <small class="text-muted">Trainer</small>
+                </div>
+
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+
+                <li>
+                    <a class="dropdown-item" th:href="@{/trainer/profile}">
+                        <i class="bi bi-person me-2"></i> Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item" th:href="@{/trainer/settings}">
+                        <i class="bi bi-gear me-2"></i> Settings
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                    <a class="dropdown-item text-danger" th:href="@{/logout}">
+                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.trainer-header{
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.trainer-search{
+    width: 260px;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.trainer-search:focus{
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+</style>

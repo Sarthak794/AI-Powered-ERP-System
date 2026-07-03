@@ -1,0 +1,742 @@
+.trainer-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #0f172a; /* SaaS dark navy */
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+/* LINKS */
+.trainer-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #cbd5e1;
+    transition: 0.2s ease;
+}
+
+/* ICON */
+.trainer-link i {
+    font-size: 1.1rem;
+}
+
+/* HOVER */
+.trainer-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    transform: translateX(3px);
+}
+
+/* ACTIVE STATE */
+.trainer-link.active {
+    background: linear-gradient(135deg, #0d6efd, #6366f1);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.3);
+}
+
+/* SECTION LABEL */
+.sidebar-section {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    padding: 10px 10px 4px;
+}
+
+/* FOOTER */
+.sidebar-footer {
+    background: #0f172a;
+}
+
+/* ================= FULL APP LAYOUT ================= */
+.trainer-app {
+    overflow-x: hidden;
+}
+
+/* WRAPPER = full height app shell */
+.trainer-wrapper {
+    min-height: calc(100vh - 60px); /* adjust if header height differs */
+}
+
+/* ================= SIDEBAR FIX ================= */
+.trainer-sidebar-wrapper {
+    width: 250px;
+    min-height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px; /* header height offset */
+}
+
+/* ================= CONTENT AREA ================= */
+.trainer-content {
+    background: #f8fafc;
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+/* ================= OPTIONAL NICE SCROLL ================= */
+.trainer-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.trainer-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* ================= HEADER ================= */
+.saas-header {
+    padding: 10px 0;
+}
+
+/* ================= KPI CARD ================= */
+.saas-card {
+    background: #ffffff;
+    border: 1px solid #eef0f3;
+    border-radius: 14px;
+    padding: 16px;
+    transition: 0.25s ease;
+}
+
+.saas-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ================= PANEL ================= */
+.saas-panel {
+    border-radius: 14px;
+    border: 1px solid #eef0f3;
+}
+
+/* ================= ACTIVITY FEED ================= */
+.activity-feed .feed-item{
+    padding:10px 12px;
+    border-left:3px solid #e9ecef;
+    margin-bottom:10px;
+    font-size:14px;
+    background:#f8fafc;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.activity-feed .feed-item:hover{
+    border-left-color:#0d6efd;
+    transform:translateX(4px);
+    background:#f1f5ff;
+}
+/* ================= TABLE ================= */
+.saas-table {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #eef0f3;
+}
+
+.table th {
+    font-weight: 600;
+    background: #f8fafc;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+    border-radius: 8px;
+}
+
+/* ================= GRADIENT BADGE ================= */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #0d6efd, #6366f1);
+    color: white;
+}
+
+.saas-card{
+    background:#fff;
+    border:1px solid #eef0f3;
+    border-radius:14px;
+    transition:all .25s ease;
+}
+
+.saas-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.08);
+}
+
+.saas-card small{
+    font-size:12px;
+    letter-spacing:.3px;
+}
+
+.saas-card h3{
+    font-size:1.6rem;
+}
+.kpi-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.kpi-card::after{
+    content:"";
+    position:absolute;
+    top:-50%;
+    right:-50%;
+    width:120px;
+    height:120px;
+    background:rgba(13,110,253,0.08);
+    border-radius:50%;
+}
+.saas-table{
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #eef0f3;
+}
+
+.saas-table table thead th{
+    font-weight:600;
+    font-size:13px;
+    color:#64748b;
+    background:#f8fafc;
+}
+
+.saas-table table tbody tr{
+    transition:.2s;
+}
+
+.saas-table table tbody tr:hover{
+    background:#f1f5ff;
+}
+.saas-panel{
+    border-radius:14px;
+    border:1px solid #eef0f3;
+    overflow:hidden;
+}
+
+.saas-panel .card-header{
+    border-bottom:1px solid #eef0f3;
+    font-weight:600;
+    font-size:14px;
+} 
+.kpi-card{
+    position:relative;
+    overflow:hidden;
+    border:none;
+    border-radius:18px;
+    background:#fff;
+    transition:.3s;
+}
+
+.kpi-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+.kpi-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:5px;
+    height:100%;
+    background:#0d6efd;
+}
+
+.kpi-card h3{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.kpi-card small{
+    color:#64748b;
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+/* ================= BATCH CARD ================= */
+
+.batch-card{
+    background:#fff;
+    border:1px solid #eef0f3;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s ease;
+    box-shadow:0 6px 18px rgba(0,0,0,0.04);
+}
+
+.batch-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.10);
+}
+
+/* HEADER */
+.batch-card-header{
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:start;
+    border-bottom:1px solid #f1f5f9;
+}
+
+.batch-badge{
+    background:#dcfce7;
+    color:#15803d;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+/* BODY */
+.batch-card-body{
+    padding:18px;
+}
+
+.batch-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    font-size:13px;
+    color:#64748b;
+}
+
+.batch-info strong{
+    color:#0f172a;
+}
+
+/* STATS */
+.batch-stats{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px dashed #e2e8f0;
+}
+
+.batch-stats h6{
+    margin:0;
+    font-weight:700;
+}
+
+/* FOOTER */
+.batch-card-footer{
+    padding:15px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    border-top:1px solid #f1f5f9;
+}
+
+/* BUTTONS polish */
+.batch-card-footer .btn{
+    border-radius:10px;
+    font-size:12px;
+    padding:6px 10px;
+}
+/* ================= SAAS INPUT ================= */
+
+.saas-input{
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    padding:10px 14px;
+    transition:.2s;
+    background:#fff;
+}
+
+.saas-input:focus{
+    border-color:#6366f1;
+    box-shadow:0 0 0 4px rgba(99,102,241,0.1);
+}
+
+/* ================= BUTTON ================= */
+
+.saas-btn{
+    border-radius:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.saas-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(13,110,253,0.2);
+}
+
+/* ================= TIP BOX ================= */
+
+.tip-box{
+    background:#f8fafc;
+    border:1px solid #eef2f7;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:12px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.tip-box:hover{
+    transform:translateX(4px);
+    background:#f1f5ff;
+}
+
+/* ================= PANEL (reuse consistency) ================= */
+
+.erp-panel{
+    background:white;
+    border-radius:18px;
+    border:1px solid #edf1f7;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    overflow:hidden;
+}
+
+.erp-panel-header{
+    padding:18px;
+    border-bottom:1px solid #edf1f7;
+}
+
+.erp-panel-body{
+    padding:18px;
+}
+/* INPUT SYSTEM CONSISTENCY */
+.saas-input{
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    padding:10px 14px;
+    transition:.2s;
+}
+
+.saas-input:focus{
+    border-color:#6366f1;
+    box-shadow:0 0 0 4px rgba(99,102,241,0.1);
+}
+
+/* BUTTON */
+.saas-btn{
+    border-radius:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.saas-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* TIP BOX (reuse from previous) */
+.tip-box{
+    background:#f8fafc;
+    border:1px solid #eef2f7;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:12px;
+    font-size:13px;
+}
+
+.tip-box:hover{
+    transform:translateX(4px);
+    background:#f1f5ff;
+}
+
+/* PANEL consistency */
+.erp-panel{
+    background:white;
+    border-radius:18px;
+    border:1px solid #edf1f7;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    overflow:hidden;
+}
+
+.erp-panel-header{
+    padding:18px;
+    border-bottom:1px solid #edf1f7;
+}
+
+.erp-panel-body{
+    padding:18px;
+}
+
+/* ================= TABLE ================= */
+
+.saas-table thead th{
+    font-size:13px;
+    color:#64748b;
+    background:#f8fafc;
+    font-weight:600;
+}
+
+.saas-table tbody tr{
+    transition:.2s;
+}
+
+.saas-table tbody tr:hover{
+    background:#f1f5ff;
+}
+
+/* ================= SUBMISSION PILL ================= */
+
+.submission-pill{
+    background:#e0f2fe;
+    color:#0369a1;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:600;
+    font-size:13px;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.action-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.action-btn{
+    font-size:12px;
+    padding:6px 10px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.2s;
+    display:inline-block;
+}
+
+/* COLORS */
+.action-btn.blue{
+    background:#eff6ff;
+    color:#1d4ed8;
+}
+
+.action-btn.green{
+    background:#ecfdf5;
+    color:#047857;
+}
+
+.action-btn.orange{
+    background:#fff7ed;
+    color:#c2410c;
+}
+
+.action-btn.red{
+    background:#fef2f2;
+    color:#b91c1c;
+    border:none;
+}
+
+/* hover */
+.action-btn:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state{
+    padding:30px;
+}
+/* Full app layout */
+.trainer-app{
+    overflow-x: hidden;
+}
+
+/* Wrapper */
+.trainer-wrapper{
+    height: calc(100vh - 60px);
+}
+
+/* Sidebar */
+.trainer-sidebar-wrapper{
+    width: 260px;
+    flex-shrink: 0;
+    background: #fff;
+    border-right: 1px solid #e9ecef;
+}
+
+/* Make sidebar sticky */
+.trainer-sidebar-container{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Content area */
+.trainer-content{
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+}
+
+/* Inner spacing */
+.trainer-content-inner{
+    min-height: 100%;
+}
+
+/* Header wrapper */
+.trainer-header-wrapper{
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+}
+.profile-banner{
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 18px 40px rgba(37,99,235,.25);
+
+}
+
+.profile-left{
+
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+
+}
+
+.profile-avatar{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:65px;
+
+}
+
+.profile-subtitle{
+
+    opacity:.9;
+
+    margin-top:8px;
+
+    margin-bottom:15px;
+
+}
+
+.status-pill{
+
+    display:inline-block;
+
+    background:#16a34a;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.profile-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+    overflow:hidden;
+
+}
+
+.card-title{
+
+    padding:20px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.card-title i{
+
+    color:#2563eb;
+
+    margin-right:8px;
+
+}
+
+.table{
+
+    margin:0;
+
+}
+
+.table td{
+
+    padding:18px 22px;
+
+    vertical-align:middle;
+
+}
+
+.table td:first-child{
+
+    width:45%;
+
+    color:#64748b;
+
+    font-weight:600;
+
+}
+
+.role-badge{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    padding:7px 16px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+@media(max-width:768px){
+
+.profile-banner{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.profile-left{
+
+flex-direction:column;
+
+}
+
+}

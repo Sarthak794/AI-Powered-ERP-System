@@ -1,0 +1,201 @@
+<div th:fragment="body"
+     class="trainer-sidebar d-flex flex-column">
+
+    <!-- ================= HEADER ================= -->
+    <div class="sidebar-header p-3 border-bottom">
+
+        <div class="d-flex align-items-center gap-2">
+
+            <div class="sidebar-icon">
+                <i class="bi bi-person-workspace fs-4 text-primary"></i>
+            </div>
+
+            <div>
+                <div class="fw-bold">Trainer Panel</div>
+                <small class="text-muted">LMS Control Center</small>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MENU ================= -->
+    <div class="sidebar-menu flex-grow-1 overflow-auto p-2">
+
+        <ul class="nav nav-pills flex-column gap-1">
+
+            <li>
+                <a th:href="@{/trainer/dashboard}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'dashboard'} ? ' active'">
+
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+
+                </a>
+            </li>
+			<li>
+			                <a th:href="@{/trainer/profile}"
+			                   class="nav-link trainer-link"
+			                   th:classappend="${activePage == 'profile'} ? ' active'">
+
+			                    <i class="bi bi-person"></i>
+			                    <span>Profile</span>
+
+			                </a>
+			            </li>
+
+            <li>
+                <a th:href="@{/trainer/batches}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'batches'} ? ' active'">
+
+                    <i class="bi bi-collection"></i>
+                    <span>My Batches</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/trainer/students}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'students'} ? ' active'">
+
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/trainer/attendance}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'attendance'} ? ' active'">
+
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Attendance</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/trainer/assignments}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'assignments'} ? ' active'">
+
+                    <i class="bi bi-file-earmark-text"></i>
+                    <span>Assignments</span>
+
+                </a>
+            </li>
+
+            <!-- Section -->
+            <li class="sidebar-section mt-3">
+                EXAMS
+            </li>
+
+            <li>
+                <a th:href="@{/trainer/exams}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'exams'} ? ' active'">
+
+                    <i class="bi bi-journal-text"></i>
+                    <span>My Exams</span>
+
+                </a>
+            </li>
+
+            <!-- Section -->
+            <li class="sidebar-section mt-3">
+                ACCOUNT
+            </li>
+
+            <li>
+                <a th:href="@{/trainer/salary}"
+                   class="nav-link trainer-link"
+                   th:classappend="${activePage == 'salary'} ? ' active'">
+
+                    <i class="bi bi-wallet2"></i>
+                    <span>Salary</span>
+
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <div class="sidebar-footer p-3 border-top">
+
+        <a th:href="@{/logout}" class="nav-link trainer-link text-danger">
+
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+/* Sidebar base */
+.trainer-sidebar{
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e9ecef;
+}
+
+/* Sidebar section label */
+.sidebar-section{
+    font-size: 12px;
+    font-weight: 700;
+    color: #adb5bd;
+    padding: 10px 12px;
+    letter-spacing: 1px;
+}
+
+/* Links */
+.trainer-link{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #495057;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.trainer-link:hover{
+    background: #f8f9fa;
+    color: #0d6efd;
+    transform: translateX(2px);
+}
+
+/* Active state */
+.trainer-link.active{
+    background: #0d6efd;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(13,110,253,0.25);
+}
+
+/* Icon spacing */
+.trainer-link i{
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.sidebar-footer{
+    background: #fff;
+}
+
+/* Scroll clean */
+.sidebar-menu{
+    scrollbar-width: thin;
+}
+
+</style>

@@ -1,0 +1,563 @@
+/* =====================================================
+   STUDENT DASHBOARD V2
+===================================================== */
+
+.dashboard-header{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    border-radius:24px;
+    padding:35px;
+    color:#fff;
+    box-shadow:0 15px 40px rgba(37,99,235,.18);
+    position:relative;
+    overflow:hidden;
+}
+
+.dashboard-header::before{
+    content:"";
+    position:absolute;
+    top:-80px;
+    right:-60px;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+}
+
+.dashboard-header h2{
+    color:#fff;
+}
+
+.dashboard-header p{
+    color:#e2e8f0 !important;
+}
+
+.profile-progress-box{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    color:#111827;
+}
+
+/* ================= KPI ================= */
+
+.modern-card{
+    border-radius:22px;
+    padding:28px;
+    color:#fff;
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(15,23,42,.08);
+}
+
+.modern-card:hover{
+    transform:translateY(-8px);
+}
+
+.modern-card::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    right:-35px;
+    bottom:-35px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+}
+
+.modern-card i{
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.modern-card small{
+    display:block;
+    opacity:.9;
+    font-size:14px;
+}
+
+.modern-card h3{
+    font-size:2rem;
+    font-weight:700;
+    margin-top:10px;
+}
+
+.primary-card{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.success-card{
+    background:linear-gradient(135deg,#10b981,#059669);
+}
+
+.danger-card{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.info-card{
+    background:linear-gradient(135deg,#7c3aed,#6366f1);
+}
+/* =====================================================
+   PROFILE CARD V2
+===================================================== */
+
+.profile-card-v2{
+    border:none;
+    border-radius:24px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+}
+
+.profile-cover{
+    height:110px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+.profile-content{
+    margin-top:-65px;
+    text-align:center;
+}
+
+.student-avatar{
+    width:140px !important;
+    height:140px !important;
+    min-width:140px !important;
+    min-height:140px !important;
+    max-width:140px !important;
+    max-height:140px !important;
+    object-fit:cover !important;
+    border-radius:50% !important;
+    display:block !important;
+    margin:0 auto !important;
+    border:5px solid #fff !important;
+    background:#fff;
+}
+
+.info-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px 0;
+    border-bottom:1px solid #eef2f7;
+}
+
+.info-item:last-child{
+    border-bottom:none;
+}
+
+.info-item i{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef4ff;
+    color:#2563eb;
+    font-size:20px;
+}
+
+.info-item small{
+    color:#94a3b8;
+    display:block;
+}
+
+.info-item h6{
+    margin:0;
+    font-weight:600;
+}
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.summary-card{
+    background:#fff;
+    border-radius:20px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+    transition:.3s;
+    height:100%;
+}
+
+.summary-card:hover{
+    transform:translateY(-5px);
+}
+
+.summary-icon{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
+
+.quick-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    color:#334155;
+    transition:.3s;
+    border:1px solid #edf2f7;
+    height:120px;
+}
+
+.quick-box:hover{
+    transform:translateY(-6px);
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+}
+
+.quick-box i{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.quick-box span{
+    font-weight:600;
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+    position:relative;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:19px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:#e2e8f0;
+}
+
+.timeline-item{
+    display:flex;
+    gap:18px;
+    margin-bottom:28px;
+    position:relative;
+}
+
+.timeline-icon{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.timeline-content h6{
+    font-weight:600;
+}
+
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+.attendance-progress{
+    height:14px;
+    border-radius:999px;
+    background:#edf2f7;
+}
+
+.attendance-progress .progress-bar{
+    border-radius:999px;
+}
+
+.mini-stat{
+    padding:18px;
+}
+
+.mini-stat i{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.mini-stat h3{
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+/* =====================================================
+   PERFORMANCE CIRCLE
+===================================================== */
+
+.performance-circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    margin:auto;
+    background:conic-gradient(
+        #10b981 0deg,
+        #10b981 300deg,
+        #e5e7eb 300deg,
+        #e5e7eb 360deg
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.performance-circle::before{
+    content:"";
+    position:absolute;
+    width:135px;
+    height:135px;
+    background:#fff;
+    border-radius:50%;
+}
+
+.performance-circle h2{
+    position:relative;
+    z-index:2;
+    font-weight:700;
+}
+
+/* =====================================================
+   HOVER EFFECTS
+===================================================== */
+
+.card,
+.summary-card,
+.profile-card-v2,
+.modern-card{
+    transition:all .35s ease;
+}
+
+.card:hover,
+.summary-card:hover,
+.profile-card-v2:hover{
+    transform:translateY(-5px);
+}
+/* =====================================================
+   PREMIUM BUTTONS
+===================================================== */
+
+.btn-primary{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    border:none;
+    border-radius:14px;
+    padding:12px 24px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+/* =====================================================
+   PREMIUM CARD
+===================================================== */
+
+.card{
+    border:none !important;
+    border-radius:22px !important;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(15,23,42,.06);
+}
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badge{
+    border-radius:30px;
+    padding:8px 16px;
+    font-size:12px;
+    font-weight:600;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#edf2f7;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#94a3b8;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.dashboard-header,
+.modern-card,
+.profile-card-v2,
+.summary-card,
+.card{
+    animation:fadeUp .6s ease;
+}
+
+@keyframes pulseGlow{
+
+    0%{
+        box-shadow:0 0 0 rgba(37,99,235,.2);
+    }
+
+    50%{
+        box-shadow:0 0 30px rgba(37,99,235,.25);
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(37,99,235,.2);
+    }
+
+}
+
+.performance-circle{
+    animation:pulseGlow 3s infinite;
+}
+
+/* =====================================================
+   HOVER EFFECTS
+===================================================== */
+
+.modern-card:hover,
+.summary-card:hover,
+.profile-card-v2:hover,
+.quick-box:hover,
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.modern-card,
+.summary-card,
+.profile-card-v2,
+.quick-box,
+.card{
+
+    transition:all .35s ease;
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:992px){
+
+.dashboard-header{
+    text-align:center;
+}
+
+.profile-progress-box{
+    margin-top:20px;
+}
+
+.student-avatar{
+    width:110px;
+    height:110px;
+}
+
+.performance-circle{
+    width:150px;
+    height:150px;
+}
+
+.performance-circle::before{
+    width:110px;
+    height:110px;
+}
+
+}
+
+@media(max-width:768px){
+
+.modern-card{
+    padding:20px;
+}
+
+.modern-card h3{
+    font-size:1.6rem;
+}
+
+.summary-card{
+    flex-direction:column;
+    text-align:center;
+}
+
+.quick-box{
+    height:100px;
+}
+
+.timeline-item{
+    gap:12px;
+}
+
+.student-avatar{
+    width:95px;
+    height:95px;
+}
+
+.dashboard-header{
+    padding:25px;
+}
+
+}
+
+/* =====================================================
+   DARK MODE READY (Future)
+===================================================== */
+
+.dark-theme{
+    background:#0f172a;
+}
+
+.dark-theme .card{
+    background:#1e293b;
+    color:#f8fafc;
+}

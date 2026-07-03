@@ -1,0 +1,708 @@
+/* =====================================================
+GLOBAL
+===================================================== */
+
+body{
+background:#f4f7fc !important;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+color:#334155;
+}
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+width:260px;
+min-width:260px;
+background:#ffffff;
+border-right:1px solid #e5e7eb;
+transition:all .3s ease;
+}
+
+.sidebar-collapsed{
+width:70px !important;
+min-width:70px !important;
+}
+
+.sidebar-collapsed span,
+.sidebar-collapsed .section-title,
+.sidebar-collapsed hr{
+display:none;
+}
+
+.section-title{
+font-size:11px;
+font-weight:700;
+color:#94a3b8;
+text-transform:uppercase;
+margin:18px 0 8px;
+letter-spacing:.5px;
+}
+
+.sidebar .nav-link{
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 14px;
+border-radius:12px;
+color:#475569;
+font-weight:500;
+transition:.25s;
+}
+
+.sidebar .nav-link:hover
+
+.sidebar .nav-link.active{
+background:linear-gradient(
+135deg,
+#2563eb,
+#4f46e5
+);
+color:#fff;
+}
+
+/* =====================================================
+COMMON CARDS
+===================================================== */
+
+.card{
+border:none !important;
+border-radius:20px !important;
+box-shadow:0 4px 20px rgba(15,23,42,.06) !important;
+}
+
+.card:hover{
+transform:translateY(-4px);
+transition:.3s ease;
+}
+
+/* =====================================================
+PROFILE CARD
+===================================================== */
+
+.profile-card{
+background:linear-gradient(
+135deg,
+#2563eb,
+#7c3aed
+) !important;
+overflow:hidden;
+position:relative;
+color:#fff;
+}
+
+.profile-card::before{
+content:'';
+position:absolute;
+top:-60px;
+right:-60px;
+width:200px;
+height:200px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+}
+
+.profile-card::after{
+content:'';
+position:absolute;
+bottom:-80px;
+left:-80px;
+width:220px;
+height:220px;
+background:rgba(255,255,255,.05);
+border-radius:50%;
+}
+
+.profile-card .btn{
+border-radius:12px;
+font-weight:600;
+}
+
+/* =====================================================
+DASHBOARD KPI CARDS
+===================================================== */
+
+.dashboard-card{
+background:#fff;
+border:none;
+}
+
+.metric-icon{
+width:60px;
+height:60px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+font-size:26px;
+}
+
+.bg-soft-primary{
+background:#e0ebff;
+color:#2563eb;
+}
+
+.bg-soft-success{
+background:#e7f9ef;
+color:#16a34a;
+}
+
+.bg-soft-warning{
+background:#fff7e8;
+color:#f59e0b;
+}
+
+.bg-soft-info{
+background:#e6fbff;
+color:#0891b2;
+}
+
+/* =====================================================
+PROFILE COMPLETION
+===================================================== */
+
+.progress{
+height:10px !important;
+border-radius:999px !important;
+background:#e2e8f0 !important;
+}
+
+.progress-bar{
+border-radius:999px;
+}
+
+/* =====================================================
+ATTENDANCE STATS
+===================================================== */
+
+#attendanceCount{
+font-size:2rem;
+}
+
+#totalClassesCount,
+#presentDaysCount{
+font-size:2rem;
+}
+
+/* =====================================================
+QUICK ACTIONS
+===================================================== */
+
+.quick-action{
+display:block;
+text-decoration:none;
+text-align:center;
+color:#fff;
+padding:24px 20px;
+border-radius:18px;
+font-weight:600;
+transition:.3s ease;
+min-height:130px;
+}
+
+.quick-action:hover{
+color:#fff;
+transform:translateY(-5px);
+}
+
+.qa-exam{
+background:linear-gradient(
+135deg,
+#10b981,
+#059669
+);
+}
+
+.qa-result{
+background:linear-gradient(
+135deg,
+#3b82f6,
+#2563eb
+);
+}
+
+.qa-attendance{
+background:linear-gradient(
+135deg,
+#06b6d4,
+#0891b2
+);
+}
+
+.qa-placement{
+background:linear-gradient(
+135deg,
+#111827,
+#374151
+);
+}
+
+/* =====================================================
+BUTTONS
+===================================================== */
+
+.btn{
+border-radius:12px;
+}
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+.profile-card{
+    margin-bottom:10px;
+}
+
+.quick-action{
+    min-height:100px;
+    padding:18px;
+}
+
+.metric-icon{
+    width:50px;
+    height:50px;
+    font-size:22px;
+}
+
+}
+
+/* ==========================================
+   STUDENT PROFILE PAGE
+========================================== */
+
+.profile-wrapper{
+    max-width:1400px;
+    margin:auto;
+}
+
+.profile-banner{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:24px;
+    padding:30px;
+    color:#fff;
+    box-shadow:0 10px 30px rgba(37,99,235,.18);
+}
+
+.profile-avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid rgba(255,255,255,.95);
+}
+
+.profile-name{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.profile-meta{
+    opacity:.9;
+    font-size:15px;
+}
+
+.info-card{
+    border:none;
+    border-radius:20px;
+    box-shadow:0 4px 20px rgba(15,23,42,.06);
+}
+
+.info-card .card-header{
+    border:none;
+    font-weight:600;
+    padding:16px 22px;
+}
+
+.stat-tile{
+    border:none;
+    border-radius:18px;
+    text-align:center;
+    padding:22px;
+    background:#fff;
+    box-shadow:0 4px 16px rgba(15,23,42,.06);
+    transition:.3s;
+    height:100%;
+}
+
+.stat-tile:hover{
+    transform:translateY(-4px);
+}
+
+.stat-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.stat-value{
+    font-size:1.7rem;
+    font-weight:700;
+}
+
+.info-label{
+    color:#64748b;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+.info-value{
+    font-size:15px;
+    font-weight:500;
+    color:#1e293b;
+}
+
+.profile-progress{
+    height:10px;
+    border-radius:20px;
+}
+
+.profile-progress .progress-bar{
+    border-radius:20px;
+}
+
+.nav-tabs .nav-link{
+    border:none;
+    color:#64748b;
+    font-weight:500;
+}
+
+.nav-tabs .nav-link.active{
+    color:#2563eb;
+    border-bottom:3px solid #2563eb;
+    background:none;
+}
+
+.document-btn{
+    border-radius:12px;
+    padding:10px 20px;
+}
+
+.readiness-card{
+    background:linear-gradient(135deg,#10b981,#059669);
+    color:#fff;
+}
+
+.resume-card{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:#fff;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* ===== EDIT PAGE ===== */
+
+.edit-card{
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.edit-header{
+    background:linear-gradient(135deg,#0d6efd,#6610f2);
+    color:white;
+    padding:18px;
+    font-weight:600;
+}
+
+.preview-card{
+    border-radius:18px;
+}
+
+.preview-avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #e9ecef;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    padding:10px 12px;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+/* ==========================================
+   NOTIFICATIONS PAGE
+========================================== */
+
+.notification-banner{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:24px;
+    padding:28px;
+    color:#fff;
+    box-shadow:0 10px 30px rgba(37,99,235,.18);
+}
+
+.notification-card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 4px 20px rgba(15,23,42,.06);
+    transition:.3s;
+}
+
+.notification-card:hover{
+    transform:translateY(-3px);
+}
+
+.notification-unread{
+    border-left:5px solid #2563eb;
+    background:#f8fbff;
+}
+
+.notification-title{
+    font-weight:700;
+    color:#1e293b;
+}
+
+.notification-message{
+    color:#64748b;
+    font-size:14px;
+}
+
+.notification-time{
+    font-size:13px;
+    color:#94a3b8;
+}
+
+.type-badge{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.type-exam{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.type-assignment{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.type-placement{
+    background:#ede9fe;
+    color:#6d28d9;
+}
+
+.type-fee{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.type-document{
+    background:#cffafe;
+    color:#155e75;
+}
+
+.type-general{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.empty-notification{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.empty-notification i{
+    font-size:60px;
+    color:#cbd5e1;
+    margin-bottom:15px;
+}
+/* ==========================================
+   NOTIFICATION PAGE V2
+========================================== */
+
+.notification-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 18px rgba(15,23,42,.06);
+    transition:.3s;
+}
+
+.notification-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.10);
+}
+
+.notification-unread{
+    border-left:6px solid #2563eb;
+    background:#f8fbff;
+}
+
+.notification-title{
+    color:#1e293b;
+    font-weight:700;
+}
+
+.notification-message{
+    color:#64748b;
+    line-height:1.7;
+}
+
+.notification-banner{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:#fff;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(37,99,235,.18);
+}
+
+.notification-banner .btn{
+    border-radius:12px;
+    font-weight:600;
+}
+
+.notification-card .badge{
+    border-radius:999px;
+    padding:.45rem .8rem;
+}
+
+.notification-card .btn{
+    border-radius:12px;
+    font-weight:600;
+}
+/*==================================================
+            STUDENT HEADER
+==================================================*/
+
+.student-navbar{
+
+    background:#ffffff;
+
+    border-bottom:1px solid #ececec;
+
+    height:72px;
+
+    padding-left:25px;
+
+    padding-right:25px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+}
+
+.student-navbar .navbar-brand{
+
+    font-size:1.2rem;
+
+    color:#0d6efd;
+
+}
+
+.student-navbar .navbar-brand:hover{
+
+    color:#084298;
+
+}
+
+.student-navbar .form-control{
+
+    border-radius:0 10px 10px 0;
+
+    box-shadow:none;
+
+}
+
+.student-navbar .input-group-text{
+
+    border-radius:10px 0 0 10px;
+
+}
+
+.student-navbar .dropdown-toggle{
+
+    color:#212529;
+
+}
+
+.student-navbar .dropdown-toggle::after{
+
+    margin-left:.6rem;
+
+}
+
+.student-navbar img{
+
+    object-fit:cover;
+
+}
+
+.student-navbar .dropdown-menu{
+
+    border-radius:12px;
+
+    min-width:220px;
+
+}
+
+.student-navbar .dropdown-item{
+
+    padding:.7rem 1rem;
+
+    transition:.25s;
+
+}
+
+.student-navbar .dropdown-item:hover{
+
+    background:#f4f7fb;
+
+    color:#0d6efd;
+
+}
+
+.student-navbar .btn-light{
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.student-navbar .badge{
+
+    font-size:.7rem;
+
+}
+
+@media(max-width:991px){
+
+    .student-navbar{
+
+        height:auto;
+
+        padding:15px;
+
+    }
+
+    .student-navbar .navbar-brand{
+
+        font-size:1rem;
+
+    }
+
+}

@@ -1,0 +1,149 @@
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <div class="erp-header mb-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+            <div>
+                <h2 class="fw-bold mb-1">
+                    Edit Assignment
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Update assignment details for students
+                </p>
+            </div>
+
+            <a th:href="@{/trainer/assignments}"
+               class="btn btn-light border">
+                ← Back
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="row g-4">
+
+        <!-- FORM -->
+        <div class="col-xl-8">
+
+            <div class="erp-panel">
+
+                <div class="erp-panel-header">
+                    <h5 class="fw-bold mb-0">
+                        Assignment Editor
+                    </h5>
+                </div>
+
+                <div class="erp-panel-body">
+
+                    <form th:action="@{/trainer/assignments/{id}/edit(id=${assignment.id})}"
+                          method="post">
+
+                        <!-- TITLE -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Title
+                            </label>
+
+                            <input class="form-control saas-input"
+                                   name="title"
+                                   th:value="${assignment.title}"
+                                   placeholder="Assignment title">
+
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Description
+                            </label>
+
+                            <textarea class="form-control saas-input"
+                                      name="description"
+                                      rows="6"
+                                      placeholder="Assignment details...">
+                                <th:block th:text="${assignment.description}"></th:block>
+                            </textarea>
+
+                        </div>
+
+                        <!-- DUE DATE -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Due Date
+                            </label>
+
+                            <input type="date"
+                                   class="form-control saas-input"
+                                   name="dueDate"
+                                   th:value="${assignment.dueDate}">
+
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="d-flex gap-2">
+
+                            <button class="btn btn-primary saas-btn px-4">
+                                💾 Update Assignment
+                            </button>
+
+                            <a th:href="@{/trainer/assignments}"
+                               class="btn btn-light border">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INFO PANEL -->
+        <div class="col-xl-4">
+
+            <div class="erp-panel h-100">
+
+                <div class="erp-panel-header">
+                    <h5 class="fw-bold mb-0">
+                        Assignment Status
+                    </h5>
+                </div>
+
+                <div class="erp-panel-body">
+
+                    <div class="tip-box">
+                        ✏️ You can update title, description, and due date anytime
+                    </div>
+
+                    <div class="tip-box">
+                        📌 Changes will reflect immediately for students
+                    </div>
+
+                    <div class="tip-box">
+                        ⚠ Avoid changing due date after submissions start
+                    </div>
+
+                    <div class="tip-box">
+                        📊 Keep assignments aligned with syllabus progress
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
