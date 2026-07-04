@@ -762,7 +762,7 @@ The following screenshots showcase the major modules and user interfaces of the 
 # 👨‍💼 Admin Dashboard
 
 <p align="center">
-<img src="screenshots/admin/admin-dashboard.png" width="100%">
+<img src="screenshots/Admin/admin-dashboard.png" width="100%">
 </p>
 
 The Admin Dashboard provides a centralized view of the entire institution with analytics, student statistics, trainer information, fee collection, attendance reports, and placement insights.
@@ -772,7 +772,7 @@ The Admin Dashboard provides a centralized view of the entire institution with a
 # 👨‍🎓 Student Management
 
 <p align="center">
-<img src="screenshots/admin/student-management.png" width="100%">
+<img src="screenshots/Admin/student-management.png" width="100%">
 </p>
 
 Features
@@ -789,7 +789,7 @@ Features
 # 👨‍🏫 Trainer Management
 
 <p align="center">
-<img src="screenshots/admin/trainer-management.png" width="100%">
+<img src="screenshots/Admin/trainer-management.png" width="100%">
 </p>
 
 Features
@@ -805,7 +805,7 @@ Features
 # 📋 Attendance Management
 
 <p align="center">
-<img src="screenshots/admin/attendance.png" width="100%">
+<img src="screenshots/Admin/attendance.png" width="100%">
 </p>
 
 Features
@@ -821,7 +821,7 @@ Features
 # 📊 Exam Analytics
 
 <p align="center">
-<img src="screenshots/admin/exam-analytics.png" width="100%">
+<img src="screenshots/Admin/exam-analytics.png" width="100%">
 </p>
 
 Features
@@ -837,7 +837,7 @@ Features
 # 💼 Placement Analytics
 
 <p align="center">
-<img src="screenshots/admin/placement-analytics.png" width="100%">
+<img src="screenshots/Admin/placement-analytics.png" width="100%">
 </p>
 
 Features
@@ -853,7 +853,7 @@ Features
 # 👨‍🎓 Student Dashboard
 
 <p align="center">
-<img src="screenshots/student/student-dashboard.png" width="100%">
+<img src="screenshots/Student/student-dashboard.png" width="100%">
 </p>
 
 Students can access attendance records, online examinations, fee status, notifications, AI-powered resume tools, and placement opportunities from a single dashboard.
@@ -863,7 +863,7 @@ Students can access attendance records, online examinations, fee status, notific
 # 📝 Online Examination
 
 <p align="center">
-<img src="screenshots/student/online-exam.png" width="100%">
+<img src="screenshots/Student/online-exam.png" width="100%">
 </p>
 
 Features
@@ -879,7 +879,7 @@ Features
 # 💰 Fee Management
 
 <p align="center">
-<img src="screenshots/student/fee-management.png" width="100%">
+<img src="screenshots/Student/fee-management.png" width="100%">
 </p>
 
 Features
@@ -895,7 +895,7 @@ Features
 # 🤖 AI Resume Studio
 
 <p align="center">
-<img src="screenshots/student/resume-studio-ai.png" width="100%">
+<img src="screenshots/Student/resume-studio-ai.png" width="100%">
 </p>
 
 The Resume Studio uses AI to analyze resumes, calculate ATS scores, identify missing keywords, and provide actionable suggestions for improving placement readiness.
